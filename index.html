@@ -1,0 +1,213 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>StoMA Midterm 2 Watchlist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+body{margin:0}*{box-sizing:border-box}
+/* Layout: single reading column, one block per day, videos as checkable rows with channel chip + duration */
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --fg:#1a1f2b; --muted:#5e6678; --line:#dfe3ea; --accent:#2f5bd3;
+  --J:#2f5bd3; --H:#a5262a; --M:#8a5a00; --K:#1d7a55;
+  --display:"Fraunces",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151c; --panel:#1a1e27; --fg:#e6e9f0; --muted:#9aa3b5; --line:#2b313d; --accent:#7f9dff;
+  --J:#7f9dff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151c; --panel:#1a1e27; --fg:#e6e9f0; --muted:#9aa3b5; --line:#2b313d; --accent:#7f9dff;
+  --J:#7f9dff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--body)}
+.wrap{max-width:780px;margin:0 auto;padding-block:28px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font:600 clamp(26px,5vw,36px)/1.15 var(--display);margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 18px;max-width:65ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);margin-bottom:10px}
+.legend a{color:inherit}
+.chip{font:500 11px/1 var(--mono);letter-spacing:.04em;padding:4px 6px;border-radius:4px;border:1px solid currentColor;flex:none}
+.cJ{color:var(--J)}.cH{color:var(--H)}.cM{color:var(--M)}.cK{color:var(--K)}
+.prog{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--muted);margin:14px 0 26px}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:18px;overflow:hidden}
+.dh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;padding:14px 16px 4px}
+.dh h2{font:600 20px/1.2 var(--display);margin:0}
+.dh span{font:400 12px var(--mono);color:var(--muted)}
+.topic{padding:8px 16px 2px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ol{list-style:none;margin:0;padding:0 0 8px}
+li{display:flex;align-items:flex-start;gap:10px;padding:7px 16px;border-top:1px solid transparent}
+li:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+li input{margin-top:3px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+li .t{flex:1;min-width:0}
+li a{color:var(--fg);text-decoration:none;font-weight:500}
+li a:hover{text-decoration:underline;color:var(--accent)}
+li a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+li .note{display:block;font-size:13px;color:var(--muted)}
+li .d{font:400 12px var(--mono);color:var(--muted);flex:none;margin-top:3px;font-variant-numeric:tabular-nums}
+li.opt a{font-weight:400}
+li.opt .tag{font:500 10px var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
+li.done a{color:var(--muted);text-decoration:line-through}
+.gap{margin:4px 16px 12px;font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+button{font:500 13px var(--body);background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+button:focus-visible{outline:2px solid var(--accent)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <h1>StoMA Midterm 2 Watchlist</h1>
+  <p class="sub">Videos in watch order for each day's guidebook, 12–21 Oct. Jochumzen first where he covers the topic, then the others for what he skips. Rows marked <em>extra</em> are optional; the day time counts only the rest.</p>
+  <div class="legend">
+    <span><span class="chip cJ">JZ</span> <a href="https://www.youtube.com/playlist?list=PL3FE7gBXZjSKMqq_u9eqqD6LVr9Gb_zaz" target="_blank" rel="noopener">Jochumzen</a></span>
+    <span><span class="chip cK">KJ</span> <a href="https://www.youtube.com/playlist?list=PLyqSpQzTE6M_FbA7OwN2jI2Ime2yb5REk" target="_blank" rel="noopener">NPTEL, Krishna Jagannathan (IIT M)</a></span>
+    <span><span class="chip cH">110</span> <a href="https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo" target="_blank" rel="noopener">Harvard Stat 110</a></span>
+    <span><span class="chip cM">MIT</span> <a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8" target="_blank" rel="noopener">MIT 6.041</a></span>
+  </div>
+  <div class="prog"><span id="pc">0 / 0 watched</span><div class="bar"><i id="pb"></i></div></div>
+  <div class="tools"><button id="hideopt" type="button">Hide extras</button><button id="reset" type="button">Clear ticks</button></div>
+  <div id="days"></div>
+</div>
+
+<script>
+// [channel, videoId, title, duration, note, optional]
+const D=[
+ {d:"Mon 12 Oct",topics:[["Conditional distributions (mixed), total probability & Bayes for RVs",[
+  ["J","_jmYUvb2pGs","Conditional probability","6:23","Quick refresher"],
+  ["J","YdX5i7n6AMQ","Several random variables","7:50"],
+  ["J","-EVgbuXKU_k","Joint probability mass function","4:37"],
+  ["J","mySqI7g5l6g","Marginal probability mass function","8:51"],
+  ["J","6JytF-KgISc","Joint probability density function","7:43"],
+  ["J","hFw_SthpJsw","Marginal probability density function","5:35"],
+  ["J","480TLdrOmKg","Conditional probability mass function","9:58"],
+  ["J","tqrtBbNzlz8","Conditional probability density function","5:14"],
+  ["M","H_k1w3cfny8","L10 · Continuous Bayes' rule; derived distributions","48:53","First half: Bayes with mixed discrete/continuous variables"],
+  ["K","CX8G8Z5g5jU","lec44 · Conditional CDF","23:19","",1],
+ ]]]},
+ {d:"Tue 13 Oct",topics:[["Independence & multiple random variables",[
+  ["J","hR4KT8Pfv0U","Independent random variables","9:02"],
+  ["K","o0Ow5YT1-7k","lec39 · Independent random variables 1","21:28"],
+  ["K","7473il4l2v8","lec40 · Independent random variables 2","23:45","",1],
+ ]],["Max, min & order statistics",[
+  ["H","2LR5JYbhyjg","L25 · Order statistics and conditional expectation","48:15","First ~25 min is order statistics; the rest previews 17 Oct"],
+ ]]]},
+ {d:"Wed 14 Oct",topics:[["Sums of random variables (convolution)",[
+  ["J","L2J1UM1yIdg","Function of several random variables","6:14"],
+  ["J","4L96-7L2gzE","Linear function of several random variables","5:24"],
+  ["H","yXwPUAIvFyg","L22 · Transformations and convolutions","47:46"],
+  ["K","P6TYfLId7j4","lec48 · Sums of jointly continuous RVs","24:09"],
+  ["K","qvny65_gZQM","lec47 · Sums of discrete RVs","22:02","",1],
+ ]],["Jacobian transformation: difference, product, quotient",[
+  ["K","30x5TyidptI","lec51 · Jacobian formula","23:24"],
+  ["K","yhd4pSm3bEA","lec52 · Examples using the Jacobian formula","24:46"],
+ ]]]},
+ {d:"Thu 15 Oct",topics:[["Exchangeable RVs & expectations of functions",[
+  ["J","zsRWu6W6aYg","Expected value of a function of several random variables","6:17"],
+  ["J","_mWKujbK8Z4","The expected value of the product of two random variables","3:38"],
+ ]],["Covariance, correlation & linear LSE",[
+  ["J","92nPUqrMnNY","Covariance, correlation and independence","26:35"],
+  ["J","oqhhrqfRpb8","Covariance","10:15"],
+  ["J","RBioTO4jNOU","Covariance, results","15:12"],
+  ["H","IujCYxtpszU","L21 · Covariance and correlation","49:26","Good worked examples",1],
+  ["M","XtNXQJkgkhI","L22 · Bayesian statistical inference II","52:16","Watch the linear least-mean-squares part for linear LSE"],
+ ]]],gap:"No good video on exchangeable RVs; use the guidebook for that part."},
+ {d:"Fri 16 Oct",topics:[["Covariance matrix & vector linear regression",[
+  ["J","24AJD4pRU8Y","Random vectors","7:16"],
+  ["J","4SVZw2kfVWI","Function of a random vector","6:44"],
+  ["J","BVenKtmBf8E","The expected value of a random vector","7:40"],
+  ["J","VLhj4-R2miI","The variance of a random vector","9:30"],
+ ]],["Joint moments, joint MGF & characteristic function",[
+  ["H","N8O6zd6vTZ8","L17 · Moment generating functions","50:45"],
+  ["K","ydu7KUVSBeo","lec75 · Moment generating function 1","21:14"],
+  ["K","SKb7lxR_o1k","lec76 · Moment generating function 2","28:37","",1],
+  ["K","WkKPEB5r-bU","lec77 · Characteristic function 1","19:14"],
+  ["H","tVDdx6xUOcs","L18 · MGFs continued","49:41","",1],
+ ]]]},
+ {d:"Sat 17 Oct",topics:[["Conditional expectation & MMSE estimation",[
+  ["J","QP00LHp0LqY","Conditional expectation and conditional variance","22:08"],
+  ["J","uYbThumrD14","Conditional expectations, discrete random variables","11:37"],
+  ["J","nEEm-dxzOfU","Conditional expectations, continuous random variables","8:21"],
+  ["J","s2nvRaQ0QK8","Law of iterated expectations","8:24"],
+  ["J","5TpgBxBBOqo","Conditional expectation of a function of a random variable","7:46"],
+  ["J","0yCW2TXqfkU","Conditional variance","12:50"],
+  ["J","jDsHE1-t2Zc","Conditional expectations and random vectors","12:10"],
+  ["K","IpnfRSM25Tw","lec73 · MMSE estimator","15:34"],
+  ["H","gjBvCiRt8QA","L27 · Conditional expectation given an r.v.","50:34","",1],
+ ]],["Random sums & Wald's formula",[
+  ["M","P7a4bjE6Crk","L12 · Iterated expectations; sum of a random number of RVs","47:54"],
+  ["K","L_JRLrjXoDE","lec49 · Sums of a random number of random variables","26:50","",1],
+ ]]]},
+ {d:"Sun 18 Oct",topics:[["Gaussian & jointly Gaussian RVs",[
+  ["J","flh9auAOpmw","The normal distribution","15:49","Refresher"],
+  ["J","hNdKLsd3z8o","Multivariate normal","4:38"],
+  ["K","6Uwjz6h9-Mc","lec95 · Multivariate Gaussians 1","23:36"],
+  ["K","lJinY4mEq74","lec96 · Multivariate Gaussians 2","35:04"],
+  ["H","MF-XSJOsGqw","L30 · Chi-square, Student-t, multivariate normal","47:28","Last third is the MVN part",1],
+ ]]],gap:"Afternoon is the timed Test II papers, so keep the videos to the morning."},
+ {d:"Mon 19 Oct",topics:[["Inequalities: Jensen, Hölder, Minkowski, Chernoff, Hoeffding",[
+  ["H","UtXK_EQ3Pow","L28 · Inequalities","47:29","Cauchy–Schwarz, Jensen, Markov, Chebyshev"],
+  ["K","FwW2oMSLwJY","lec81 · Concentration inequalities 1","24:49"],
+  ["K","Fg6xxffxcXg","lec82 · Concentration inequalities 2","21:58","Chernoff bound"],
+ ]],["Weak law of large numbers & convergence in probability",[
+  ["J","HsNVjCDI9ts","Convergence in probability","12:59"],
+  ["J","4Q01kUH13Fw","Plim-rules","6:45"],
+  ["M","3eiio3Tw7UQ","L19 · Weak law of large numbers","50:13"],
+  ["J","jEwML3KR29g","Consistency","6:33","",1],
+ ]]],gap:"Hölder, Minkowski and Hoeffding aren't covered well anywhere here; do those from the guidebook."},
+ {d:"Tue 20 Oct",topics:[["Almost sure convergence, Borel–Cantelli & SLLN",[
+  ["K","85hUqV50M1M","lec25 · Borel–Cantelli lemma 1","20:15"],
+  ["K","wMaCXqxp70s","lec26 · Borel–Cantelli lemma 2","30:31"],
+  ["K","wo6Xod1gLO8","lec83 · Convergence of random variables 1","18:51"],
+  ["K","20HLqEpXXhw","lec84 · Convergence of random variables 2","24:27"],
+  ["K","dCjPTwdANFA","lec85 · Convergence of random variables 3","24:56"],
+  ["K","Q54mEuQUOEc","lec91 · The law of large numbers 1","17:10"],
+  ["K","pZdrc4rEMVk","lec92 · The law of large numbers 2","31:47"],
+ ]],["Convergence in r-th mean, in distribution & relations",[
+  ["K","e8nDSvENyn8","lec86 · Convergence of random variables 4","25:19"],
+  ["K","el-JGNsGHw8","lec87 · Convergence of random variables 5","22:17"],
+  ["K","jgNw7sopJNI","lec88 · Convergence of random variables 6","23:26"],
+ ]]]},
+ {d:"Wed 21 Oct",topics:[["Central limit theorem & characteristic functions",[
+  ["K","f40ALmHmf00","lec78 · Characteristic function 2","30:01"],
+  ["K","ZTS1q9_ynkw","lec89 · Convergence of characteristic functions","21:29"],
+  ["M","Tx7zzD4aeiA","L20 · Central limit theorem","51:23"],
+  ["K","3_qGU4SB4-k","lec93 · The central limit theorem 1","25:11"],
+  ["K","3M1R5rHHJ_U","lec94 · The central limit theorem 2","17:57","",1],
+  ["H","OprNqnHsVIA","L29 · Law of large numbers and CLT","49:48","",1],
+ ]]],gap:"Afternoon is the timed Test III paper."},
+];
+const CH={J:"JZ",H:"110",M:"MIT",K:"KJ"};
+const sec=s=>s.split(":").reduce((a,b)=>a*60+ +b,0);
+const fmt=t=>{const h=Math.floor(t/3600),m=Math.round(t%3600/60);return (h?h+" h ":"")+m+" min"};
+let st={},hide=false;
+try{st=JSON.parse(localStorage.getItem("stoma-w")||"{}");hide=localStorage.getItem("stoma-hide")==="1"}catch(e){}
+const save=()=>{try{localStorage.setItem("stoma-w",JSON.stringify(st))}catch(e){}};
+function render(){
+  const root=document.getElementById("days");root.innerHTML="";
+  let n=0;
+  D.forEach(day=>{
+    let core=0;
+    const box=document.createElement("section");box.className="day";
+    const body=day.topics.map(([tp,vs])=>{
+      const rows=vs.map(([c,id,t,dur,note,opt])=>{
+        n++;const k=n;if(!opt)core+=sec(dur);
+        if(opt&&hide)return "";
+        return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${c}">${CH[c]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");
+      return `<div class="topic">${tp}</div><ol>${rows}</ol>`}).join("");
+    box.innerHTML=`<div class="dh"><h2>${day.d}</h2><span>${fmt(core)} core</span></div>${body}${day.gap?`<p class="gap">${day.gap}</p>`:""}`;
+    root.appendChild(box);
+  });
+  const all=D.flatMap(d=>d.topics.flatMap(t=>t[1])),done=all.filter(v=>st[v[1]]).length;
+  document.getElementById("pc").textContent=`${done} / ${all.length} watched`;
+  document.getElementById("pb").style.width=(100*done/all.length)+"%";
+  document.getElementById("hideopt").textContent=hide?"Show extras":"Hide extras";
+}
+document.getElementById("days").addEventListener("change",e=>{const id=e.target.dataset.id;if(!id)return;if(e.target.checked)st[id]=1;else delete st[id];save();render()});
+document.getElementById("hideopt").onclick=()=>{hide=!hide;try{localStorage.setItem("stoma-hide",hide?"1":"0")}catch(e){};render()};
+document.getElementById("reset").onclick=e=>{if(e.target.dataset.arm){st={};save();delete e.target.dataset.arm;e.target.textContent="Clear ticks";render()}else{e.target.dataset.arm=1;e.target.textContent="Click again to clear"}};
+render();
+</script>
+</body>
+</html>
