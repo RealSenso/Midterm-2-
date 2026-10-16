@@ -49,6 +49,9 @@ li .note{display:block;font-size:13px;color:var(--muted)}
 li .d{font:400 12px var(--mono);color:var(--muted);flex:none;margin-top:3px;font-variant-numeric:tabular-nums}
 li.opt a{font-weight:400}
 li.opt .tag{font:500 10px var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
+li.q .qt{color:var(--fg)}li.done .qt{color:var(--muted);text-decoration:line-through}
+li.qhead{font:600 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:10px 16px 2px}
+.cq{color:var(--fg)}
 li.done a{color:var(--muted);text-decoration:line-through}
 .gap{margin:4px 16px 12px;font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
@@ -83,7 +86,7 @@ button:focus-visible{outline:2px solid var(--accent)}
 </div>
 <script>
 const CHS={F:["FPCV","First Principles of Computer Vision (Shree Nayar)","https://www.youtube.com/@firstprinciplesofcomputerv3258"],R:["RPI","Rich Radke, Intro to Digital Image Processing","https://www.youtube.com/playlist?list=PLuh62Q4Sv7BUf60vkjePfcOQc8sHxmnDX"],N:["NPTEL","NPTEL DIP, Prof P. K. Biswas (IIT KGP)","https://www.youtube.com/playlist?list=PL1F076D1A98071E24"],V:["BVV","Barry Van Veen","https://www.youtube.com/@allsignalprocessing"],O:["+","Other channels",""]};
-const SUB="Videos in watch order for each day's guidebook, 12–22 Oct. Shree Nayar's short First Principles videos come first where they cover the topic, then full lectures and shorter explainers for the rest. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
+const SUB="Videos in watch order for each day's guidebook, 12–22 Oct. Shree Nayar's short First Principles videos come first where they cover the topic, then full lectures and shorter explainers for the rest. Each topic then lists full questions from the 2021 Midterm 2 and the professor’s practice sets, then variants written in the same style. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
 const D=[
  {d:"Mon 12 Oct",topics:[["DSFT & DFT",[
   ["O","AWIONchKqhA","Discrete-time Fourier transform (DTFT) explained visually (TheSiGuy)","8:57"],
@@ -92,17 +95,26 @@ const D=[
   ["F","tEzgtbnbXgQ","Fourier transform | Image Processing II","16:32"],
   ["R","NbQY1x8H6QQ","DIP L7 · The 2D discrete Fourier transform","1:08:03"],
   ["O","2kMSLqAbLj4","How the Fourier series, FT, DTFT, DFT, FFT, LT and ZT are related (Iain Explains)","22:47","",1],
+  ["Q","d21-1","Prove Parseval's theorem for the 1D M-point DFT of a real sequence f(m): Σ (f(m))² = (1/M) Σ |F(u)|².","","Midterm 2 2021 Q1 · Past paper"],
+  ["Q","d21-4","N is even. The M-point DFT of a filter is H(u) = 1 for −N/2 ≤ u ≤ N/2 and 0 otherwise (interpreted periodically). (a) Find and sketch the inverse DFT if M = N + 1. (b) Find and sketch it if N = 2 and M ≫ N. (c) In each case, is H an ideal low-pass filter?","","Midterm 2 2021 Q4 · Past paper"],
+  ["Q","dp3-1","For the M×N DFT, prove the basis functions are orthogonal: (1/MN) Σₘ Σₙ e^(j2π(mu₁/M + nv₁/N)) e^(−j2π(mu₂/M + nv₂/N)) = δ(u₁−u₂, v₁−v₂).","","Practice Set 3 Q1 · Professor's practice set"],
+  ["Q","dp3-2","Prove Parseval's theorem for the 2D DFT of a real image: Σ Σ f(m,n)² = (1/MN) Σ Σ |F(u,v)|².","","Practice Set 3 Q2 · Same as 2021 Q1 in 2D"],
+  ["Q","v-d1","(Variant) Find the DSFT of x(m) = aᵐ u(m), |a| < 1, and of its 8-point truncation; relate the 8-point DFT to samples of the DSFT.","","Variant · DSFT ↔ DFT sampling"]
  ]]]},
  {d:"Tue 13 Oct",topics:[["2D convolution & 2D transforms",[
   ["F","0OHRJMNKhX0","LSIS and convolution | Image Processing I","21:11"],
   ["F","kQUfKf-vPdI","Convolution theorem | Image Processing II","7:34"],
   ["R","7o5kEVWVGjU","DIP L9 · Unitary image transforms","1:02:25","Separable 2D transforms in matrix form"],
   ["R","tmERrPh1E4c","DIP L8 · Frequency-domain filtering; sampling and aliasing","1:06:01","",1],
+  ["Q","v-d2a","(Variant) Show that the 2D DFT is separable: it can be computed as 1D DFTs of the rows followed by 1D DFTs of the columns. Write it as F = W_M f W_N.","","Variant · Separable transforms"],
+  ["Q","v-d2b","(Variant) Show that circular convolution of two M×N images corresponds to multiplication of their DFTs. When does circular convolution equal linear convolution (zero-padding size)?","","Variant · Convolution theorem"]
  ]]]},
  {d:"Wed 14 Oct",topics:[["Discrete cosine transform (DCT)",[
   ["V","Aq7YgjbVrPg","The discrete cosine transform","10:33"],
   ["V","DS8N8cFVd-E","The two-dimensional discrete cosine transform","7:40"],
   ["N","S8FkaEWfCOg","L15 · Discrete cosine transform","57:45"],
+  ["Q","v-d3a","(Variant) Show the N-point DCT-II basis vectors are orthogonal, and find the normalisation constants that make the DCT matrix orthonormal.","","Variant · Same style as Practice Set 3 Q1"],
+  ["Q","v-d3b","(Variant) Explain, using the symmetric extension of a block, why the DCT has less 'boundary leakage' (better energy compaction) than the DFT.","","Variant · Common explain-why question"]
  ]]]},
  {d:"Thu 15 Oct",topics:[["Applications of image transforms (JPEG & KLT)",[
   ["O","Q2aEzeMDHMA","JPEG DCT, discrete cosine transform (Computerphile)","15:12"],
@@ -110,38 +122,56 @@ const D=[
   ["N","uTwm3Zv1HfA","L16 · K-L transform","56:54"],
   ["R","wyb5S8QsCSA","DIP L16 · Lossy image compression","1:05:30","",1],
   ["O","0me3guauqOU","The unreasonable effectiveness of JPEG (Reducible)","34:48","",1],
+  ["Q","dp5-1","Data X₁, …, Xₙ ∈ R^D with zero mean are projected onto a unit vector u₁ to maximise the variance of the projections. Show u₁ is the eigenvector of the covariance matrix with the largest eigenvalue.","","Practice Set 5 Q1 · Professor's practice set (KLT/PCA)"],
+  ["Q","v-d4","(Variant) Show that the KLT is the transform that makes the transformed coefficients uncorrelated, and that keeping the k largest-eigenvalue coefficients minimises the mean-squared reconstruction error.","","Variant · KLT optimality"]
  ]]]},
  {d:"Fri 16 Oct",topics:[["Upsampling & downsampling",[
   ["F","YFZsxY_2_l4","Sampling theory and aliasing | Image Processing II","12:08"],
   ["O","g_12MFQFXLA","Decimation and interpolation: downsampling and upsampling (Easy Electronics)","23:19"],
   ["O","OF8Q6WXYOY0","L50 · Introduction to multirate signal processing (NPTEL IIT KGP)","41:25"],
   ["N","7y-X9Bn39a8","L9 · Interpolation and resampling","57:25","",1],
+  ["Q","v-d5a","(Variant) x(n) has DTFT X(ω). Find the DTFT of the M-fold downsampled y(n) = x(Mn) and of the L-fold upsampled (zero-inserted) signal. Sketch for M = L = 2.","","Variant · Core multirate result"],
+  ["Q","v-d5b","(Variant) Why must an anti-aliasing filter come before downsampling, and an interpolation filter after upsampling? State the ideal cut-offs.","","Variant · Explain-why question"]
  ]]]},
  {d:"Sat 17 Oct",topics:[["Haar transform & filter banks",[
   ["O","y7KLbd7n75g","Wavelets and multiresolution analysis (Steve Brunton)","15:12"],
   ["O","A1Kk0r4ov6Q","L6 · The Haar filter bank (IIT Bombay)","52:05"],
   ["O","y246EFvaDow","L11 · Two-channel filter bank (IIT Bombay)","54:20","",1],
   ["O","eJLF9HeZA8I","Image compression with wavelets, Python (Steve Brunton)","10:01","",1],
+  ["Q","v-d6a","(Variant) Compute the 1-level Haar transform of x = [4, 2, 5, 5, 1, 3, 2, 2]. Reconstruct x from the approximation and detail coefficients.","","Variant · Numerical Haar"],
+  ["Q","v-d6b","(Variant) For the two-channel Haar filter bank (h₀ = [1,1]/√2, h₁ = [1,−1]/√2), show perfect reconstruction using the z-domain (aliasing cancels and distortion is a pure delay).","","Variant · Filter-bank PR"]
  ]]]},
  {d:"Sun 18 Oct",topics:[["Image restoration & Wiener filter",[
   ["F","f-IINpceX6k","Deconvolution | Image Processing II","11:17"],
   ["O","en5_Ywh22sA","Wiener filter (sinc)","12:07"],
   ["R","GE3_4acUrO4","DIP L17 · Image restoration and the Wiener filter","1:14:39"],
   ["N","5qxrzD6ODHc","L22 · Image restoration I","1:00:13","",1],
+  ["Q","d21-2","y₁(m,n) = x(m,n) + w₁(m,n) and y₂(m,n) = x(m,n) + w₂(m,n), with x, w₁, w₂ mutually uncorrelated and power spectra S_x, S_y1, S_y2. Find the Wiener filter d(m,n) minimising Σ Σ [y₁(m,n) − d(m,n) ∗ y₂(m,n)]².","","Midterm 2 2021 Q2 · Past paper"],
+  ["Q","dp4-1","Treat f and the noise as zero-mean stationary random processes, g = h ∗ f + z. Using autocorrelations and cross power spectra, show the MMSE linear filter is D(u,v) = H*(u,v) / (|H(u,v)|² + S_z(u,v)/S_f(u,v)). (Hint: first show R_fg = d ∗ R_g.)","","Practice Set 4 Q1 · Professor's practice set"],
+  ["Q","dp4-2","A continuous linear position-invariant system has impulse response h(x−α, y−β) = exp(−(x−α)² − (y−β)²). Find the output (no noise) when the input is the line mass f(x,y) = δ(x − a).","","Practice Set 4 Q2 (Gonzalez–Woods) · Professor's practice set"],
+  ["Q","dp4-3","g = h ∗ f + w with h and w uncorrelated. Show |G|² = |H|²|F|² + |W|². Then find a restoration filter D with |F̂|² = |D|²|G|² designed so that |F̂|² = |F|² (power-spectrum equalisation).","","Practice Set 4 Q3 (Gonzalez–Woods) · Professor's practice set"]
  ]]]},
  {d:"Mon 19 Oct",topics:[["Constrained least squares, median & bilateral filters",[
   ["O","CfvYkOyIFU8","Constrained least squares filtering (sinc)","21:12"],
   ["N","utFtOkMG6yo","L24 · Image restoration III","58:40","Covers constrained least squares restoration",1],
   ["F","7FP7ndMEfsc","Non-linear image filters | Image Processing I","15:24","Median and bilateral filters"],
+  ["Q","d21-3","Explain mathematically why the bilateral filter preserves strong edges when denoising, while a Gaussian filter blurs them.","","Midterm 2 2021 Q3 · Past paper"],
+  ["Q","v-d8a","(Variant) Derive the constrained least squares filter D = H*/(|H|² + γ|P|²) by minimising ‖p ∗ f̂‖² subject to ‖g − h ∗ f̂‖² = ‖η‖². What happens as γ → 0?","","Variant · Derivation question"],
+  ["Q","v-d8b","(Variant) Show that the median filter is not linear (give a counterexample), and explain why it removes salt-and-pepper noise better than an averaging filter.","","Variant · Explain-why question"]
  ]]]},
  {d:"Tue 20 Oct",topics:[["Image quality (PSNR, SSIM)",[
   ["O","RGQ-IXg0REQ","MSE and PSNR, part 1 (Chaos and Cryptography)","4:07"],
   ["O","5S-M6mUflXo","Structural similarity index (SSIM) explained (Sanjeev Bhandari)","26:13"],
+  ["Q","v-d9a","(Variant) An 8-bit image is corrupted by noise of variance 25 (in grey levels²). Find the PSNR. By how much does PSNR change if the noise standard deviation doubles?","","Variant · PSNR arithmetic"],
+  ["Q","v-d9b","(Variant) Write SSIM as the product of luminance, contrast and structure terms. Give an example where two distortions have the same MSE but very different SSIM.","","Variant · Explain-why question"]
  ]],["Gradient edge detection",[
   ["F","G8yp6f9V_6c","What is an edge? | Edge Detection","5:15"],
   ["F","lOEBsQodtEQ","Edge detection using gradients | Edge Detection","10:44"],
   ["F","uNP6ZwQ3r6A","Edge detection using Laplacian | Edge Detection","12:39"],
   ["R","APBXfqVccS0","DIP L10 · Edge detection","1:03:23","",1],
+  ["Q","dp5-2","For step, ramp and roof edge profiles, sketch a horizontal profile through the centre of the gradient-magnitude image (e.g. Sobel).","","Practice Set 5 Q2 · Professor's practice set"],
+  ["Q","dp5-3","Show that the average value of the Laplacian of a Gaussian, ∇²G(x,y) = [(x² + y² − 2σ²)/σ⁴] exp(−(x² + y²)/(2σ²)), is zero.","","Practice Set 5 Q3 · Professor's practice set"],
+  ["Q","dp2-3","Show the Laplacian ∂²f/∂x² + ∂²f/∂y² is invariant to rotating the axes by θ (x = x′cosθ − y′sinθ, y = x′sinθ + y′cosθ).","","Practice Set 2 Q3 · Professor's practice set"]
  ]]],gap:"SSIM videos are thin. Read the formula and its three terms in the guidebook first."},
  {d:"Wed 21 Oct",topics:[["Canny edge detector & Hough transform",[
   ["F","hUC1uoigH6s","Canny edge detector | Edge Detection","6:02"],
@@ -149,12 +179,16 @@ const D=[
   ["F","XRBc_xkZREg","Hough transform | Boundary Detection","21:40"],
   ["R","_con6DnhkaA","DIP L11 · Edge linking and line detection","1:17:57","",1],
   ["F","_mGxmZWs9Zw","Generalized Hough transform | Boundary Detection","9:43","",1],
+  ["Q","v-d10a","(Variant) List the steps of the Canny detector and explain the purpose of non-maximum suppression and of hysteresis thresholding with two thresholds.","","Variant · Common explain question"],
+  ["Q","v-d10b","(Variant) In the Hough transform with ρ = x cosθ + y sinθ, find the (ρ, θ) curves for the points (1, 1) and (2, 2), and the line through both. Why is the (ρ, θ) form used instead of y = mx + c?","","Variant · Hough computation"]
  ]]]},
  {d:"Thu 22 Oct",topics:[],gap:"Timed mock and final revision. No videos today."},
 ];
 
 
-/*ALLIDS*/const ALLIDS={"stoma":["_jmYUvb2pGs","YdX5i7n6AMQ","-EVgbuXKU_k","mySqI7g5l6g","6JytF-KgISc","hFw_SthpJsw","480TLdrOmKg","tqrtBbNzlz8","H_k1w3cfny8","CX8G8Z5g5jU","p25-1","p24-3","v-reg1","r3-53","h6-7","6UdLp2gpmcE","96UEwIcSTG0","TbC-kPbRt3c","hR4KT8Pfv0U","o0Ow5YT1-7k","7473il4l2v8","p25-2","p21-1b","v-ind1","h3-19","2LR5JYbhyjg","h6-32","h6-33","v8N6l9RXbOM","xFS4xpYQ82w","X5ch4xZf3LE","L2J1UM1yIdg","4L96-7L2gzE","yXwPUAIvFyg","P6TYfLId7j4","qvny65_gZQM","p25-3","p24-2","p24-4","v-sum1","h6-11","30x5TyidptI","yhd4pSm3bEA","p25-4","p25-5","p21-1a","r2-61","h6-42","v-jac1","HwkKtHLCmzo","f8Nli1AfygM","8ueUXUTRlSQ","zsRWu6W6aYg","_mWKujbK8Z4","p20-2b","r2-74","r2-45","h4-16","92nPUqrMnNY","oqhhrqfRpb8","RBioTO4jNOU","IujCYxtpszU","XtNXQJkgkhI","p24-1","p21-2b","p20-1b","r2-55","r2-72","h4-17","24AJD4pRU8Y","4SVZw2kfVWI","BVenKtmBf8E","VLhj4-R2miI","N8O6zd6vTZ8","ydu7KUVSBeo","SKb7lxR_o1k","WkKPEB5r-bU","tVDdx6xUOcs","p24-6","v-mgf1","r3-42","h8-5","QP00LHp0LqY","uYbThumrD14","nEEm-dxzOfU","s2nvRaQ0QK8","5TpgBxBBOqo","0yCW2TXqfkU","jDsHE1-t2Zc","IpnfRSM25Tw","gjBvCiRt8QA","p25-6","p21-3b","p20-1a","p24-5","p20-4a","r3-23","r3-27","r3-24","v-rod1","P7a4bjE6Crk","L_JRLrjXoDE","p21-3a","h4-35","r3-44","NlRgBtSLViI","Y8zx1tWEbeI","CSkcBXUIJh4","NYOcZx6Kxsw","aGyJO6G3mxQ","flh9auAOpmw","hNdKLsd3z8o","6Uwjz6h9-Mc","lJinY4mEq74","MF-XSJOsGqw","p25-7","p20-4b","p24-7","p21-2a","v-g1","v-g2","UtXK_EQ3Pow","FwW2oMSLwJY","Fg6xxffxcXg","HsNVjCDI9ts","4Q01kUH13Fw","3eiio3Tw7UQ","jEwML3KR29g","p25-8","p24-8","v-wl2","r2-66","x4q6H6lxFFE","D_vUxa3tEGs","eb-eRduYwZY","s8geHBRvSos","85hUqV50M1M","wMaCXqxp70s","wo6Xod1gLO8","20HLqEpXXhw","dCjPTwdANFA","Q54mEuQUOEc","pZdrc4rEMVk","t3-2a","t3-1b","v-as1","e8nDSvENyn8","el-JGNsGHw8","jgNw7sopJNI","t3-4b","t3-1a","f40ALmHmf00","ZTS1q9_ynkw","Tx7zzD4aeiA","3_qGU4SB4-k","3M1R5rHHJ_U","OprNqnHsVIA","p21-4a","p21-4b","t3-2b","v-clt1","h7-37","h7-43","M3615Gbd6-8"],"laa":["kYB8IZa5AuE","GNg5drGm4JE","SoV7-w8x8pk","uQhTuRlWMxw","GT1i4vsrfq8","LlbzPlS3ZQk","Vf8z6XA7LJE","XkY2DOUCWMU","O3LDK6LKcME","RdaflWPVFNE","P2LTAUO1TdA","HCwJzSAsPjc","16RepOJMUbM","c7eEHqqJn7U","PFDu9oVAE-g","NfoS22DasmE","zlmh4JSTijI","W8uSdLZ2b5E","e50Bj7jn9IQ","3WkxhuzcSCE","TJ9clajl0Vg","8HIk65B4CIM","N5LT--T3k5Q","znJ0TO0RY6I","13r9QY6cmjc","Pw_bcfpd22w","MO9Jyu-RluE","lGGDIGizcQ0","PUDJW-ysfKY","be1SZVBBFmU","VmpdsIs78p0","xyhaYHGZN-w","RiB4xWbK62c","VB_tGYSFmJE","a60r50XvtVo","DmFRusu-IfE","jWo65wklbYM","TSdXJw83kyA","3NdI4DHJ8Ro","MkYzm4W9p6U","Bl3kQu5djSg","nKSBMdqDryo","DZwQxbMQSu4","KZetRHUtT0M","0MtwqhIwdrI","TabSyV-0Naw","3XS4Y4MA0O4"],"dip":["AWIONchKqhA","YYGltoYEmKo","nl9TZanwbBk","tEzgtbnbXgQ","NbQY1x8H6QQ","2kMSLqAbLj4","0OHRJMNKhX0","kQUfKf-vPdI","7o5kEVWVGjU","tmERrPh1E4c","Aq7YgjbVrPg","DS8N8cFVd-E","S8FkaEWfCOg","Q2aEzeMDHMA","gGEBUdM0PVc","uTwm3Zv1HfA","wyb5S8QsCSA","0me3guauqOU","YFZsxY_2_l4","g_12MFQFXLA","OF8Q6WXYOY0","7y-X9Bn39a8","y7KLbd7n75g","A1Kk0r4ov6Q","y246EFvaDow","eJLF9HeZA8I","f-IINpceX6k","en5_Ywh22sA","GE3_4acUrO4","5qxrzD6ODHc","CfvYkOyIFU8","utFtOkMG6yo","7FP7ndMEfsc","RGQ-IXg0REQ","5S-M6mUflXo","G8yp6f9V_6c","lOEBsQodtEQ","uNP6ZwQ3r6A","APBXfqVccS0","hUC1uoigH6s","sRFM5IEqR2w","XRBc_xkZREg","_con6DnhkaA","_mGxmZWs9Zw"]};/*END*/
+
+
+/*ALLIDS*/const ALLIDS={"stoma":["_jmYUvb2pGs","YdX5i7n6AMQ","-EVgbuXKU_k","mySqI7g5l6g","6JytF-KgISc","hFw_SthpJsw","480TLdrOmKg","tqrtBbNzlz8","H_k1w3cfny8","CX8G8Z5g5jU","p25-1","p24-3","v-reg1","r3-53","h6-7","6UdLp2gpmcE","96UEwIcSTG0","TbC-kPbRt3c","hR4KT8Pfv0U","o0Ow5YT1-7k","7473il4l2v8","p25-2","p21-1b","v-ind1","h3-19","2LR5JYbhyjg","h6-32","h6-33","v8N6l9RXbOM","xFS4xpYQ82w","X5ch4xZf3LE","L2J1UM1yIdg","4L96-7L2gzE","yXwPUAIvFyg","P6TYfLId7j4","qvny65_gZQM","p25-3","p24-2","p24-4","v-sum1","h6-11","30x5TyidptI","yhd4pSm3bEA","p25-4","p25-5","p21-1a","r2-61","h6-42","v-jac1","HwkKtHLCmzo","f8Nli1AfygM","8ueUXUTRlSQ","zsRWu6W6aYg","_mWKujbK8Z4","p20-2b","r2-74","r2-45","h4-16","92nPUqrMnNY","oqhhrqfRpb8","RBioTO4jNOU","IujCYxtpszU","XtNXQJkgkhI","p24-1","p21-2b","p20-1b","r2-55","r2-72","h4-17","24AJD4pRU8Y","4SVZw2kfVWI","BVenKtmBf8E","VLhj4-R2miI","N8O6zd6vTZ8","ydu7KUVSBeo","SKb7lxR_o1k","WkKPEB5r-bU","tVDdx6xUOcs","p24-6","v-mgf1","r3-42","h8-5","QP00LHp0LqY","uYbThumrD14","nEEm-dxzOfU","s2nvRaQ0QK8","5TpgBxBBOqo","0yCW2TXqfkU","jDsHE1-t2Zc","IpnfRSM25Tw","gjBvCiRt8QA","p25-6","p21-3b","p20-1a","p24-5","p20-4a","r3-23","r3-27","r3-24","v-rod1","P7a4bjE6Crk","L_JRLrjXoDE","p21-3a","h4-35","r3-44","NlRgBtSLViI","Y8zx1tWEbeI","CSkcBXUIJh4","NYOcZx6Kxsw","aGyJO6G3mxQ","flh9auAOpmw","hNdKLsd3z8o","6Uwjz6h9-Mc","lJinY4mEq74","MF-XSJOsGqw","p25-7","p20-4b","p24-7","p21-2a","v-g1","v-g2","UtXK_EQ3Pow","FwW2oMSLwJY","Fg6xxffxcXg","HsNVjCDI9ts","4Q01kUH13Fw","3eiio3Tw7UQ","jEwML3KR29g","p25-8","p24-8","v-wl2","r2-66","x4q6H6lxFFE","D_vUxa3tEGs","eb-eRduYwZY","s8geHBRvSos","85hUqV50M1M","wMaCXqxp70s","wo6Xod1gLO8","20HLqEpXXhw","dCjPTwdANFA","Q54mEuQUOEc","pZdrc4rEMVk","t3-2a","t3-1b","v-as1","e8nDSvENyn8","el-JGNsGHw8","jgNw7sopJNI","t3-4b","t3-1a","f40ALmHmf00","ZTS1q9_ynkw","Tx7zzD4aeiA","3_qGU4SB4-k","3M1R5rHHJ_U","OprNqnHsVIA","p21-4a","p21-4b","t3-2b","v-clt1","h7-37","h7-43","M3615Gbd6-8"],"laa":["kYB8IZa5AuE","GNg5drGm4JE","SoV7-w8x8pk","uQhTuRlWMxw","GT1i4vsrfq8","l25-4ab","l20-2","l20-4","v-l3a","LlbzPlS3ZQk","Vf8z6XA7LJE","XkY2DOUCWMU","l25-1","v-l3c","O3LDK6LKcME","RdaflWPVFNE","P2LTAUO1TdA","HCwJzSAsPjc","v-l3d","v-l3d2","16RepOJMUbM","c7eEHqqJn7U","PFDu9oVAE-g","NfoS22DasmE","zlmh4JSTijI","W8uSdLZ2b5E","e50Bj7jn9IQ","l25-3","la3-1","la3-2","v-l5a","3WkxhuzcSCE","TJ9clajl0Vg","la3-6","la3-8","ax5c-7","8HIk65B4CIM","N5LT--T3k5Q","ax5c-10","ax5c-3","znJ0TO0RY6I","13r9QY6cmjc","ax5d-5","ax5d-6","ax5d-21","ax5d-1","ax5d-16","Pw_bcfpd22w","MO9Jyu-RluE","v-l5e","lGGDIGizcQ0","PUDJW-ysfKY","be1SZVBBFmU","v-cons1","v-cons2","VmpdsIs78p0","xyhaYHGZN-w","RiB4xWbK62c","l25-5","l25-4c","l20-3","la3-4","la3-5","ax8a-13","ax8a-21","VB_tGYSFmJE","a60r50XvtVo","ax8b-4","ax8b-6","ax8b-1","ax8b-2","ax8b-20","DmFRusu-IfE","jWo65wklbYM","TSdXJw83kyA","ax8c-6","ax8c-10","ax8c-11","3NdI4DHJ8Ro","l20t3-2","v-l8d","MkYzm4W9p6U","Bl3kQu5djSg","nKSBMdqDryo","DZwQxbMQSu4","l20t3-3","l20-6","v-l6a","KZetRHUtT0M","0MtwqhIwdrI","TabSyV-0Naw","3XS4Y4MA0O4","l25-2","l20-5","v-l6b"],"dip":["AWIONchKqhA","YYGltoYEmKo","nl9TZanwbBk","tEzgtbnbXgQ","NbQY1x8H6QQ","2kMSLqAbLj4","d21-1","d21-4","dp3-1","dp3-2","v-d1","0OHRJMNKhX0","kQUfKf-vPdI","7o5kEVWVGjU","tmERrPh1E4c","v-d2a","v-d2b","Aq7YgjbVrPg","DS8N8cFVd-E","S8FkaEWfCOg","v-d3a","v-d3b","Q2aEzeMDHMA","gGEBUdM0PVc","uTwm3Zv1HfA","wyb5S8QsCSA","0me3guauqOU","dp5-1","v-d4","YFZsxY_2_l4","g_12MFQFXLA","OF8Q6WXYOY0","7y-X9Bn39a8","v-d5a","v-d5b","y7KLbd7n75g","A1Kk0r4ov6Q","y246EFvaDow","eJLF9HeZA8I","v-d6a","v-d6b","f-IINpceX6k","en5_Ywh22sA","GE3_4acUrO4","5qxrzD6ODHc","d21-2","dp4-1","dp4-2","dp4-3","CfvYkOyIFU8","utFtOkMG6yo","7FP7ndMEfsc","d21-3","v-d8a","v-d8b","RGQ-IXg0REQ","5S-M6mUflXo","v-d9a","v-d9b","G8yp6f9V_6c","lOEBsQodtEQ","uNP6ZwQ3r6A","APBXfqVccS0","dp5-2","dp5-3","dp2-3","hUC1uoigH6s","sRFM5IEqR2w","XRBc_xkZREg","_con6DnhkaA","_mGxmZWs9Zw","v-d10a","v-d10b"]};/*END*/
 const KEY="dip-w";
 const codes=Object.keys(CHS),CI=Object.fromEntries(codes.map((c,i)=>[c,i]));
 document.getElementById("sub").innerHTML=SUB;
@@ -183,7 +217,7 @@ function queuePush(){if(!TOK){status("","Saved on this device only · add a toke
 async function push(tries=2){
   dirty=false;
   try{
-    const {data,sha}=await pull();data[SUBJ]=st;REMOTE=data;data.updated=new Date().toISOString();
+    const {data,sha}=await pull();data[SUBJ]=st;REMOTE=data;REMOTE=data;data.updated=new Date().toISOString();
     const r=await fetch(API,{method:"PUT",headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+TOK},body:JSON.stringify({message:"progress",content:b64e(JSON.stringify(data,null,1)),sha:sha||undefined,branch:"main"})});
     if((r.status===409||r.status===422)&&tries>1)return push(tries-1); // someone else wrote first: refetch sha, retry
     if(r.status===401||r.status===403){status("err","Token rejected · check it in Sync settings");return}
@@ -196,7 +230,7 @@ async function initSync(){
     const {data}=await pull();REMOTE=data;
     if(data[SUBJ]){st=data[SUBJ];try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){};render()}
     else if(Object.keys(st).length&&TOK){progress();queuePush();return} // first sync: upload this device's ticks
-    progress();status(TOK?"ok":"",TOK?"Synced to GitHub":"Showing synced ticks · add a token to tick from this device");
+    progress();progress();status(TOK?"ok":"",TOK?"Synced to GitHub":"Showing synced ticks · add a token to tick from this device");
   }catch(e){status("err","Couldn't load synced ticks ("+e.message+") · showing this device's")}
 }
 document.getElementById("syncbtn").onclick=()=>{const p=document.getElementById("spanel");p.hidden=!p.hidden};
@@ -209,7 +243,7 @@ function progress(){ // combined progress over StoMA + LAA + DIP, counting only 
   for(const k in ALLIDS){let m=k===SUBJ?st:null;
     if(!m){m=REMOTE&&REMOTE[k];if(!m){try{m=JSON.parse(localStorage.getItem(k+"-w")||"{}")}catch(e){m={}}}}
     const c=ALLIDS[k].filter(id=>m[id]).length;tot+=ALLIDS[k].length;dn+=c;if(k===SUBJ)mine=c;}
-  document.getElementById("pc").textContent=`${dn} / ${tot} done across StoMA, LAA & DIP · this page ${mine} / ${ALLIDS[SUBJ].length}`;
+  document.getElementById("pc").textContent=`${dn} / ${tot} done · ${Math.round(100*dn/tot)}%`;
   document.getElementById("pb").style.width=(100*dn/tot)+"%";
 }
 function render(){
@@ -218,7 +252,10 @@ function render(){
     let core=0;
     const box=document.createElement("section");box.className="day";
     const body=day.topics.map(([tp,vs])=>{
+      let qh=false;
       const rows=vs.map(([c,id,t,dur,note,opt])=>{
+        if(c==="Q"){const head=qh?"":(qh=true,`<li class="qhead">Questions · past paper and professor\u2019s practice sets first, then variants</li>`);
+          return head+`<li class="q ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Done: ${t}"><span class="chip cq">Q</span><span class="t"><span class="qt">${t}</span><span class="note">${note}</span></span></li>`}
         if(!opt)core+=sec(dur);
         if(opt&&hide)return "";
         return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${CHS[c][2]?CI[c]:4}">${CHS[c][0]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");

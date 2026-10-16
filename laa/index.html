@@ -49,6 +49,9 @@ li .note{display:block;font-size:13px;color:var(--muted)}
 li .d{font:400 12px var(--mono);color:var(--muted);flex:none;margin-top:3px;font-variant-numeric:tabular-nums}
 li.opt a{font-weight:400}
 li.opt .tag{font:500 10px var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
+li.q .qt{color:var(--fg)}li.done .qt{color:var(--muted);text-decoration:line-through}
+li.qhead{font:600 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:10px 16px 2px}
+.cq{color:var(--fg)}
 li.done a{color:var(--muted);text-decoration:line-through}
 .gap{margin:4px 16px 12px;font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
@@ -83,7 +86,7 @@ button:focus-visible{outline:2px solid var(--accent)}
 </div>
 <script>
 const CHS={A:["AX","Sheldon Axler (Linear Algebra Done Right)","https://www.youtube.com/playlist?list=PLGAnmvB9m7zOBVCZBUUmSinFV0wEir2Vw"],W:["UW","Prof Won Math (Axler, full lectures)","https://www.youtube.com/playlist?list=PLoxJTbDttvt7ny0WEJHWw6-0Sjx7EImIQ"],B:["3B1B","3Blue1Brown","https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab"],S:["MIT","MIT 18.06 (Strang)","https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8"],O:["+","Other channels",""]};
-const SUB="Videos in watch order for each day's guidebook, 12–24 Oct. Axler's own short videos come first (they follow his 3rd edition, so a few sit under a different section number than your 4th-edition book), then longer lectures and intuition videos for what they skip. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
+const SUB="Videos in watch order for each day's guidebook, 12–24 Oct. Axler's own short videos come first (they follow his 3rd edition, so a few sit under a different section number than your 4th-edition book), then longer lectures and intuition videos for what they skip. Each topic then lists full questions from the 2025 Midterm 1, the 2020 tests, this year’s Assignments 3–4 and the professor’s practice list, then a few variants. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
 const D=[
  {d:"Mon 12 Oct",topics:[["Axler 3A–3B · Linear maps, null space & range",[
   ["B","kYB8IZa5AuE","Linear transformations and matrices (3B1B ch 3)","10:59","Picture first"],
@@ -91,16 +94,24 @@ const D=[
   ["A","SoV7-w8x8pk","Null spaces and ranges","15:25"],
   ["B","uQhTuRlWMxw","Inverse matrices, column space and null space (3B1B ch 7)","12:09"],
   ["W","GT1i4vsrfq8","(3.B) Null spaces and ranges, full lecture","54:47","",1],
+  ["Q","l25-4ab","(a) For T ∈ L(V), prove range T^(k+1) ⊆ range T^k for every k ≥ 1. (b) If W is a subspace of a finite-dimensional V with dim W = dim V, prove W = V.","","Midterm 1 2025 Q4(a)(b) · Recent paper"],
+  ["Q","l20-2","Let ℓ₁, …, ℓₙ ∈ L(V). Prove that the composition ℓ₁∘ℓ₂∘⋯∘ℓₙ is one-to-one if and only if every ℓᵢ is one-to-one.","","Test 2 2020 Q2 · Past paper"],
+  ["Q","l20-4","Let ℓ: Rⁿ → R satisfy ℓ(0) = 0 and ℓ(cx + (1−c)y) = cℓ(x) + (1−c)ℓ(y) for all x, y and 0 ≤ c ≤ 1. (a) Show ℓ is linear. (b) If f: Rⁿ → R satisfies the same identity (but not necessarily f(0) = 0), show f(x) = ℓ(x) + β for some linear ℓ and constant β.","","Test 2 2020 Q4 · Past paper"],
+  ["Q","v-l3a","(Variant) T: P₃(R) → R², Tp = (p(1), p′(1)). Find a basis of null T, decide whether T is surjective, and check the rank–nullity theorem.","","Variant · Rank–nullity drill"]
  ]],["Axler 3C · Matrices & rank",[
   ["A","LlbzPlS3ZQk","The matrix of a linear map","12:20"],
   ["A","Vf8z6XA7LJE","Matrix multiplication","13:20","Includes column rank = row rank"],
   ["B","XkY2DOUCWMU","Matrix multiplication as composition (3B1B ch 4)","10:04","",1],
+  ["Q","l25-1","Let V = P₂(R), f₁(x) = 1, f₂(x) = x + c, f₃(x) = (x + c)², where c is a constant. (a) Show f₁, f₂, f₃ is a basis of V. (b) Find the coordinates of a₂x² + a₁x + a₀ in this basis.","","Midterm 1 2025 Q1 · Recent paper"],
+  ["Q","v-l3c","(Variant) Find the matrix of D (differentiation) on P₃(R) with respect to the basis 1, x+c, (x+c)², (x+c)³. What is its rank?","","Variant of 2025 Q1 · Same basis, next step"]
  ]]]},
  {d:"Tue 13 Oct",topics:[["Axler 3D · Invertibility, isomorphisms & change of basis",[
   ["A","O3LDK6LKcME","Invertibility and isomorphic vector spaces","13:55"],
   ["A","RdaflWPVFNE","Change of basis","10:53"],
   ["B","P2LTAUO1TdA","Change of basis (3B1B ch 13)","12:51"],
   ["W","HCwJzSAsPjc","(3.D) Inverses and isomorphisms, full lecture","1:00:00","",1],
+  ["Q","v-l3d","(Variant) Show that T ∈ L(V) (V finite-dimensional) is invertible iff it is injective iff it is surjective. Give an example on an infinite-dimensional space where injective does not imply surjective.","","Variant (Axler 3D core) · Standard proof"],
+  ["Q","v-l3d2","(Variant) Let S, T ∈ L(V) with ST invertible. Prove that both S and T are invertible (V finite-dimensional).","","Variant · Uses the 2020 Q2 idea"]
  ]]]},
  {d:"Wed 14 Oct",topics:[["Axler Ch 4 · Polynomials",[
   ["A","16RepOJMUbM","Polynomials","12:08"],
@@ -112,59 +123,101 @@ const D=[
   ["A","zlmh4JSTijI","Existence of eigenvalues","14:33"],
   ["W","W8uSdLZ2b5E","(5.A–5.B) Invariant subspaces and eigenvectors, full lecture","58:11"],
   ["B","e50Bj7jn9IQ","A quick trick for computing eigenvalues (3B1B ch 15)","13:13","",1],
+  ["Q","l25-3","dim V = 2 and T ∈ L(V). (a) Find all subspaces of dimension 0 and 2. (b) Characterise all 1-dimensional subspaces. (c) If, in a basis v₁, v₂, M(T) = [[2, 1], [0, 1]], show there are exactly two 1-dimensional subspaces invariant under T by finding them. (d) Is V the sum of these two subspaces? A direct sum?","","Midterm 1 2025 Q3 · Recent paper"],
+  ["Q","la3-1","V = P₄(R) and Tp = xp′. Find all eigenvalues and eigenvectors of T.","","Assignment 3 Q1 (Axler 5A.10) · This year's assignment"],
+  ["Q","la3-2","T, S ∈ L(V) with S invertible. (a) Prove λ is an eigenvalue of T iff it is an eigenvalue of S⁻¹TS. (b) Describe E(λ, S⁻¹TS) in terms of E(λ, T).","","Assignment 3 Q2 (Axler 5A.13) · This year's assignment"],
+  ["Q","v-l5a","(Variant of 2025 Q3) dim V = 2 and M(T) = [[1, 1], [0, 1]]. How many 1-dimensional invariant subspaces does T have? Is V a direct sum of invariant 1-dimensional subspaces?","","Variant · Same question, non-diagonalizable case"]
  ]]]},
  {d:"Fri 16 Oct",topics:[["Axler 5B · Minimal polynomial",[
   ["A","3WkxhuzcSCE","The minimal polynomial","15:35","Chapter 8 in the 3rd edition, but it is exactly your 5B"],
   ["A","TJ9clajl0Vg","The characteristic polynomial","7:00","",1],
+  ["Q","la3-6","The minimal polynomial of T ∈ L(V) is 4 + 5z − 6z² − 7z³ + 2z⁴ + z⁵. Show T is invertible and find the minimal polynomial of T⁻¹.","","Assignment 3 Q6 (Axler 5B) · This year's assignment"],
+  ["Q","la3-8","p is the minimal polynomial of T (degree n) and λ ≠ 0. Find the minimal polynomial of λT, proving it is monic, annihilates λT, and no monic polynomial of smaller degree does.","","Assignment 3 Q8 (Axler 5B) · This year's assignment"],
+  ["Q","ax5c-7","For T ∈ L(V) and v ∈ V: (a) prove there is a unique monic polynomial p_v of smallest degree with p_v(T)v = 0; (b) prove the minimal polynomial of T is a polynomial multiple of p_v.","","Axler 5C Ex 7 (Assignment 4 Q1) · This year's assignment"]
  ]]],gap:"The 4th edition proves eigenvalue existence via the minimal polynomial. Axler's videos use the 3rd-edition route, so do the 5B proofs from the guidebook."},
  {d:"Sat 17 Oct",topics:[["Axler 5C · Upper-triangular matrices",[
   ["A","8HIk65B4CIM","Upper triangular matrices","9:00"],
   ["W","N5LT--T3k5Q","(5.B–5.C) Diagonal and upper-triangular matrices, full lecture","58:36","",1],
+  ["Q","ax5c-10","T ∈ L(V) with basis v₁, …, vₙ. Show these are equivalent: (a) M(T) is lower triangular; (b) span(v_k, …, vₙ) is invariant under T for each k; (c) Tv_k ∈ span(v_k, …, vₙ) for each k.","","Axler 5C Ex 10 (Assignment 4 Q2) · This year's assignment"],
+  ["Q","ax5c-3","T is invertible and upper triangular in the basis v₁, …, vₙ with diagonal λ₁, …, λₙ. Show M(T⁻¹) is upper triangular in the same basis with diagonal 1/λ₁, …, 1/λₙ.","","Axler 5C Ex 3 · Professor's practice list"]
  ]],["Axler 5D · Diagonalizable operators",[
   ["A","znJ0TO0RY6I","Eigenspaces and diagonal matrices","11:31"],
   ["S","13r9QY6cmjc","L22 · Diagonalization and powers of A","51:50","Powers of A matter again for consensus on 18 Oct"],
+  ["Q","ax5d-5","V complex, finite-dimensional. Prove T is diagonalizable iff V = null(T − λI) ⊕ range(T − λI) for every λ ∈ C.","","Axler 5D Ex 5 (Assignment 4 Q3) · This year's assignment; ties to 2025 Q4(c)"],
+  ["Q","ax5d-6","T ∈ L(F⁵) with dim E(8, T) = 4. Prove T − 2I or T − 6I is invertible.","","Axler 5D Ex 6 (Assignment 4 Q4) · This year's assignment"],
+  ["Q","ax5d-21","Fibonacci: F₀ = 0, F₁ = 1, Fₙ = Fₙ₋₁ + Fₙ₋₂, and T(x, y) = (y, x + y) on R². (a) Show Tⁿ(0,1) = (Fₙ, Fₙ₊₁). (b) Find the eigenvalues of T. (c) Find an eigenvector basis. (d) Use it to compute Tⁿ(0,1) and get the closed form for Fₙ.","","Axler 5D Ex 21 (Assignment 4 Q5) · This year's assignment"],
+  ["Q","ax5d-1","V complex. (a) If T⁴ = I, prove T is diagonalizable. (b) If T⁴ = T, prove T is diagonalizable. (c) Give T ∈ L(C²) with T⁴ = T² that is not diagonalizable.","","Axler 5D Ex 1 · Professor's practice list"],
+  ["Q","ax5d-16","T diagonalizable with distinct eigenvalues λ₁, …, λₘ. Prove U is invariant under T iff U = U₁ ⊕ ⋯ ⊕ Uₘ with each U_k ⊆ E(λ_k, T).","","Axler 5D Ex 16 · Professor's practice list"]
  ]]]},
  {d:"Sun 18 Oct",topics:[["Axler 5E · Commuting operators",[
   ["O","Pw_bcfpd22w","Simultaneously diagonalizable matrices commute, and a partial converse (Mike, the Mathematician)","6:25"],
   ["O","MO9Jyu-RluE","Commuting diagonalizable matrices are simultaneously diagonalizable (Daniel An)","18:26"],
+  ["Q","v-l5e","(Variant) S, T ∈ L(V) commute and V is complex, finite-dimensional. Prove S and T have a common eigenvector. If both are diagonalizable, prove there is a basis of common eigenvectors.","","Variant (Axler 5E core) · Core results of 5E"]
  ]],["Consensus algorithm (application of Topic 3)",[
   ["S","lGGDIGizcQ0","L24 · Markov matrices; Fourier series","51:12","First half: row/column-stochastic matrices, eigenvalue 1, steady state"],
   ["O","PUDJW-ysfKY","Network Systems L5 · Discrete-time averaging systems (Francesco Bullo)","1:37:36","Same theory as your slides: globally reachable node, aperiodicity, consensus value"],
   ["O","be1SZVBBFmU","Network Systems L3 · Elements of graph theory (Francesco Bullo)","1:21:50","",1],
+  ["Q","v-cons1","(Variant) A = [[1, 0, 0], [0.5, 0.5, 0], [0, 0.5, 0.5]] (row-stochastic). Find its eigenvalues, decide whether x(k+1) = Ax(k) reaches consensus, and find the consensus value in terms of x(0).","","Variant of the slides' examples · Stubborn-agent case"],
+  ["Q","v-cons2","(Variant) Show that every eigenvalue of a row-stochastic matrix satisfies |λ| ≤ 1, and that 1 is an eigenvalue. When is the consensus value the average of x(0)?","","Variant (slides) · Core theorem"]
  ]]],gap:"Commuting upper-triangularization (the second half of 5E) has no good video; use the guidebook."},
  {d:"Mon 19 Oct",topics:[["Axler 8A · Generalized eigenvectors & nilpotent operators",[
   ["A","VmpdsIs78p0","Null spaces of powers of an operator","11:12"],
   ["A","xyhaYHGZN-w","Generalized eigenvectors","12:57"],
   ["A","RiB4xWbK62c","Nilpotent operators","6:11"],
+  ["Q","l25-5","T ∈ L(V) and a basis v₁, …, vₙ with Tvᵢ = vᵢ₊₁ (i < n), Tvₙ = 0. (a) Prove Tⁿ = 0 but Tⁿ⁻¹ ≠ 0. (b) Show range T^(k+1) ⊊ range T^k for k = 1, …, n−1. (c) Find dim null T^k for k = 1, …, n. (d) Conversely, if Tⁿ = 0 ≠ Tⁿ⁻¹ with dim V = n, show such a basis exists.","","Midterm 1 2025 Q5 · Recent paper"],
+  ["Q","l25-4c","T ∈ L(V) with rank T = rank T². Show null T ∩ range T = {0} (without quoting the range–null space decomposition).","","Midterm 1 2025 Q4(c) · Recent paper"],
+  ["Q","l20-3","A ∈ R^(n×n) is non-zero and A^k = 0 for some k > 1. If k₀ is the smallest such k, show k₀ ≤ n.","","Test 2 2020 Q3 · Past paper"],
+  ["Q","la3-4","T^(m−1)v ≠ 0 and T^m v = 0. Show v, Tv, …, T^(m−1)v are linearly independent.","","Assignment 3 Q4 · This year's assignment"],
+  ["Q","la3-5","If range T^m = range T^(m+1), prove range T^k = range T^m for all k > m.","","Assignment 3 Q5 · This year's assignment"],
+  ["Q","ax8a-13","S, T ∈ L(V) and ST is nilpotent. Prove TS is nilpotent.","","Axler 8A Ex 13 · Professor's practice list"],
+  ["Q","ax8a-21","null T^(dim V − 1) ≠ null T^(dim V). Prove T is nilpotent and dim null T^k = k for 0 ≤ k ≤ dim V.","","Axler 8A Ex 21 · Professor's practice list; same idea as 2025 Q5"]
  ]]]},
  {d:"Tue 20 Oct",topics:[["Axler 8B · Generalized eigenspace decomposition",[
   ["A","VB_tGYSFmJE","Decomposition via generalized eigenvectors","12:49"],
   ["A","a60r50XvtVo","Block diagonal matrices","4:32"],
+  ["Q","ax8b-4","dim V ≥ 2 and null T^(dim V − 2) ≠ null T^(dim V − 1). Prove T has at most two distinct eigenvalues.","","Axler 8B Ex 4 (Assignment 4 Q6) · This year's assignment"],
+  ["Q","ax8b-6","λ is an eigenvalue of T. Explain why the exponent of (z − λ) in the minimal polynomial of T is the smallest m with (T − λI)^m restricted to G(λ, T) equal to 0.","","Axler 8B Ex 6 (Assignment 4 Q7) · This year's assignment"],
+  ["Q","ax8b-1","T(w, z) = (−z, w) on C². Find the generalized eigenspaces for its distinct eigenvalues.","","Axler 8B Ex 1 · Professor's practice list"],
+  ["Q","ax8b-2","T is invertible. Prove G(λ, T) = G(1/λ, T⁻¹) for every λ ≠ 0.","","Axler 8B Ex 2 · Professor's practice list"],
+  ["Q","ax8b-20","F = C, V = V₁ ⊕ ⋯ ⊕ Vₘ with each V_k invariant under T, and p_k the characteristic polynomial of T restricted to V_k. Prove the characteristic polynomial of T is p₁⋯pₘ.","","Axler 8B Ex 20 · Professor's practice list"]
  ]],["Axler 8C · Square roots & Jordan form",[
   ["A","DmFRusu-IfE","Square roots of operators","9:01"],
   ["A","jWo65wklbYM","Jordan form","10:29"],
   ["S","TSdXJw83kyA","L28 · Similar matrices and Jordan form","45:56"],
+  ["Q","ax8c-6","Find a Jordan basis of P₄(R) for the differentiation operator Dp = p′.","","Axler 8C Ex 6 (Assignment 4 Q8) · This year's assignment"],
+  ["Q","ax8c-10","v₁, …, vₙ is a Jordan basis for T. Describe the matrix of T in the reversed basis vₙ, …, v₁.","","Axler 8C Ex 10 · Professor's practice list"],
+  ["Q","ax8c-11","Explain why every vector in a Jordan basis for T is a generalized eigenvector of T.","","Axler 8C Ex 11 · Professor's practice list"]
  ]]]},
  {d:"Wed 21 Oct",topics:[["Axler 8D · Trace",[
   ["A","3NdI4DHJ8Ro","Trace of an operator and of a matrix","15:53"],
+  ["Q","l20t3-2","v₁, …, v_k and w₁, …, w_k are orthonormal bases of a subspace V of Rⁿ, and A is n×n. Show Σ vᵢᵀAvᵢ = Σ wᵢᵀAwᵢ.","","Test 3 2020 Q2 · Past paper (trace idea)"],
+  ["Q","v-l8d","(Variant) Show trace(AB) = trace(BA), and deduce there are no n×n matrices A, B with AB − BA = I.","","Variant (Axler 8D core) · Standard trace result"]
  ]]]},
  {d:"Thu 22 Oct",topics:[["Axler 6A · Inner products & norms",[
   ["A","MkYzm4W9p6U","Inner products","11:18"],
   ["A","Bl3kQu5djSg","Norms","12:46"],
   ["W","nKSBMdqDryo","(6.A) Inner products and norms, full lecture","55:38"],
   ["W","DZwQxbMQSu4","(6.A part 2) Inner products and norms","40:41","",1],
+  ["Q","l20t3-3","Show f(X, Y) = trace(XᵀY) is an inner product on n×n real matrices. Then show that for a fixed A there is a constant c with |trace(AX)| ≤ c·√trace(XᵀX) for all X.","","Test 3 2020 Q3 · Past paper"],
+  ["Q","l20-6","(V, ⟨·,·⟩) is an inner product space with induced norm, ℓ ∈ L(V). Show ‖ℓ(x)‖ = ‖x‖ for all x iff ⟨ℓ(x), ℓ(y)⟩ = ⟨x, y⟩ for all x, y.","","Test 2 2020 Q6 · Past paper"],
+  ["Q","v-l6a","(Variant) Show the ∞-norm on R² does not come from any inner product (use the parallelogram law).","","Variant (Axler 6A) · Common short question"]
  ]]],gap:"DIP mock is today too, so the core is kept short."},
  {d:"Fri 23 Oct",topics:[["Axler 6B · Orthonormal bases & Gram–Schmidt",[
   ["A","KZetRHUtT0M","Orthonormal bases","14:12","Gram–Schmidt, Schur's theorem, Riesz representation"],
   ["S","0MtwqhIwdrI","L17 · Orthogonal matrices and Gram–Schmidt","49:10"],
   ["W","TabSyV-0Naw","(6.B) Orthonormal bases, full lecture","58:33","",1],
   ["W","3XS4Y4MA0O4","(6.B part 2) Orthonormal bases","47:18","",1],
+  ["Q","l25-2","V = R² with ⟨x, y⟩ = xᵀy, W = span((1, 2)), P_W the orthogonal projection onto W. (a) Find W⊥. (b) Find a formula for P_W(x₁, x₂). (c) Find an orthonormal basis of V in which M(P_W) = [[1, 0], [0, 0]].","","Midterm 1 2025 Q2 · Recent paper"],
+  ["Q","l20-5","U is a subspace of an inner product space V and P the orthogonal projection onto U. For x ∈ V and z ∈ U, show z = Px iff ⟨x − z, u⟩ = 0 for all u ∈ U.","","Test 2 2020 Q5 · Past paper"],
+  ["Q","v-l6b","(Variant of 2025 Q2) In R³ with the dot product, let W = span((1,1,0), (1,0,1)). Find an orthonormal basis of W by Gram–Schmidt, then the matrix of P_W, and W⊥.","","Variant · Same template in 3D"]
  ]]],gap:"DIP exam is today; watch these in the evening."},
  {d:"Sat 24 Oct",topics:[],gap:"Timed PYQ mock. No videos today."},
 ];
 
 
-/*ALLIDS*/const ALLIDS={"stoma":["_jmYUvb2pGs","YdX5i7n6AMQ","-EVgbuXKU_k","mySqI7g5l6g","6JytF-KgISc","hFw_SthpJsw","480TLdrOmKg","tqrtBbNzlz8","H_k1w3cfny8","CX8G8Z5g5jU","p25-1","p24-3","v-reg1","r3-53","h6-7","6UdLp2gpmcE","96UEwIcSTG0","TbC-kPbRt3c","hR4KT8Pfv0U","o0Ow5YT1-7k","7473il4l2v8","p25-2","p21-1b","v-ind1","h3-19","2LR5JYbhyjg","h6-32","h6-33","v8N6l9RXbOM","xFS4xpYQ82w","X5ch4xZf3LE","L2J1UM1yIdg","4L96-7L2gzE","yXwPUAIvFyg","P6TYfLId7j4","qvny65_gZQM","p25-3","p24-2","p24-4","v-sum1","h6-11","30x5TyidptI","yhd4pSm3bEA","p25-4","p25-5","p21-1a","r2-61","h6-42","v-jac1","HwkKtHLCmzo","f8Nli1AfygM","8ueUXUTRlSQ","zsRWu6W6aYg","_mWKujbK8Z4","p20-2b","r2-74","r2-45","h4-16","92nPUqrMnNY","oqhhrqfRpb8","RBioTO4jNOU","IujCYxtpszU","XtNXQJkgkhI","p24-1","p21-2b","p20-1b","r2-55","r2-72","h4-17","24AJD4pRU8Y","4SVZw2kfVWI","BVenKtmBf8E","VLhj4-R2miI","N8O6zd6vTZ8","ydu7KUVSBeo","SKb7lxR_o1k","WkKPEB5r-bU","tVDdx6xUOcs","p24-6","v-mgf1","r3-42","h8-5","QP00LHp0LqY","uYbThumrD14","nEEm-dxzOfU","s2nvRaQ0QK8","5TpgBxBBOqo","0yCW2TXqfkU","jDsHE1-t2Zc","IpnfRSM25Tw","gjBvCiRt8QA","p25-6","p21-3b","p20-1a","p24-5","p20-4a","r3-23","r3-27","r3-24","v-rod1","P7a4bjE6Crk","L_JRLrjXoDE","p21-3a","h4-35","r3-44","NlRgBtSLViI","Y8zx1tWEbeI","CSkcBXUIJh4","NYOcZx6Kxsw","aGyJO6G3mxQ","flh9auAOpmw","hNdKLsd3z8o","6Uwjz6h9-Mc","lJinY4mEq74","MF-XSJOsGqw","p25-7","p20-4b","p24-7","p21-2a","v-g1","v-g2","UtXK_EQ3Pow","FwW2oMSLwJY","Fg6xxffxcXg","HsNVjCDI9ts","4Q01kUH13Fw","3eiio3Tw7UQ","jEwML3KR29g","p25-8","p24-8","v-wl2","r2-66","x4q6H6lxFFE","D_vUxa3tEGs","eb-eRduYwZY","s8geHBRvSos","85hUqV50M1M","wMaCXqxp70s","wo6Xod1gLO8","20HLqEpXXhw","dCjPTwdANFA","Q54mEuQUOEc","pZdrc4rEMVk","t3-2a","t3-1b","v-as1","e8nDSvENyn8","el-JGNsGHw8","jgNw7sopJNI","t3-4b","t3-1a","f40ALmHmf00","ZTS1q9_ynkw","Tx7zzD4aeiA","3_qGU4SB4-k","3M1R5rHHJ_U","OprNqnHsVIA","p21-4a","p21-4b","t3-2b","v-clt1","h7-37","h7-43","M3615Gbd6-8"],"laa":["kYB8IZa5AuE","GNg5drGm4JE","SoV7-w8x8pk","uQhTuRlWMxw","GT1i4vsrfq8","LlbzPlS3ZQk","Vf8z6XA7LJE","XkY2DOUCWMU","O3LDK6LKcME","RdaflWPVFNE","P2LTAUO1TdA","HCwJzSAsPjc","16RepOJMUbM","c7eEHqqJn7U","PFDu9oVAE-g","NfoS22DasmE","zlmh4JSTijI","W8uSdLZ2b5E","e50Bj7jn9IQ","3WkxhuzcSCE","TJ9clajl0Vg","8HIk65B4CIM","N5LT--T3k5Q","znJ0TO0RY6I","13r9QY6cmjc","Pw_bcfpd22w","MO9Jyu-RluE","lGGDIGizcQ0","PUDJW-ysfKY","be1SZVBBFmU","VmpdsIs78p0","xyhaYHGZN-w","RiB4xWbK62c","VB_tGYSFmJE","a60r50XvtVo","DmFRusu-IfE","jWo65wklbYM","TSdXJw83kyA","3NdI4DHJ8Ro","MkYzm4W9p6U","Bl3kQu5djSg","nKSBMdqDryo","DZwQxbMQSu4","KZetRHUtT0M","0MtwqhIwdrI","TabSyV-0Naw","3XS4Y4MA0O4"],"dip":["AWIONchKqhA","YYGltoYEmKo","nl9TZanwbBk","tEzgtbnbXgQ","NbQY1x8H6QQ","2kMSLqAbLj4","0OHRJMNKhX0","kQUfKf-vPdI","7o5kEVWVGjU","tmERrPh1E4c","Aq7YgjbVrPg","DS8N8cFVd-E","S8FkaEWfCOg","Q2aEzeMDHMA","gGEBUdM0PVc","uTwm3Zv1HfA","wyb5S8QsCSA","0me3guauqOU","YFZsxY_2_l4","g_12MFQFXLA","OF8Q6WXYOY0","7y-X9Bn39a8","y7KLbd7n75g","A1Kk0r4ov6Q","y246EFvaDow","eJLF9HeZA8I","f-IINpceX6k","en5_Ywh22sA","GE3_4acUrO4","5qxrzD6ODHc","CfvYkOyIFU8","utFtOkMG6yo","7FP7ndMEfsc","RGQ-IXg0REQ","5S-M6mUflXo","G8yp6f9V_6c","lOEBsQodtEQ","uNP6ZwQ3r6A","APBXfqVccS0","hUC1uoigH6s","sRFM5IEqR2w","XRBc_xkZREg","_con6DnhkaA","_mGxmZWs9Zw"]};/*END*/
+
+
+/*ALLIDS*/const ALLIDS={"stoma":["_jmYUvb2pGs","YdX5i7n6AMQ","-EVgbuXKU_k","mySqI7g5l6g","6JytF-KgISc","hFw_SthpJsw","480TLdrOmKg","tqrtBbNzlz8","H_k1w3cfny8","CX8G8Z5g5jU","p25-1","p24-3","v-reg1","r3-53","h6-7","6UdLp2gpmcE","96UEwIcSTG0","TbC-kPbRt3c","hR4KT8Pfv0U","o0Ow5YT1-7k","7473il4l2v8","p25-2","p21-1b","v-ind1","h3-19","2LR5JYbhyjg","h6-32","h6-33","v8N6l9RXbOM","xFS4xpYQ82w","X5ch4xZf3LE","L2J1UM1yIdg","4L96-7L2gzE","yXwPUAIvFyg","P6TYfLId7j4","qvny65_gZQM","p25-3","p24-2","p24-4","v-sum1","h6-11","30x5TyidptI","yhd4pSm3bEA","p25-4","p25-5","p21-1a","r2-61","h6-42","v-jac1","HwkKtHLCmzo","f8Nli1AfygM","8ueUXUTRlSQ","zsRWu6W6aYg","_mWKujbK8Z4","p20-2b","r2-74","r2-45","h4-16","92nPUqrMnNY","oqhhrqfRpb8","RBioTO4jNOU","IujCYxtpszU","XtNXQJkgkhI","p24-1","p21-2b","p20-1b","r2-55","r2-72","h4-17","24AJD4pRU8Y","4SVZw2kfVWI","BVenKtmBf8E","VLhj4-R2miI","N8O6zd6vTZ8","ydu7KUVSBeo","SKb7lxR_o1k","WkKPEB5r-bU","tVDdx6xUOcs","p24-6","v-mgf1","r3-42","h8-5","QP00LHp0LqY","uYbThumrD14","nEEm-dxzOfU","s2nvRaQ0QK8","5TpgBxBBOqo","0yCW2TXqfkU","jDsHE1-t2Zc","IpnfRSM25Tw","gjBvCiRt8QA","p25-6","p21-3b","p20-1a","p24-5","p20-4a","r3-23","r3-27","r3-24","v-rod1","P7a4bjE6Crk","L_JRLrjXoDE","p21-3a","h4-35","r3-44","NlRgBtSLViI","Y8zx1tWEbeI","CSkcBXUIJh4","NYOcZx6Kxsw","aGyJO6G3mxQ","flh9auAOpmw","hNdKLsd3z8o","6Uwjz6h9-Mc","lJinY4mEq74","MF-XSJOsGqw","p25-7","p20-4b","p24-7","p21-2a","v-g1","v-g2","UtXK_EQ3Pow","FwW2oMSLwJY","Fg6xxffxcXg","HsNVjCDI9ts","4Q01kUH13Fw","3eiio3Tw7UQ","jEwML3KR29g","p25-8","p24-8","v-wl2","r2-66","x4q6H6lxFFE","D_vUxa3tEGs","eb-eRduYwZY","s8geHBRvSos","85hUqV50M1M","wMaCXqxp70s","wo6Xod1gLO8","20HLqEpXXhw","dCjPTwdANFA","Q54mEuQUOEc","pZdrc4rEMVk","t3-2a","t3-1b","v-as1","e8nDSvENyn8","el-JGNsGHw8","jgNw7sopJNI","t3-4b","t3-1a","f40ALmHmf00","ZTS1q9_ynkw","Tx7zzD4aeiA","3_qGU4SB4-k","3M1R5rHHJ_U","OprNqnHsVIA","p21-4a","p21-4b","t3-2b","v-clt1","h7-37","h7-43","M3615Gbd6-8"],"laa":["kYB8IZa5AuE","GNg5drGm4JE","SoV7-w8x8pk","uQhTuRlWMxw","GT1i4vsrfq8","l25-4ab","l20-2","l20-4","v-l3a","LlbzPlS3ZQk","Vf8z6XA7LJE","XkY2DOUCWMU","l25-1","v-l3c","O3LDK6LKcME","RdaflWPVFNE","P2LTAUO1TdA","HCwJzSAsPjc","v-l3d","v-l3d2","16RepOJMUbM","c7eEHqqJn7U","PFDu9oVAE-g","NfoS22DasmE","zlmh4JSTijI","W8uSdLZ2b5E","e50Bj7jn9IQ","l25-3","la3-1","la3-2","v-l5a","3WkxhuzcSCE","TJ9clajl0Vg","la3-6","la3-8","ax5c-7","8HIk65B4CIM","N5LT--T3k5Q","ax5c-10","ax5c-3","znJ0TO0RY6I","13r9QY6cmjc","ax5d-5","ax5d-6","ax5d-21","ax5d-1","ax5d-16","Pw_bcfpd22w","MO9Jyu-RluE","v-l5e","lGGDIGizcQ0","PUDJW-ysfKY","be1SZVBBFmU","v-cons1","v-cons2","VmpdsIs78p0","xyhaYHGZN-w","RiB4xWbK62c","l25-5","l25-4c","l20-3","la3-4","la3-5","ax8a-13","ax8a-21","VB_tGYSFmJE","a60r50XvtVo","ax8b-4","ax8b-6","ax8b-1","ax8b-2","ax8b-20","DmFRusu-IfE","jWo65wklbYM","TSdXJw83kyA","ax8c-6","ax8c-10","ax8c-11","3NdI4DHJ8Ro","l20t3-2","v-l8d","MkYzm4W9p6U","Bl3kQu5djSg","nKSBMdqDryo","DZwQxbMQSu4","l20t3-3","l20-6","v-l6a","KZetRHUtT0M","0MtwqhIwdrI","TabSyV-0Naw","3XS4Y4MA0O4","l25-2","l20-5","v-l6b"],"dip":["AWIONchKqhA","YYGltoYEmKo","nl9TZanwbBk","tEzgtbnbXgQ","NbQY1x8H6QQ","2kMSLqAbLj4","d21-1","d21-4","dp3-1","dp3-2","v-d1","0OHRJMNKhX0","kQUfKf-vPdI","7o5kEVWVGjU","tmERrPh1E4c","v-d2a","v-d2b","Aq7YgjbVrPg","DS8N8cFVd-E","S8FkaEWfCOg","v-d3a","v-d3b","Q2aEzeMDHMA","gGEBUdM0PVc","uTwm3Zv1HfA","wyb5S8QsCSA","0me3guauqOU","dp5-1","v-d4","YFZsxY_2_l4","g_12MFQFXLA","OF8Q6WXYOY0","7y-X9Bn39a8","v-d5a","v-d5b","y7KLbd7n75g","A1Kk0r4ov6Q","y246EFvaDow","eJLF9HeZA8I","v-d6a","v-d6b","f-IINpceX6k","en5_Ywh22sA","GE3_4acUrO4","5qxrzD6ODHc","d21-2","dp4-1","dp4-2","dp4-3","CfvYkOyIFU8","utFtOkMG6yo","7FP7ndMEfsc","d21-3","v-d8a","v-d8b","RGQ-IXg0REQ","5S-M6mUflXo","v-d9a","v-d9b","G8yp6f9V_6c","lOEBsQodtEQ","uNP6ZwQ3r6A","APBXfqVccS0","dp5-2","dp5-3","dp2-3","hUC1uoigH6s","sRFM5IEqR2w","XRBc_xkZREg","_con6DnhkaA","_mGxmZWs9Zw","v-d10a","v-d10b"]};/*END*/
 const KEY="laa-w";
 const codes=Object.keys(CHS),CI=Object.fromEntries(codes.map((c,i)=>[c,i]));
 document.getElementById("sub").innerHTML=SUB;
@@ -193,7 +246,7 @@ function queuePush(){if(!TOK){status("","Saved on this device only · add a toke
 async function push(tries=2){
   dirty=false;
   try{
-    const {data,sha}=await pull();data[SUBJ]=st;REMOTE=data;data.updated=new Date().toISOString();
+    const {data,sha}=await pull();data[SUBJ]=st;REMOTE=data;REMOTE=data;data.updated=new Date().toISOString();
     const r=await fetch(API,{method:"PUT",headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+TOK},body:JSON.stringify({message:"progress",content:b64e(JSON.stringify(data,null,1)),sha:sha||undefined,branch:"main"})});
     if((r.status===409||r.status===422)&&tries>1)return push(tries-1); // someone else wrote first: refetch sha, retry
     if(r.status===401||r.status===403){status("err","Token rejected · check it in Sync settings");return}
@@ -206,7 +259,7 @@ async function initSync(){
     const {data}=await pull();REMOTE=data;
     if(data[SUBJ]){st=data[SUBJ];try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){};render()}
     else if(Object.keys(st).length&&TOK){progress();queuePush();return} // first sync: upload this device's ticks
-    progress();status(TOK?"ok":"",TOK?"Synced to GitHub":"Showing synced ticks · add a token to tick from this device");
+    progress();progress();status(TOK?"ok":"",TOK?"Synced to GitHub":"Showing synced ticks · add a token to tick from this device");
   }catch(e){status("err","Couldn't load synced ticks ("+e.message+") · showing this device's")}
 }
 document.getElementById("syncbtn").onclick=()=>{const p=document.getElementById("spanel");p.hidden=!p.hidden};
@@ -219,7 +272,7 @@ function progress(){ // combined progress over StoMA + LAA + DIP, counting only 
   for(const k in ALLIDS){let m=k===SUBJ?st:null;
     if(!m){m=REMOTE&&REMOTE[k];if(!m){try{m=JSON.parse(localStorage.getItem(k+"-w")||"{}")}catch(e){m={}}}}
     const c=ALLIDS[k].filter(id=>m[id]).length;tot+=ALLIDS[k].length;dn+=c;if(k===SUBJ)mine=c;}
-  document.getElementById("pc").textContent=`${dn} / ${tot} done across StoMA, LAA & DIP · this page ${mine} / ${ALLIDS[SUBJ].length}`;
+  document.getElementById("pc").textContent=`${dn} / ${tot} done · ${Math.round(100*dn/tot)}%`;
   document.getElementById("pb").style.width=(100*dn/tot)+"%";
 }
 function render(){
@@ -228,7 +281,10 @@ function render(){
     let core=0;
     const box=document.createElement("section");box.className="day";
     const body=day.topics.map(([tp,vs])=>{
+      let qh=false;
       const rows=vs.map(([c,id,t,dur,note,opt])=>{
+        if(c==="Q"){const head=qh?"":(qh=true,`<li class="qhead">Questions · recent papers and this year\u2019s assignments first, then close siblings</li>`);
+          return head+`<li class="q ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Done: ${t}"><span class="chip cq">Q</span><span class="t"><span class="qt">${t}</span><span class="note">${note}</span></span></li>`}
         if(!opt)core+=sec(dur);
         if(opt&&hide)return "";
         return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${CHS[c][2]?CI[c]:4}">${CHS[c][0]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");
