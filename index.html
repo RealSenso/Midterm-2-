@@ -12,14 +12,14 @@ body{margin:0}*{box-sizing:border-box}
 :root{
   --bg:#f6f7f9; --panel:#ffffff; --fg:#1a1f2b; --muted:#5e6678; --line:#dfe3ea; --accent:#2f5bd3;
   --J:#2f5bd3; --H:#a5262a; --M:#8a5a00; --K:#1d7a55;
-  --display:"Fraunces",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --P:#7a3fb0; --display:"Fraunces",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   --bg:#12151c; --panel:#1a1e27; --fg:#e6e9f0; --muted:#9aa3b5; --line:#2b313d; --accent:#7f9dff;
-  --J:#7f9dff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}}
+  --J:#7f9dff; --P:#c49bff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}}
 :root[data-theme="dark"]{
   --bg:#12151c; --panel:#1a1e27; --fg:#e6e9f0; --muted:#9aa3b5; --line:#2b313d; --accent:#7f9dff;
-  --J:#7f9dff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}
+  --J:#7f9dff; --P:#c49bff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}
 body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--body)}
 .wrap{max-width:780px;margin:0 auto;padding-block:28px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
 h1{font:600 clamp(26px,5vw,36px)/1.15 var(--display);margin:0 0 6px;text-wrap:balance}
@@ -27,7 +27,7 @@ h1{font:600 clamp(26px,5vw,36px)/1.15 var(--display);margin:0 0 6px;text-wrap:ba
 .legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);margin-bottom:10px}
 .legend a{color:inherit}
 .chip{font:500 11px/1 var(--mono);letter-spacing:.04em;padding:4px 6px;border-radius:4px;border:1px solid currentColor;flex:none}
-.c0{color:var(--J)}.c1{color:var(--K)}.c2{color:var(--H)}.c3{color:var(--M)}.c4{color:var(--muted)}
+.c0{color:var(--J)}.c1{color:var(--K)}.c2{color:var(--H)}.c3{color:var(--M)}.c4{color:var(--P)}
 .nav{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}.nav a{font:500 13px var(--body);color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px}.nav a[aria-current]{color:var(--bg);background:var(--fg);border-color:var(--fg)}.nav a:hover:not([aria-current]){color:var(--fg)}
 .prog{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--muted);margin:14px 0 26px}
 .bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
@@ -82,8 +82,8 @@ button:focus-visible{outline:2px solid var(--accent)}
   <div id="days"></div>
 </div>
 <script>
-const CHS={J:["JZ","Jochumzen","https://www.youtube.com/playlist?list=PL3FE7gBXZjSKMqq_u9eqqD6LVr9Gb_zaz"],K:["KJ","NPTEL, Krishna Jagannathan (IIT M)","https://www.youtube.com/playlist?list=PLyqSpQzTE6M_FbA7OwN2jI2Ime2yb5REk"],H:["110","Harvard Stat 110","https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo"],M:["MIT","MIT 6.041","https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8"]};
-const SUB="Videos in watch order for each day's guidebook, 12–21 Oct. Jochumzen first where he covers the topic, then the others for what he skips. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
+const CHS={J:["JZ","Jochumzen","https://www.youtube.com/playlist?list=PL3FE7gBXZjSKMqq_u9eqqD6LVr9Gb_zaz"],K:["KJ","NPTEL, Krishna Jagannathan (IIT M)","https://www.youtube.com/playlist?list=PLyqSpQzTE6M_FbA7OwN2jI2Ime2yb5REk"],H:["110","Harvard Stat 110","https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo"],M:["MIT","MIT 6.041","https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8"],P:["PROB","MIT 6.041SC worked problems","https://www.youtube.com/playlist?list=PLUl4u3cNGP60A3XMwZ5sep719_nh95qOe"]};
+const SUB="Videos in watch order for each day's guidebook, 12–21 Oct. Jochumzen first where he covers the topic, then the others for what he skips. Each day ends with exam-style worked problems from MIT 6.041SC. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
 const D=[
  {d:"Mon 12 Oct",topics:[["Conditional distributions (mixed), total probability & Bayes for RVs",[
   ["J","_jmYUvb2pGs","Conditional probability","6:23","Quick refresher"],
@@ -96,6 +96,10 @@ const D=[
   ["J","tqrtBbNzlz8","Conditional probability density function","5:14"],
   ["M","H_k1w3cfny8","L10 · Continuous Bayes' rule; derived distributions","48:53","First half: Bayes with mixed discrete/continuous variables"],
   ["K","CX8G8Z5g5jU","lec44 · Conditional CDF","23:19","",1],
+ ]],["Worked problems · exam-style",[
+  ["P","6UdLp2gpmcE","A mixed distribution example","13:25"],
+  ["P","96UEwIcSTG0","Inferring a discrete RV from a continuous measurement","18:37"],
+  ["P","TbC-kPbRt3c","Inferring a continuous RV from a discrete measurement","11:35"],
  ]]]},
  {d:"Tue 13 Oct",topics:[["Independence & multiple random variables",[
   ["J","hR4KT8Pfv0U","Independent random variables","9:02"],
@@ -103,6 +107,10 @@ const D=[
   ["K","7473il4l2v8","lec40 · Independent random variables 2","23:45","",1],
  ]],["Max, min & order statistics",[
   ["H","2LR5JYbhyjg","L25 · Order statistics and conditional expectation","48:15","First ~25 min is order statistics; the rest previews 17 Oct"],
+ ]],["Worked problems · exam-style",[
+  ["P","v8N6l9RXbOM","Uniform probabilities on a triangle","22:58"],
+  ["P","xFS4xpYQ82w","Probability that three pieces form a triangle","12:30"],
+  ["P","X5ch4xZf3LE","The absent-minded professor","13:09"],
  ]]]},
  {d:"Wed 14 Oct",topics:[["Sums of random variables (convolution)",[
   ["J","L2J1UM1yIdg","Function of several random variables","6:14"],
@@ -113,6 +121,10 @@ const D=[
  ]],["Jacobian transformation: difference, product, quotient",[
   ["K","30x5TyidptI","lec51 · Jacobian formula","23:24"],
   ["K","yhd4pSm3bEA","lec52 · Examples using the Jacobian formula","24:46"],
+ ]],["Worked problems · exam-style",[
+  ["P","HwkKtHLCmzo","A derived distribution example","9:30"],
+  ["P","f8Nli1AfygM","The difference of two independent exponential RVs","6:12"],
+  ["P","8ueUXUTRlSQ","The sum of discrete and continuous RVs","5:37"],
  ]]]},
  {d:"Thu 15 Oct",topics:[["Exchangeable RVs & expectations of functions",[
   ["J","zsRWu6W6aYg","Expected value of a function of several random variables","6:17"],
@@ -149,6 +161,12 @@ const D=[
  ]],["Random sums & Wald's formula",[
   ["M","P7a4bjE6Crk","L12 · Iterated expectations; sum of a random number of RVs","47:54"],
   ["K","L_JRLrjXoDE","lec49 · Sums of a random number of random variables","26:50","",1],
+ ]],["Worked problems · exam-style",[
+  ["P","NlRgBtSLViI","The variance in the stick-breaking problem","11:30"],
+  ["P","Y8zx1tWEbeI","Widgets and crates","10:06"],
+  ["P","CSkcBXUIJh4","Using the conditional expectation and variance","10:10"],
+  ["P","NYOcZx6Kxsw","A random number of coin flips","17:19"],
+  ["P","aGyJO6G3mxQ","A coin with random bias","22:58"],
  ]]]},
  {d:"Sun 18 Oct",topics:[["Gaussian & jointly Gaussian RVs",[
   ["J","flh9auAOpmw","The normal distribution","15:49","Refresher"],
@@ -166,6 +184,11 @@ const D=[
   ["J","4Q01kUH13Fw","Plim-rules","6:45"],
   ["M","3eiio3Tw7UQ","L19 · Weak law of large numbers","50:13"],
   ["J","jEwML3KR29g","Consistency","6:33","",1],
+ ]],["Worked problems · exam-style",[
+  ["P","x4q6H6lxFFE","Convergence in probability and in the mean, part 1","13:37"],
+  ["P","D_vUxa3tEGs","Convergence in probability and in the mean, part 2","5:46"],
+  ["P","eb-eRduYwZY","Convergence in probability example","7:37"],
+  ["P","s8geHBRvSos","Probability bounds","10:46"],
  ]]],gap:"Hölder, Minkowski and Hoeffding aren't covered well anywhere here; do those from the guidebook."},
  {d:"Tue 20 Oct",topics:[["Almost sure convergence, Borel–Cantelli & SLLN",[
   ["K","85hUqV50M1M","lec25 · Borel–Cantelli lemma 1","20:15"],
@@ -187,6 +210,8 @@ const D=[
   ["K","3_qGU4SB4-k","lec93 · The central limit theorem 1","25:11"],
   ["K","3M1R5rHHJ_U","lec94 · The central limit theorem 2","17:57","",1],
   ["H","OprNqnHsVIA","L29 · Law of large numbers and CLT","49:48","",1],
+ ]],["Worked problems · exam-style",[
+  ["P","M3615Gbd6-8","Using the central limit theorem","11:25"],
  ]]],gap:"Afternoon is the timed Test III paper."},
 ];
 
