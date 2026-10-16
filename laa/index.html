@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>LAA Midterm 2 Watchlist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+body{margin:0}*{box-sizing:border-box}
+/* Layout: single reading column, one block per day, videos as checkable rows with channel chip + duration */
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --fg:#1a1f2b; --muted:#5e6678; --line:#dfe3ea; --accent:#2f5bd3;
+  --J:#2f5bd3; --H:#a5262a; --M:#8a5a00; --K:#1d7a55;
+  --display:"Fraunces",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151c; --panel:#1a1e27; --fg:#e6e9f0; --muted:#9aa3b5; --line:#2b313d; --accent:#7f9dff;
+  --J:#7f9dff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151c; --panel:#1a1e27; --fg:#e6e9f0; --muted:#9aa3b5; --line:#2b313d; --accent:#7f9dff;
+  --J:#7f9dff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--body)}
+.wrap{max-width:780px;margin:0 auto;padding-block:28px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font:600 clamp(26px,5vw,36px)/1.15 var(--display);margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 18px;max-width:65ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);margin-bottom:10px}
+.legend a{color:inherit}
+.chip{font:500 11px/1 var(--mono);letter-spacing:.04em;padding:4px 6px;border-radius:4px;border:1px solid currentColor;flex:none}
+.c0{color:var(--J)}.c1{color:var(--K)}.c2{color:var(--H)}.c3{color:var(--M)}.c4{color:var(--muted)}
+.nav{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}.nav a{font:500 13px var(--body);color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px}.nav a[aria-current]{color:var(--bg);background:var(--fg);border-color:var(--fg)}.nav a:hover:not([aria-current]){color:var(--fg)}
+.prog{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--muted);margin:14px 0 26px}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:18px;overflow:hidden}
+.dh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;padding:14px 16px 4px}
+.dh h2{font:600 20px/1.2 var(--display);margin:0}
+.dh span{font:400 12px var(--mono);color:var(--muted)}
+.topic{padding:8px 16px 2px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ol{list-style:none;margin:0;padding:0 0 8px}
+li{display:flex;align-items:flex-start;gap:10px;padding:7px 16px;border-top:1px solid transparent}
+li:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+li input{margin-top:3px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+li .t{flex:1;min-width:0}
+li a{color:var(--fg);text-decoration:none;font-weight:500}
+li a:hover{text-decoration:underline;color:var(--accent)}
+li a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+li .note{display:block;font-size:13px;color:var(--muted)}
+li .d{font:400 12px var(--mono);color:var(--muted);flex:none;margin-top:3px;font-variant-numeric:tabular-nums}
+li.opt a{font-weight:400}
+li.opt .tag{font:500 10px var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
+li.done a{color:var(--muted);text-decoration:line-through}
+.gap{margin:4px 16px 12px;font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+button{font:500 13px var(--body);background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+button:focus-visible{outline:2px solid var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav" aria-label="Subjects"><a href="../">StoMA</a><a href="../laa/" aria-current="page">LAA</a><a href="../dip/">DIP</a></nav>
+  <h1>LAA Midterm 2 Watchlist</h1>
+  <p class="sub" id="sub"></p>
+  <div class="legend" id="legend"></div>
+  <div class="prog"><span id="pc">0 / 0 watched</span><div class="bar"><i id="pb"></i></div></div>
+  <div class="tools"><button id="hideopt" type="button">Hide extras</button><button id="reset" type="button">Clear ticks</button></div>
+  <div id="days"></div>
+</div>
+<script>
+const CHS={A:["AX","Sheldon Axler (Linear Algebra Done Right)","https://www.youtube.com/playlist?list=PLGAnmvB9m7zOBVCZBUUmSinFV0wEir2Vw"],W:["UW","Prof Won Math (Axler, full lectures)","https://www.youtube.com/playlist?list=PLoxJTbDttvt7ny0WEJHWw6-0Sjx7EImIQ"],B:["3B1B","3Blue1Brown","https://www.youtube.com/playlist?list=PLZHQObOWTQDPD3MizzM2xVFitgF8hE_ab"],S:["MIT","MIT 18.06 (Strang)","https://www.youtube.com/playlist?list=PLE7DDD91010BC51F8"],O:["+","Other channels",""]};
+const SUB="Videos in watch order for each day's guidebook, 12–24 Oct. Axler's own short videos come first (they follow his 3rd edition, so a few sit under a different section number than your 4th-edition book), then longer lectures and intuition videos for what they skip. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
+const D=[
+ {d:"Mon 12 Oct",topics:[["Axler 3A–3B · Linear maps, null space & range",[
+  ["B","kYB8IZa5AuE","Linear transformations and matrices (3B1B ch 3)","10:59","Picture first"],
+  ["A","GNg5drGm4JE","Vector space of linear maps","14:02"],
+  ["A","SoV7-w8x8pk","Null spaces and ranges","15:25"],
+  ["B","uQhTuRlWMxw","Inverse matrices, column space and null space (3B1B ch 7)","12:09"],
+  ["W","GT1i4vsrfq8","(3.B) Null spaces and ranges, full lecture","54:47","",1],
+ ]],["Axler 3C · Matrices & rank",[
+  ["A","LlbzPlS3ZQk","The matrix of a linear map","12:20"],
+  ["A","Vf8z6XA7LJE","Matrix multiplication","13:20","Includes column rank = row rank"],
+  ["B","XkY2DOUCWMU","Matrix multiplication as composition (3B1B ch 4)","10:04","",1],
+ ]]]},
+ {d:"Tue 13 Oct",topics:[["Axler 3D · Invertibility, isomorphisms & change of basis",[
+  ["A","O3LDK6LKcME","Invertibility and isomorphic vector spaces","13:55"],
+  ["A","RdaflWPVFNE","Change of basis","10:53"],
+  ["B","P2LTAUO1TdA","Change of basis (3B1B ch 13)","12:51"],
+  ["W","HCwJzSAsPjc","(3.D) Inverses and isomorphisms, full lecture","1:00:00","",1],
+ ]]]},
+ {d:"Wed 14 Oct",topics:[["Axler Ch 4 · Polynomials",[
+  ["A","16RepOJMUbM","Polynomials","12:08"],
+  ["W","c7eEHqqJn7U","(4) Polynomials, full lecture","52:47","",1],
+ ]]]},
+ {d:"Thu 15 Oct",topics:[["Axler 5A · Invariant subspaces & eigenvalues",[
+  ["B","PFDu9oVAE-g","Eigenvectors and eigenvalues (3B1B ch 14)","17:16","Picture first"],
+  ["A","NfoS22DasmE","Invariant subspaces","16:55"],
+  ["A","zlmh4JSTijI","Existence of eigenvalues","14:33"],
+  ["W","W8uSdLZ2b5E","(5.A–5.B) Invariant subspaces and eigenvectors, full lecture","58:11"],
+  ["B","e50Bj7jn9IQ","A quick trick for computing eigenvalues (3B1B ch 15)","13:13","",1],
+ ]]]},
+ {d:"Fri 16 Oct",topics:[["Axler 5B · Minimal polynomial",[
+  ["A","3WkxhuzcSCE","The minimal polynomial","15:35","Chapter 8 in the 3rd edition, but it is exactly your 5B"],
+  ["A","TJ9clajl0Vg","The characteristic polynomial","7:00","",1],
+ ]]],gap:"The 4th edition proves eigenvalue existence via the minimal polynomial. Axler's videos use the 3rd-edition route, so do the 5B proofs from the guidebook."},
+ {d:"Sat 17 Oct",topics:[["Axler 5C · Upper-triangular matrices",[
+  ["A","8HIk65B4CIM","Upper triangular matrices","9:00"],
+  ["W","N5LT--T3k5Q","(5.B–5.C) Diagonal and upper-triangular matrices, full lecture","58:36","",1],
+ ]],["Axler 5D · Diagonalizable operators",[
+  ["A","znJ0TO0RY6I","Eigenspaces and diagonal matrices","11:31"],
+  ["S","13r9QY6cmjc","L22 · Diagonalization and powers of A","51:50","Powers of A matter again for consensus on 18 Oct"],
+ ]]]},
+ {d:"Sun 18 Oct",topics:[["Axler 5E · Commuting operators",[
+  ["O","Pw_bcfpd22w","Simultaneously diagonalizable matrices commute, and a partial converse (Mike, the Mathematician)","6:25"],
+  ["O","MO9Jyu-RluE","Commuting diagonalizable matrices are simultaneously diagonalizable (Daniel An)","18:26"],
+ ]],["Consensus algorithm (application of Topic 3)",[
+  ["S","lGGDIGizcQ0","L24 · Markov matrices; Fourier series","51:12","First half: row/column-stochastic matrices, eigenvalue 1, steady state"],
+  ["O","PUDJW-ysfKY","Network Systems L5 · Discrete-time averaging systems (Francesco Bullo)","1:37:36","Same theory as your slides: globally reachable node, aperiodicity, consensus value"],
+  ["O","be1SZVBBFmU","Network Systems L3 · Elements of graph theory (Francesco Bullo)","1:21:50","",1],
+ ]]],gap:"Commuting upper-triangularization (the second half of 5E) has no good video; use the guidebook."},
+ {d:"Mon 19 Oct",topics:[["Axler 8A · Generalized eigenvectors & nilpotent operators",[
+  ["A","VmpdsIs78p0","Null spaces of powers of an operator","11:12"],
+  ["A","xyhaYHGZN-w","Generalized eigenvectors","12:57"],
+  ["A","RiB4xWbK62c","Nilpotent operators","6:11"],
+ ]]]},
+ {d:"Tue 20 Oct",topics:[["Axler 8B · Generalized eigenspace decomposition",[
+  ["A","VB_tGYSFmJE","Decomposition via generalized eigenvectors","12:49"],
+  ["A","a60r50XvtVo","Block diagonal matrices","4:32"],
+ ]],["Axler 8C · Square roots & Jordan form",[
+  ["A","DmFRusu-IfE","Square roots of operators","9:01"],
+  ["A","jWo65wklbYM","Jordan form","10:29"],
+  ["S","TSdXJw83kyA","L28 · Similar matrices and Jordan form","45:56"],
+ ]]]},
+ {d:"Wed 21 Oct",topics:[["Axler 8D · Trace",[
+  ["A","3NdI4DHJ8Ro","Trace of an operator and of a matrix","15:53"],
+ ]]]},
+ {d:"Thu 22 Oct",topics:[["Axler 6A · Inner products & norms",[
+  ["A","MkYzm4W9p6U","Inner products","11:18"],
+  ["A","Bl3kQu5djSg","Norms","12:46"],
+  ["W","nKSBMdqDryo","(6.A) Inner products and norms, full lecture","55:38"],
+  ["W","DZwQxbMQSu4","(6.A part 2) Inner products and norms","40:41","",1],
+ ]]],gap:"DIP mock is today too, so the core is kept short."},
+ {d:"Fri 23 Oct",topics:[["Axler 6B · Orthonormal bases & Gram–Schmidt",[
+  ["A","KZetRHUtT0M","Orthonormal bases","14:12","Gram–Schmidt, Schur's theorem, Riesz representation"],
+  ["S","0MtwqhIwdrI","L17 · Orthogonal matrices and Gram–Schmidt","49:10"],
+  ["W","TabSyV-0Naw","(6.B) Orthonormal bases, full lecture","58:33","",1],
+  ["W","3XS4Y4MA0O4","(6.B part 2) Orthonormal bases","47:18","",1],
+ ]]],gap:"DIP exam is today; watch these in the evening."},
+ {d:"Sat 24 Oct",topics:[],gap:"Timed PYQ mock. No videos today."},
+];
+
+const KEY="laa-w";
+const codes=Object.keys(CHS),CI=Object.fromEntries(codes.map((c,i)=>[c,i]));
+document.getElementById("sub").innerHTML=SUB;
+document.getElementById("legend").innerHTML=codes.filter(c=>CHS[c][2]).map(c=>`<span><span class="chip c${CI[c]}">${CHS[c][0]}</span> <a href="${CHS[c][2]}" target="_blank" rel="noopener">${CHS[c][1]}</a></span>`).join("")+(codes.some(c=>!CHS[c][2])?`<span><span class="chip c4">+</span> one-off videos from other channels</span>`:"");
+const sec=s=>s.split(":").reduce((a,b)=>a*60+ +b,0);
+const fmt=t=>{const h=Math.floor(t/3600),m=Math.round(t%3600/60);return (h?h+" h ":"")+m+" min"};
+let st={},hide=false;
+try{st=JSON.parse(localStorage.getItem(KEY)||"{}");hide=localStorage.getItem(KEY+"-hide")==="1"}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+function render(){
+  const root=document.getElementById("days");root.innerHTML="";
+  D.forEach(day=>{
+    let core=0;
+    const box=document.createElement("section");box.className="day";
+    const body=day.topics.map(([tp,vs])=>{
+      const rows=vs.map(([c,id,t,dur,note,opt])=>{
+        if(!opt)core+=sec(dur);
+        if(opt&&hide)return "";
+        return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${CHS[c][2]?CI[c]:4}">${CHS[c][0]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");
+      return `<div class="topic">${tp}</div><ol>${rows}</ol>`}).join("");
+    box.innerHTML=`<div class="dh"><h2>${day.d}</h2><span>${core?fmt(core)+" core":"rest from videos"}</span></div>${body}${day.gap?`<p class="gap">${day.gap}</p>`:""}`;
+    root.appendChild(box);
+  });
+  const all=D.flatMap(d=>d.topics.flatMap(t=>t[1])),done=all.filter(v=>st[v[1]]).length;
+  document.getElementById("pc").textContent=`${done} / ${all.length} watched`;
+  document.getElementById("pb").style.width=(100*done/all.length)+"%";
+  document.getElementById("hideopt").textContent=hide?"Show extras":"Hide extras";
+}
+document.getElementById("days").addEventListener("change",e=>{const id=e.target.dataset.id;if(!id)return;if(e.target.checked)st[id]=1;else delete st[id];save();render()});
+document.getElementById("hideopt").onclick=()=>{hide=!hide;try{localStorage.setItem(KEY+"-hide",hide?"1":"0")}catch(e){};render()};
+document.getElementById("reset").onclick=e=>{if(e.target.dataset.arm){st={};save();delete e.target.dataset.arm;e.target.textContent="Clear ticks";render()}else{e.target.dataset.arm=1;e.target.textContent="Click again to clear"}};
+render();
+</script>
+</body>
+</html>

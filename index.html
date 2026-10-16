@@ -27,7 +27,8 @@ h1{font:600 clamp(26px,5vw,36px)/1.15 var(--display);margin:0 0 6px;text-wrap:ba
 .legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);margin-bottom:10px}
 .legend a{color:inherit}
 .chip{font:500 11px/1 var(--mono);letter-spacing:.04em;padding:4px 6px;border-radius:4px;border:1px solid currentColor;flex:none}
-.cJ{color:var(--J)}.cH{color:var(--H)}.cM{color:var(--M)}.cK{color:var(--K)}
+.c0{color:var(--J)}.c1{color:var(--K)}.c2{color:var(--H)}.c3{color:var(--M)}.c4{color:var(--muted)}
+.nav{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}.nav a{font:500 13px var(--body);color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px}.nav a[aria-current]{color:var(--bg);background:var(--fg);border-color:var(--fg)}.nav a:hover:not([aria-current]){color:var(--fg)}
 .prog{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--muted);margin:14px 0 26px}
 .bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
 .bar i{display:block;height:100%;background:var(--accent);width:0}
@@ -56,23 +57,18 @@ button:focus-visible{outline:2px solid var(--accent)}
 </style>
 </head>
 <body>
-
 <div class="wrap">
+  <nav class="nav" aria-label="Subjects"><a href="./" aria-current="page">StoMA</a><a href="./laa/">LAA</a><a href="./dip/">DIP</a></nav>
   <h1>StoMA Midterm 2 Watchlist</h1>
-  <p class="sub">Videos in watch order for each day's guidebook, 12–21 Oct. Jochumzen first where he covers the topic, then the others for what he skips. Rows marked <em>extra</em> are optional; the day time counts only the rest.</p>
-  <div class="legend">
-    <span><span class="chip cJ">JZ</span> <a href="https://www.youtube.com/playlist?list=PL3FE7gBXZjSKMqq_u9eqqD6LVr9Gb_zaz" target="_blank" rel="noopener">Jochumzen</a></span>
-    <span><span class="chip cK">KJ</span> <a href="https://www.youtube.com/playlist?list=PLyqSpQzTE6M_FbA7OwN2jI2Ime2yb5REk" target="_blank" rel="noopener">NPTEL, Krishna Jagannathan (IIT M)</a></span>
-    <span><span class="chip cH">110</span> <a href="https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo" target="_blank" rel="noopener">Harvard Stat 110</a></span>
-    <span><span class="chip cM">MIT</span> <a href="https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8" target="_blank" rel="noopener">MIT 6.041</a></span>
-  </div>
+  <p class="sub" id="sub"></p>
+  <div class="legend" id="legend"></div>
   <div class="prog"><span id="pc">0 / 0 watched</span><div class="bar"><i id="pb"></i></div></div>
   <div class="tools"><button id="hideopt" type="button">Hide extras</button><button id="reset" type="button">Clear ticks</button></div>
   <div id="days"></div>
 </div>
-
 <script>
-// [channel, videoId, title, duration, note, optional]
+const CHS={J:["JZ","Jochumzen","https://www.youtube.com/playlist?list=PL3FE7gBXZjSKMqq_u9eqqD6LVr9Gb_zaz"],K:["KJ","NPTEL, Krishna Jagannathan (IIT M)","https://www.youtube.com/playlist?list=PLyqSpQzTE6M_FbA7OwN2jI2Ime2yb5REk"],H:["110","Harvard Stat 110","https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo"],M:["MIT","MIT 6.041","https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8"]};
+const SUB="Videos in watch order for each day's guidebook, 12–21 Oct. Jochumzen first where he covers the topic, then the others for what he skips. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
 const D=[
  {d:"Mon 12 Oct",topics:[["Conditional distributions (mixed), total probability & Bayes for RVs",[
   ["J","_jmYUvb2pGs","Conditional probability","6:23","Quick refresher"],
@@ -178,25 +174,28 @@ const D=[
   ["H","OprNqnHsVIA","L29 · Law of large numbers and CLT","49:48","",1],
  ]]],gap:"Afternoon is the timed Test III paper."},
 ];
-const CH={J:"JZ",H:"110",M:"MIT",K:"KJ"};
+
+const KEY="stoma-w";
+const codes=Object.keys(CHS),CI=Object.fromEntries(codes.map((c,i)=>[c,i]));
+document.getElementById("sub").innerHTML=SUB;
+document.getElementById("legend").innerHTML=codes.filter(c=>CHS[c][2]).map(c=>`<span><span class="chip c${CI[c]}">${CHS[c][0]}</span> <a href="${CHS[c][2]}" target="_blank" rel="noopener">${CHS[c][1]}</a></span>`).join("")+(codes.some(c=>!CHS[c][2])?`<span><span class="chip c4">+</span> one-off videos from other channels</span>`:"");
 const sec=s=>s.split(":").reduce((a,b)=>a*60+ +b,0);
 const fmt=t=>{const h=Math.floor(t/3600),m=Math.round(t%3600/60);return (h?h+" h ":"")+m+" min"};
 let st={},hide=false;
-try{st=JSON.parse(localStorage.getItem("stoma-w")||"{}");hide=localStorage.getItem("stoma-hide")==="1"}catch(e){}
-const save=()=>{try{localStorage.setItem("stoma-w",JSON.stringify(st))}catch(e){}};
+try{st=JSON.parse(localStorage.getItem(KEY)||"{}");hide=localStorage.getItem(KEY+"-hide")==="1"}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
 function render(){
   const root=document.getElementById("days");root.innerHTML="";
-  let n=0;
   D.forEach(day=>{
     let core=0;
     const box=document.createElement("section");box.className="day";
     const body=day.topics.map(([tp,vs])=>{
       const rows=vs.map(([c,id,t,dur,note,opt])=>{
-        n++;const k=n;if(!opt)core+=sec(dur);
+        if(!opt)core+=sec(dur);
         if(opt&&hide)return "";
-        return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${c}">${CH[c]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");
+        return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${CHS[c][2]?CI[c]:4}">${CHS[c][0]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");
       return `<div class="topic">${tp}</div><ol>${rows}</ol>`}).join("");
-    box.innerHTML=`<div class="dh"><h2>${day.d}</h2><span>${fmt(core)} core</span></div>${body}${day.gap?`<p class="gap">${day.gap}</p>`:""}`;
+    box.innerHTML=`<div class="dh"><h2>${day.d}</h2><span>${core?fmt(core)+" core":"rest from videos"}</span></div>${body}${day.gap?`<p class="gap">${day.gap}</p>`:""}`;
     root.appendChild(box);
   });
   const all=D.flatMap(d=>d.topics.flatMap(t=>t[1])),done=all.filter(v=>st[v[1]]).length;
@@ -205,7 +204,7 @@ function render(){
   document.getElementById("hideopt").textContent=hide?"Show extras":"Hide extras";
 }
 document.getElementById("days").addEventListener("change",e=>{const id=e.target.dataset.id;if(!id)return;if(e.target.checked)st[id]=1;else delete st[id];save();render()});
-document.getElementById("hideopt").onclick=()=>{hide=!hide;try{localStorage.setItem("stoma-hide",hide?"1":"0")}catch(e){};render()};
+document.getElementById("hideopt").onclick=()=>{hide=!hide;try{localStorage.setItem(KEY+"-hide",hide?"1":"0")}catch(e){};render()};
 document.getElementById("reset").onclick=e=>{if(e.target.dataset.arm){st={};save();delete e.target.dataset.arm;e.target.textContent="Clear ticks";render()}else{e.target.dataset.arm=1;e.target.textContent="Click again to clear"}};
 render();
 </script>

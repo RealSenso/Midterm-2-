@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>DIP Midterm 2 Watchlist</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+body{margin:0}*{box-sizing:border-box}
+/* Layout: single reading column, one block per day, videos as checkable rows with channel chip + duration */
+:root{
+  --bg:#f6f7f9; --panel:#ffffff; --fg:#1a1f2b; --muted:#5e6678; --line:#dfe3ea; --accent:#2f5bd3;
+  --J:#2f5bd3; --H:#a5262a; --M:#8a5a00; --K:#1d7a55;
+  --display:"Fraunces",Georgia,serif; --body:"IBM Plex Sans",system-ui,sans-serif; --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#12151c; --panel:#1a1e27; --fg:#e6e9f0; --muted:#9aa3b5; --line:#2b313d; --accent:#7f9dff;
+  --J:#7f9dff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#12151c; --panel:#1a1e27; --fg:#e6e9f0; --muted:#9aa3b5; --line:#2b313d; --accent:#7f9dff;
+  --J:#7f9dff; --H:#ff8a8d; --M:#e7b452; --K:#5fd3a0; color-scheme:dark}
+body{background:var(--bg);color:var(--fg);font:15px/1.5 var(--body)}
+.wrap{max-width:780px;margin:0 auto;padding-block:28px 60px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+h1{font:600 clamp(26px,5vw,36px)/1.15 var(--display);margin:0 0 6px;text-wrap:balance}
+.sub{color:var(--muted);margin:0 0 18px;max-width:65ch}
+.legend{display:flex;flex-wrap:wrap;gap:8px 16px;font-size:13px;color:var(--muted);margin-bottom:10px}
+.legend a{color:inherit}
+.chip{font:500 11px/1 var(--mono);letter-spacing:.04em;padding:4px 6px;border-radius:4px;border:1px solid currentColor;flex:none}
+.c0{color:var(--J)}.c1{color:var(--K)}.c2{color:var(--H)}.c3{color:var(--M)}.c4{color:var(--muted)}
+.nav{display:flex;gap:6px;margin:0 0 18px;flex-wrap:wrap}.nav a{font:500 13px var(--body);color:var(--muted);text-decoration:none;padding:5px 12px;border:1px solid var(--line);border-radius:999px}.nav a[aria-current]{color:var(--bg);background:var(--fg);border-color:var(--fg)}.nav a:hover:not([aria-current]){color:var(--fg)}
+.prog{display:flex;align-items:center;gap:10px;font:500 13px var(--mono);color:var(--muted);margin:14px 0 26px}
+.bar{flex:1;height:6px;background:var(--line);border-radius:3px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--accent);width:0}
+.day{background:var(--panel);border:1px solid var(--line);border-radius:10px;margin-bottom:18px;overflow:hidden}
+.dh{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;padding:14px 16px 4px}
+.dh h2{font:600 20px/1.2 var(--display);margin:0}
+.dh span{font:400 12px var(--mono);color:var(--muted)}
+.topic{padding:8px 16px 2px;font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+ol{list-style:none;margin:0;padding:0 0 8px}
+li{display:flex;align-items:flex-start;gap:10px;padding:7px 16px;border-top:1px solid transparent}
+li:hover{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+li input{margin-top:3px;accent-color:var(--accent);width:16px;height:16px;flex:none}
+li .t{flex:1;min-width:0}
+li a{color:var(--fg);text-decoration:none;font-weight:500}
+li a:hover{text-decoration:underline;color:var(--accent)}
+li a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+li .note{display:block;font-size:13px;color:var(--muted)}
+li .d{font:400 12px var(--mono);color:var(--muted);flex:none;margin-top:3px;font-variant-numeric:tabular-nums}
+li.opt a{font-weight:400}
+li.opt .tag{font:500 10px var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
+li.done a{color:var(--muted);text-decoration:line-through}
+.gap{margin:4px 16px 12px;font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+button{font:500 13px var(--body);background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
+button:focus-visible{outline:2px solid var(--accent)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav" aria-label="Subjects"><a href="../">StoMA</a><a href="../laa/">LAA</a><a href="../dip/" aria-current="page">DIP</a></nav>
+  <h1>DIP Midterm 2 Watchlist</h1>
+  <p class="sub" id="sub"></p>
+  <div class="legend" id="legend"></div>
+  <div class="prog"><span id="pc">0 / 0 watched</span><div class="bar"><i id="pb"></i></div></div>
+  <div class="tools"><button id="hideopt" type="button">Hide extras</button><button id="reset" type="button">Clear ticks</button></div>
+  <div id="days"></div>
+</div>
+<script>
+const CHS={F:["FPCV","First Principles of Computer Vision (Shree Nayar)","https://www.youtube.com/@firstprinciplesofcomputerv3258"],R:["RPI","Rich Radke, Intro to Digital Image Processing","https://www.youtube.com/playlist?list=PLuh62Q4Sv7BUf60vkjePfcOQc8sHxmnDX"],N:["NPTEL","NPTEL DIP, Prof P. K. Biswas (IIT KGP)","https://www.youtube.com/playlist?list=PL1F076D1A98071E24"],V:["BVV","Barry Van Veen","https://www.youtube.com/@allsignalprocessing"],O:["+","Other channels",""]};
+const SUB="Videos in watch order for each day's guidebook, 12–22 Oct. Shree Nayar's short First Principles videos come first where they cover the topic, then full lectures and shorter explainers for the rest. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
+const D=[
+ {d:"Mon 12 Oct",topics:[["DSFT & DFT",[
+  ["O","AWIONchKqhA","Discrete-time Fourier transform (DTFT) explained visually (TheSiGuy)","8:57"],
+  ["V","YYGltoYEmKo","2-dimensional discrete-space Fourier transform","14:45"],
+  ["O","nl9TZanwbBk","The discrete Fourier transform (Steve Brunton)","17:36"],
+  ["F","tEzgtbnbXgQ","Fourier transform | Image Processing II","16:32"],
+  ["R","NbQY1x8H6QQ","DIP L7 · The 2D discrete Fourier transform","1:08:03"],
+  ["O","2kMSLqAbLj4","How the Fourier series, FT, DTFT, DFT, FFT, LT and ZT are related (Iain Explains)","22:47","",1],
+ ]]]},
+ {d:"Tue 13 Oct",topics:[["2D convolution & 2D transforms",[
+  ["F","0OHRJMNKhX0","LSIS and convolution | Image Processing I","21:11"],
+  ["F","kQUfKf-vPdI","Convolution theorem | Image Processing II","7:34"],
+  ["R","7o5kEVWVGjU","DIP L9 · Unitary image transforms","1:02:25","Separable 2D transforms in matrix form"],
+  ["R","tmERrPh1E4c","DIP L8 · Frequency-domain filtering; sampling and aliasing","1:06:01","",1],
+ ]]]},
+ {d:"Wed 14 Oct",topics:[["Discrete cosine transform (DCT)",[
+  ["V","Aq7YgjbVrPg","The discrete cosine transform","10:33"],
+  ["V","DS8N8cFVd-E","The two-dimensional discrete cosine transform","7:40"],
+  ["N","S8FkaEWfCOg","L15 · Discrete cosine transform","57:45"],
+ ]]]},
+ {d:"Thu 15 Oct",topics:[["Applications of image transforms (JPEG & KLT)",[
+  ["O","Q2aEzeMDHMA","JPEG DCT, discrete cosine transform (Computerphile)","15:12"],
+  ["O","gGEBUdM0PVc","Image compression and the FFT (Steve Brunton)","13:01"],
+  ["N","uTwm3Zv1HfA","L16 · K-L transform","56:54"],
+  ["R","wyb5S8QsCSA","DIP L16 · Lossy image compression","1:05:30","",1],
+  ["O","0me3guauqOU","The unreasonable effectiveness of JPEG (Reducible)","34:48","",1],
+ ]]]},
+ {d:"Fri 16 Oct",topics:[["Upsampling & downsampling",[
+  ["F","YFZsxY_2_l4","Sampling theory and aliasing | Image Processing II","12:08"],
+  ["O","g_12MFQFXLA","Decimation and interpolation: downsampling and upsampling (Easy Electronics)","23:19"],
+  ["O","OF8Q6WXYOY0","L50 · Introduction to multirate signal processing (NPTEL IIT KGP)","41:25"],
+  ["N","7y-X9Bn39a8","L9 · Interpolation and resampling","57:25","",1],
+ ]]]},
+ {d:"Sat 17 Oct",topics:[["Haar transform & filter banks",[
+  ["O","y7KLbd7n75g","Wavelets and multiresolution analysis (Steve Brunton)","15:12"],
+  ["O","A1Kk0r4ov6Q","L6 · The Haar filter bank (IIT Bombay)","52:05"],
+  ["O","y246EFvaDow","L11 · Two-channel filter bank (IIT Bombay)","54:20","",1],
+  ["O","eJLF9HeZA8I","Image compression with wavelets, Python (Steve Brunton)","10:01","",1],
+ ]]]},
+ {d:"Sun 18 Oct",topics:[["Image restoration & Wiener filter",[
+  ["F","f-IINpceX6k","Deconvolution | Image Processing II","11:17"],
+  ["O","en5_Ywh22sA","Wiener filter (sinc)","12:07"],
+  ["R","GE3_4acUrO4","DIP L17 · Image restoration and the Wiener filter","1:14:39"],
+  ["N","5qxrzD6ODHc","L22 · Image restoration I","1:00:13","",1],
+ ]]]},
+ {d:"Mon 19 Oct",topics:[["Constrained least squares, median & bilateral filters",[
+  ["O","CfvYkOyIFU8","Constrained least squares filtering (sinc)","21:12"],
+  ["N","utFtOkMG6yo","L24 · Image restoration III","58:40","Covers constrained least squares restoration",1],
+  ["F","7FP7ndMEfsc","Non-linear image filters | Image Processing I","15:24","Median and bilateral filters"],
+ ]]]},
+ {d:"Tue 20 Oct",topics:[["Image quality (PSNR, SSIM)",[
+  ["O","RGQ-IXg0REQ","MSE and PSNR, part 1 (Chaos and Cryptography)","4:07"],
+  ["O","5S-M6mUflXo","Structural similarity index (SSIM) explained (Sanjeev Bhandari)","26:13"],
+ ]],["Gradient edge detection",[
+  ["F","G8yp6f9V_6c","What is an edge? | Edge Detection","5:15"],
+  ["F","lOEBsQodtEQ","Edge detection using gradients | Edge Detection","10:44"],
+  ["F","uNP6ZwQ3r6A","Edge detection using Laplacian | Edge Detection","12:39"],
+  ["R","APBXfqVccS0","DIP L10 · Edge detection","1:03:23","",1],
+ ]]],gap:"SSIM videos are thin. Read the formula and its three terms in the guidebook first."},
+ {d:"Wed 21 Oct",topics:[["Canny edge detector & Hough transform",[
+  ["F","hUC1uoigH6s","Canny edge detector | Edge Detection","6:02"],
+  ["O","sRFM5IEqR2w","Canny edge detector (Computerphile)","7:51"],
+  ["F","XRBc_xkZREg","Hough transform | Boundary Detection","21:40"],
+  ["R","_con6DnhkaA","DIP L11 · Edge linking and line detection","1:17:57","",1],
+  ["F","_mGxmZWs9Zw","Generalized Hough transform | Boundary Detection","9:43","",1],
+ ]]]},
+ {d:"Thu 22 Oct",topics:[],gap:"Timed mock and final revision. No videos today."},
+];
+
+const KEY="dip-w";
+const codes=Object.keys(CHS),CI=Object.fromEntries(codes.map((c,i)=>[c,i]));
+document.getElementById("sub").innerHTML=SUB;
+document.getElementById("legend").innerHTML=codes.filter(c=>CHS[c][2]).map(c=>`<span><span class="chip c${CI[c]}">${CHS[c][0]}</span> <a href="${CHS[c][2]}" target="_blank" rel="noopener">${CHS[c][1]}</a></span>`).join("")+(codes.some(c=>!CHS[c][2])?`<span><span class="chip c4">+</span> one-off videos from other channels</span>`:"");
+const sec=s=>s.split(":").reduce((a,b)=>a*60+ +b,0);
+const fmt=t=>{const h=Math.floor(t/3600),m=Math.round(t%3600/60);return (h?h+" h ":"")+m+" min"};
+let st={},hide=false;
+try{st=JSON.parse(localStorage.getItem(KEY)||"{}");hide=localStorage.getItem(KEY+"-hide")==="1"}catch(e){}
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+function render(){
+  const root=document.getElementById("days");root.innerHTML="";
+  D.forEach(day=>{
+    let core=0;
+    const box=document.createElement("section");box.className="day";
+    const body=day.topics.map(([tp,vs])=>{
+      const rows=vs.map(([c,id,t,dur,note,opt])=>{
+        if(!opt)core+=sec(dur);
+        if(opt&&hide)return "";
+        return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${CHS[c][2]?CI[c]:4}">${CHS[c][0]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");
+      return `<div class="topic">${tp}</div><ol>${rows}</ol>`}).join("");
+    box.innerHTML=`<div class="dh"><h2>${day.d}</h2><span>${core?fmt(core)+" core":"rest from videos"}</span></div>${body}${day.gap?`<p class="gap">${day.gap}</p>`:""}`;
+    root.appendChild(box);
+  });
+  const all=D.flatMap(d=>d.topics.flatMap(t=>t[1])),done=all.filter(v=>st[v[1]]).length;
+  document.getElementById("pc").textContent=`${done} / ${all.length} watched`;
+  document.getElementById("pb").style.width=(100*done/all.length)+"%";
+  document.getElementById("hideopt").textContent=hide?"Show extras":"Hide extras";
+}
+document.getElementById("days").addEventListener("change",e=>{const id=e.target.dataset.id;if(!id)return;if(e.target.checked)st[id]=1;else delete st[id];save();render()});
+document.getElementById("hideopt").onclick=()=>{hide=!hide;try{localStorage.setItem(KEY+"-hide",hide?"1":"0")}catch(e){};render()};
+document.getElementById("reset").onclick=e=>{if(e.target.dataset.arm){st={};save();delete e.target.dataset.arm;e.target.textContent="Clear ticks";render()}else{e.target.dataset.arm=1;e.target.textContent="Click again to clear"}};
+render();
+</script>
+</body>
+</html>
