@@ -49,7 +49,7 @@ li .note{display:block;font-size:13px;color:var(--muted)}
 li .d{font:400 12px var(--mono);color:var(--muted);flex:none;margin-top:3px;font-variant-numeric:tabular-nums}
 li.opt a{font-weight:400}
 li.opt .tag{font:500 10px var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
-li.q .qt{color:var(--fg)}li.done .qt{color:var(--muted);text-decoration:line-through}
+li.q .qt{color:var(--fg)}li.q .katex{font-size:1.05em}li.done .qt{color:var(--muted);text-decoration:line-through}
 li.qhead{font:600 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:10px 16px 2px}
 .cq{color:var(--fg)}
 li.done a{color:var(--muted);text-decoration:line-through}
@@ -64,6 +64,9 @@ button:focus-visible{outline:2px solid var(--accent)}
 .panel .row{display:flex;gap:8px;flex-wrap:wrap}.panel input{flex:1;min-width:0;font:13px var(--mono);padding:7px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
 .panel a{color:var(--accent)}
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.css">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/katex.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.9/contrib/auto-render.min.js" onload="window.texReady=true;if(window.render)render()"></script>
 </head>
 <body>
 <div class="wrap">
@@ -99,11 +102,11 @@ const D=[
   ["J","tqrtBbNzlz8","Conditional probability density function","5:14"],
   ["M","H_k1w3cfny8","L10 · Continuous Bayes' rule; derived distributions","48:53","First half: Bayes with mixed discrete/continuous variables"],
   ["K","CX8G8Z5g5jU","lec44 · Conditional CDF","23:19","",1],
-  ["Q","p25-1","Let X, Y have joint density f(x,y) = K for |y| ≤ 3x, 0 < x < 1 (and 0 elsewhere). Find K, the marginal densities f_X and f_Y (with their ranges), and P[Y > 0.75 | X = 0.5].","","Test II 2025 Q1 · Recent paper"],
-  ["Q","p24-3","Let X, Y be iid exponential with parameter λ and let Z = X + Y. Find the conditional density of Z given Y = y, and P[Z > 2 | Y = 1].","","Test II 2024 Q3 · Recent paper"],
-  ["Q","v-reg1","(Variant of 2025 Q1) Let f(x,y) = K for |y| ≤ x², 0 < x < 1. Find K, f_X, f_Y and P[Y > 0.1 | X = 0.5]. Is Y uniform given X?","","Variant · Same template, new region"],
-  ["Q","r3-53","X is Poisson with parameter λ, where λ is itself a random variable, exponential with mean 1. Show that P[X = n] = (1/2)^(n+1), n = 0, 1, 2, … Then find the conditional density of λ given X = n.","","Ross 3.53 (+ 3.17) · Asked 2010; mixed Bayes"],
-  ["Q","h6-7","Let f(x,y) = λ² e^(−λy) for 0 < x < y and 0 elsewhere. Find the marginal densities of X and Y, the conditional density of X given Y = y, and E[X | Y].","","HPS Ch 6 Ex 7, Ross 2.61 · Sibling of 2025 Q4 and 2024 Q2 (same density family)"]
+  ["Q","p25-1","Let $X,Y$ have joint density $f_{XY}(x,y)=K$ for $|y|\\le 3x,\\ 0<x<1$ (and $0$ elsewhere). Find $K$, the marginal densities $f_X$ and $f_Y$ (with their ranges), and $P[Y>0.75\\mid X=0.5]$.","","Test II 2025 Q1 · Recent paper"],
+  ["Q","p24-3","Let $X,Y$ be iid exponential with parameter $\\lambda$ and let $Z=X+Y$. Find the conditional density of $Z$ given $Y=y$, and $P[Z>2\\mid Y=1]$.","","Test II 2024 Q3 · Recent paper"],
+  ["Q","v-reg1","(Variant of 2025 Q1) Let $f_{XY}(x,y)=K$ for $|y|\\le x^2,\\ 0<x<1$. Find $K$, $f_X$, $f_Y$ and $P[Y>0.1\\mid X=0.5]$. Is $Y$ uniform given $X$?","","Variant · Same template, new region"],
+  ["Q","r3-53","$X$ is Poisson with parameter $\\lambda$, where $\\lambda$ is itself random, exponential with mean $1$. Show that $P[X=n]=\\left(\\tfrac12\\right)^{n+1}$, $n=0,1,2,\\dots$ Then find the conditional density of $\\lambda$ given $X=n$.","","Ross 3.53 (+ 3.17) · Asked 2010; mixed Bayes"],
+  ["Q","h6-7","Let $f(x,y)=\\lambda^2e^{-\\lambda y}$ for $0<x<y$ and $0$ elsewhere. Find the marginal densities of $X$ and $Y$, the conditional density of $X$ given $Y=y$, and $E[X\\mid Y]$.","","HPS Ch 6 Ex 7, Ross 2.61 · Sibling of 2025 Q4 and 2024 Q2 (same density family)"]
  ]],["Worked problems · exam-style",[
   ["P","6UdLp2gpmcE","A mixed distribution example","13:25"],
   ["P","96UEwIcSTG0","Inferring a discrete RV from a continuous measurement","18:37"],
@@ -113,14 +116,14 @@ const D=[
   ["J","hR4KT8Pfv0U","Independent random variables","9:02"],
   ["K","o0Ow5YT1-7k","lec39 · Independent random variables 1","21:28"],
   ["K","7473il4l2v8","lec40 · Independent random variables 2","23:45","",1],
-  ["Q","p25-2","Take Ω = [0,1] with P(interval) = its length. For a, b ∈ (0, 0.5) define X = I[0,a] + I[0.5, 0.5+a] and Y = I[b, 0.5] + I[0.5+b, 1], where I_A is the indicator of A. Find the mass functions of X and Y. Can X, Y be independent for some a, b? If yes, find them; if not, prove it for every a, b ∈ (0, 0.5).","","Test II 2025 Q2 · Recent paper"],
-  ["Q","p21-1b","Let X be uniform on [1,3] and Y uniform on [2,4], independent. Find P[X > Y].","","Test II 2021 Q1(b) · Recent paper"],
-  ["Q","v-ind1","(Variant of 2025 Q2) On Ω = [0,1] with length as probability, let X = I[0, 0.5] and Y = I[c, c+0.5] for c ∈ [0, 0.5]. For which c are X and Y independent? Find Cov(X,Y) as a function of c.","","Variant · Same idea, answer exists this time"],
-  ["Q","h3-19","X, Y iid geometric(p) on {0,1,2,…}. Let M = min(X,Y) and Z = Y − X. Find P[M = m, Z = z] and show M and Z are independent.","","HPS Ch 3 Ex 19 · Asked 2009, 2014, Assignment 2021"]
+  ["Q","p25-2","Take $\\Omega=[0,1]$ with $P(\\text{interval})=$ its length. For $a,b\\in(0,0.5)$ define $X=I_{[0,a]}+I_{[0.5,\\,0.5+a]}$ and $Y=I_{[b,\\,0.5]}+I_{[0.5+b,\\,1]}$, where $I_A$ is the indicator of $A$. Find the mass functions of $X$ and $Y$. Can $X,Y$ be independent for some $a,b$? If yes, find them; if not, prove it for every $a,b\\in(0,0.5)$.","","Test II 2025 Q2 · Recent paper"],
+  ["Q","p21-1b","Let $X\\sim U[1,3]$ and $Y\\sim U[2,4]$ be independent. Find $P[X>Y]$.","","Test II 2021 Q1(b) · Recent paper"],
+  ["Q","v-ind1","(Variant of 2025 Q2) On $\\Omega=[0,1]$ with length as probability, let $X=I_{[0,\\,0.5]}$ and $Y=I_{[c,\\,c+0.5]}$ for $c\\in[0,0.5]$. For which $c$ are $X$ and $Y$ independent? Find $\\operatorname{Cov}(X,Y)$ as a function of $c$.","","Variant · Same idea, answer exists this time"],
+  ["Q","h3-19","$X,Y$ iid geometric$(p)$ on $\\{0,1,2,\\dots\\}$. Let $M=\\min(X,Y)$ and $Z=Y-X$. Find $P[M=m,\\,Z=z]$ and show $M$ and $Z$ are independent.","","HPS Ch 3 Ex 19 · Asked 2009, 2014, Assignment 2021"]
  ]],["Max, min & order statistics",[
   ["H","2LR5JYbhyjg","L25 · Order statistics and conditional expectation","48:15","First ~25 min is order statistics; the rest previews 17 Oct"],
-  ["Q","h6-32","U₁, …, Uₙ iid uniform on (0,1); let X₁ = min and Xₙ = max. Find the joint density of (X₁, Xₙ), the density of the range R = Xₙ − X₁, and the density of the k-th smallest value.","","HPS Ch 6 Ex 32 · Needed for 2025 Q8 and Test III 2021 Q1(a)"],
-  ["Q","h6-33","U₁, …, Uₙ iid exponential(λ). Find the density of min(U₁, …, Uₙ). Also find E and Var of max(U₁, U₂).","","HPS Ch 6 Ex 33, Ch 7 Ex 9 · Order statistics core"]
+  ["Q","h6-32","$U_1,\\dots,U_n$ iid $U(0,1)$; let $X_1=\\min U_i$ and $X_n=\\max U_i$. Find the joint density of $(X_1,X_n)$, the density of the range $R=X_n-X_1$, and the density of the $k$-th smallest value.","","HPS Ch 6 Ex 32 · Needed for 2025 Q8 and Test III 2021 Q1(a)"],
+  ["Q","h6-33","$U_1,\\dots,U_n$ iid $\\text{Exp}(\\lambda)$. Find the density of $\\min(U_1,\\dots,U_n)$. Also find $E$ and $\\operatorname{Var}$ of $\\max(U_1,U_2)$.","","HPS Ch 6 Ex 33, Ch 7 Ex 9 · Order statistics core"]
  ]],["Worked problems · exam-style",[
   ["P","v8N6l9RXbOM","Uniform probabilities on a triangle","22:58"],
   ["P","xFS4xpYQ82w","Probability that three pieces form a triangle","12:30"],
@@ -132,20 +135,20 @@ const D=[
   ["H","yXwPUAIvFyg","L22 · Transformations and convolutions","47:46"],
   ["K","P6TYfLId7j4","lec48 · Sums of jointly continuous RVs","24:09"],
   ["K","qvny65_gZQM","lec47 · Sums of discrete RVs","22:02","",1],
-  ["Q","p25-3","X ~ Binomial(n₁, p) and Y ~ Binomial(n₂, p) are independent. Show that X + Y ~ Binomial(n₁ + n₂, p). Do it with MGFs (state why that suffices) and also directly by convolution, getting the summation range right.","","Test II 2025 Q3 · Recent paper"],
-  ["Q","p24-2","Let f(x,y) = 4e^(−2y) for 0 < x < y. Let Z = X + Y. Find EZ. (Extend: find the density of Z.)","","Test II 2024 Q2 · Recent paper"],
-  ["Q","p24-4","An experiment has r outcomes with probabilities p₁, …, p_r. It is repeated N times independently; Xᵢ = number of times outcome i occurs. For k < r let Y = X₁ + … + X_k. Find the mass function of Y and EY.","","Test II 2024 Q4 (Ross 2.19) · Recent paper"],
-  ["Q","v-sum1","(Sibling of 2025 Q3) X ~ Poisson(λ₁), Y ~ Poisson(λ₂) independent. Show X + Y ~ Poisson(λ₁+λ₂) by MGFs and by convolution. Then find the conditional pmf of X given X + Y = n.","","Ross 2.57-style; HPS Ch 4 Ex 33 · Same template as 2025 Q3"],
-  ["Q","h6-11","Find the density of X + Y when X, Y are independent and (a) X ~ Exp(λ₁), Y ~ Exp(λ₂) with λ₁ ≠ λ₂; (b) X ~ U(0,1), Y ~ Exp(λ).","","HPS Ch 6 Ex 11 · Convolution with ranges"]
+  ["Q","p25-3","$X\\sim\\text{Bin}(n_1,p)$ and $Y\\sim\\text{Bin}(n_2,p)$ are independent. Show that $X+Y\\sim\\text{Bin}(n_1+n_2,p)$. Do it with MGFs (state why that suffices) and also directly by convolution, getting the summation range right.","","Test II 2025 Q3 · Recent paper"],
+  ["Q","p24-2","Let $f_{XY}(x,y)=4e^{-2y}$ for $0<x<y$. Let $Z=X+Y$. Find $EZ$. (Extend: find the density of $Z$.)","","Test II 2024 Q2 · Recent paper"],
+  ["Q","p24-4","An experiment has $r$ outcomes with probabilities $p_1,\\dots,p_r$. It is repeated $N$ times independently; $X_i=$ number of times outcome $i$ occurs. For $k<r$ let $Y=X_1+\\dots+X_k$. Find the mass function of $Y$ and $EY$.","","Test II 2024 Q4 (Ross 2.19) · Recent paper"],
+  ["Q","v-sum1","(Sibling of 2025 Q3) $X\\sim\\text{Poisson}(\\lambda_1)$, $Y\\sim\\text{Poisson}(\\lambda_2)$ independent. Show $X+Y\\sim\\text{Poisson}(\\lambda_1+\\lambda_2)$ by MGFs and by convolution. Then find the conditional pmf of $X$ given $X+Y=n$.","","Ross 2.57-style; HPS Ch 4 Ex 33 · Same template as 2025 Q3"],
+  ["Q","h6-11","Find the density of $X+Y$ when $X,Y$ are independent and (a) $X\\sim\\text{Exp}(\\lambda_1)$, $Y\\sim\\text{Exp}(\\lambda_2)$ with $\\lambda_1\\ne\\lambda_2$; (b) $X\\sim U(0,1)$, $Y\\sim\\text{Exp}(\\lambda)$.","","HPS Ch 6 Ex 11 · Convolution with ranges"]
  ]],["Jacobian transformation: difference, product, quotient",[
   ["K","30x5TyidptI","lec51 · Jacobian formula","23:24"],
   ["K","yhd4pSm3bEA","lec52 · Examples using the Jacobian formula","24:46"],
-  ["Q","p25-4","Let f(x,y) = λ² e^(−λx) for 0 < y < x, x > 0. Let Z = X − Y. Find the density of Z. Are Z and Y independent? (Use the transformation Z = X − Y, W = Y.)","","Test II 2025 Q4 · Recent paper"],
-  ["Q","p25-5","X₁, …, Xₙ iid U(0,1); Y₁ = X₁, Y₂ = X₁X₂, …, Yₙ = X₁X₂⋯Xₙ. Fix t ∈ (0,1) and let Z = number of Yᵢ in (t, 1). Find P[Z = 2]. (Find the joint density of Y₁, Y₂, Y₃ first.)","","Test II 2025 Q5 (2011: P[Z=1]) · Asked twice; P[Z=3] is the obvious next one"],
-  ["Q","p21-1a","X₁, X₂ iid with density e^(−x), x > 0. Let Y₁ = X₁ + X₂ and Y₂ = X₁/(X₁ + X₂). Find the joint density of (Y₁, Y₂). Are they independent?","","Test II 2021 Q1(a), 2020 Q2(a) · Asked in back-to-back years"],
-  ["Q","r2-61","X = working time and W = repair time of a machine; Y = X + W has joint density with X: f(x,y) = λ² e^(−λy), 0 < x < y. Find the density of X, of Y, the joint density of (X, W), and the density of W.","","Ross 2.61 · Mirror image of 2025 Q4"],
-  ["Q","h6-42","X ~ Gamma(α₁, λ), Y ~ Gamma(α₂, λ) independent. Using W = Y/X, Z = X + Y, show W and Z are independent; deduce the density of X/(X+Y).","","HPS Ch 6 Ex 22, 41–42 · General case of 2021 Q1(a)"],
-  ["Q","v-jac1","(Variant of 2025 Q5) Same Yₖ = X₁⋯Xₖ. Find P[Z = 3], and the conditional density of Y₃ given Y₁, Y₂.","","Variant · Next step of a twice-asked question"]
+  ["Q","p25-4","Let $f_{XY}(x,y)=\\lambda^2e^{-\\lambda x}$ for $0<y<x$. Let $Z=X-Y$. Find the density of $Z$. Are $Z$ and $Y$ independent? (Use the transformation $Z=X-Y$, $W=Y$.)","","Test II 2025 Q4 · Recent paper"],
+  ["Q","p25-5","$X_1,\\dots,X_n$ iid $U(0,1)$; $Y_1=X_1$, $Y_2=X_1X_2$, $\\dots$, $Y_n=X_1X_2\\cdots X_n$. Fix $t\\in(0,1)$ and let $Z$ be the number of $Y_i$ in $(t,1)$. Find $P[Z=2]$. (Find the joint density of $Y_1,Y_2,Y_3$ first.)","","Test II 2025 Q5 (2011: P[Z=1]) · Asked twice; P[Z=3] is the obvious next one"],
+  ["Q","p21-1a","$X_1,X_2$ iid with density $e^{-x}$, $x>0$. Let $Y_1=X_1+X_2$ and $Y_2=\\dfrac{X_1}{X_1+X_2}$. Find the joint density of $(Y_1,Y_2)$. Are they independent?","","Test II 2021 Q1(a), 2020 Q2(a) · Asked in back-to-back years"],
+  ["Q","r2-61","$X$ is the working time and $W$ the repair time of a machine; $Y=X+W$ and $f_{XY}(x,y)=\\lambda^2e^{-\\lambda y}$, $0<x<y$. Find the density of $X$, of $Y$, the joint density of $(X,W)$, and the density of $W$.","","Ross 2.61 · Mirror image of 2025 Q4"],
+  ["Q","h6-42","$X\\sim\\Gamma(\\alpha_1,\\lambda)$, $Y\\sim\\Gamma(\\alpha_2,\\lambda)$ independent. Using $W=Y/X$, $Z=X+Y$, show $W$ and $Z$ are independent; deduce the density of $\\dfrac{X}{X+Y}$.","","HPS Ch 6 Ex 22, 41–42 · General case of 2021 Q1(a)"],
+  ["Q","v-jac1","(Variant of 2025 Q5) With the same $Y_k=X_1\\cdots X_k$, find $P[Z=3]$ and the conditional density of $Y_3$ given $Y_1,Y_2$.","","Variant · Next step of a twice-asked question"]
  ]],["Worked problems · exam-style",[
   ["P","HwkKtHLCmzo","A derived distribution example","9:30"],
   ["P","f8Nli1AfygM","The difference of two independent exponential RVs","6:12"],
@@ -154,22 +157,22 @@ const D=[
  {d:"Thu 15 Oct",topics:[["Exchangeable RVs & expectations of functions",[
   ["J","zsRWu6W6aYg","Expected value of a function of several random variables","6:17"],
   ["J","_mWKujbK8Z4","The expected value of the product of two random variables","3:38"],
-  ["Q","p20-2b","X₁, X₂, … iid continuous. A record occurs at m if X_m > max(X₁, …, X_(m−1)). Let N = min{n > 1 : a record occurs at n}. Show EN = ∞.","","Test II 2020 Q2(b) (Ross 2.74(d)) · Recent paper"],
-  ["Q","r2-74","For the same records set-up show: P(record at n) = 1/n; E[number of records by n] = Σ 1/i; Var(number of records by n) = Σ (i−1)/i².","","Ross 2.74 (a)–(c) · Asked 2012 and 2020"],
-  ["Q","r2-45","r keys are put one at a time into k boxes, box i with probability pᵢ. A collision occurs when a key goes into a non-empty box. Find the expected number of collisions.","","Ross 2.45 · Asked 2016"],
-  ["Q","h4-16","n balls are distributed at random into r boxes. Find the mean and variance of the number of empty boxes (use indicators).","","HPS Ch 4 Ex 16 · Indicator method"]
+  ["Q","p20-2b","$X_1,X_2,\\dots$ iid continuous. A record occurs at $m$ if $X_m>\\max(X_1,\\dots,X_{m-1})$. Let $N=\\min\\{n>1:\\text{a record occurs at }n\\}$. Show $EN=\\infty$.","","Test II 2020 Q2(b) (Ross 2.74(d)) · Recent paper"],
+  ["Q","r2-74","For the same records set-up show: $P(\\text{record at }n)=\\tfrac1n$; $E[\\text{records by }n]=\\sum_{i=1}^n\\tfrac1i$; $\\operatorname{Var}(\\text{records by }n)=\\sum_{i=1}^n\\tfrac{i-1}{i^2}$.","","Ross 2.74 (a)–(c) · Asked 2012 and 2020"],
+  ["Q","r2-45","$r$ keys are put one at a time into $k$ boxes, box $i$ with probability $p_i$ ($\\sum p_i=1$). A collision occurs when a key goes into a non-empty box. Find the expected number of collisions.","","Ross 2.45 · Asked 2016"],
+  ["Q","h4-16","$n$ balls are distributed at random into $r$ boxes. Find the mean and variance of the number of empty boxes (use indicators).","","HPS Ch 4 Ex 16 · Indicator method"]
  ]],["Covariance, correlation & linear LSE",[
   ["J","92nPUqrMnNY","Covariance, correlation and independence","26:35"],
   ["J","oqhhrqfRpb8","Covariance","10:15"],
   ["J","RBioTO4jNOU","Covariance, results","15:12"],
   ["H","IujCYxtpszU","L21 · Covariance and correlation","49:26","Good worked examples",1],
   ["M","XtNXQJkgkhI","L22 · Bayesian statistical inference II","52:16","Watch the linear least-mean-squares part for linear LSE"],
-  ["Q","p24-1","For events A, B with indicators I_A, I_B, let X = max(I_A, I_B) and Y = min(I_A, I_B). Find the joint pmf of (X, Y) and Cov(X, Y). (Do not assume A, B independent.)","","Test II 2024 Q1 = 2016 Q2(a) · Repeated"],
-  ["Q","p21-2b","P(A) = 0.3, P(B) = 0.5, P(A ∪ B) = 0.6. Find E[I_A I_B], Cov(I_A, I_B) and the correlation coefficient of I_A and I_B.","","Test II 2021 Q2(b) · Recent paper"],
-  ["Q","p20-1b","X, Y take non-negative integer values with P[X = i, Y = j] = e^(−(a+bi)) (bi)^j a^i / (j! i!). Find Cov(X, Y).","","Test II 2020 Q1(b) · Recent paper"],
-  ["Q","r2-55","P(X = i, Y = j) = C(j, i) e^(−2λ) λ^j / j!, 0 ≤ i ≤ j. Find the pmf of Y, of X, and of Y − X.","","Ross 2.55 · Sibling of 2020 Q1(b)"],
-  ["Q","r2-72","In the hat-matching problem with N people, let X = number who get their own hat. Show Var X = 1.","","Ross 2.72 (Example 2.31) · Asked 2012 and 2016"],
-  ["Q","h4-17","Two decks of n cards numbered 1…n are shuffled and compared position by position. Find the mean and variance of the number of matches.","","HPS Ch 4 Ex 17 · Asked 2019"]
+  ["Q","p24-1","For events $A,B$ with indicators $I_A,I_B$, let $X=\\max(I_A,I_B)$ and $Y=\\min(I_A,I_B)$. Find the joint pmf of $(X,Y)$ and $\\operatorname{Cov}(X,Y)$. (Do not assume $A,B$ independent.)","","Test II 2024 Q1 = 2016 Q2(a) · Repeated"],
+  ["Q","p21-2b","$P(A)=0.3$, $P(B)=0.5$, $P(A\\cup B)=0.6$. Find $E[I_AI_B]$, $\\operatorname{Cov}(I_A,I_B)$ and the correlation coefficient of $I_A$ and $I_B$.","","Test II 2021 Q2(b) · Recent paper"],
+  ["Q","p20-1b","$X,Y$ take non-negative integer values with $P[X=i,Y=j]=e^{-(a+bi)}\\dfrac{(bi)^j}{j!}\\dfrac{a^i}{i!}$. Find $\\operatorname{Cov}(X,Y)$.","","Test II 2020 Q1(b) · Recent paper"],
+  ["Q","r2-55","$P(X=i,Y=j)=\\binom{j}{i}e^{-2\\lambda}\\dfrac{\\lambda^j}{j!}$, $0\\le i\\le j$. Find the pmf of $Y$, of $X$, and of $Y-X$.","","Ross 2.55 · Sibling of 2020 Q1(b)"],
+  ["Q","r2-72","In the hat-matching problem with $N$ people, let $X$ be the number who get their own hat. Show $\\operatorname{Var}X=1$.","","Ross 2.72 (Example 2.31) · Asked 2012 and 2016"],
+  ["Q","h4-17","Two decks of $n$ cards numbered $1,\\dots,n$ are shuffled and compared position by position. Find the mean and variance of the number of matches $S_n$.","","HPS Ch 4 Ex 17 · Asked 2019"]
  ]]],gap:"No good video on exchangeable RVs; use the guidebook for that part."},
  {d:"Fri 16 Oct",topics:[["Covariance matrix & vector linear regression",[
   ["J","24AJD4pRU8Y","Random vectors","7:16"],
@@ -182,10 +185,10 @@ const D=[
   ["K","SKb7lxR_o1k","lec76 · Moment generating function 2","28:37","",1],
   ["K","WkKPEB5r-bU","lec77 · Characteristic function 1","19:14"],
   ["H","tVDdx6xUOcs","L18 · MGFs continued","49:41","",1],
-  ["Q","p24-6","X, Y iid N(0,1); Z = X + Y, W = X² + Y². Show the joint MGF is M_ZW(s,t) = e^(s²/(1−2t)) / (1−2t) for t < ½.","","Test II 2024 Q6 · Recent paper"],
-  ["Q","v-mgf1","(Sibling of 2024 Q6) X, Y iid N(0,1). Find the joint MGF of (X+Y, X−Y) and use it to show they are independent.","","Ross 2.77–2.78 · Joint MGF ⇒ independence"],
-  ["Q","r3-42","If X ~ N(μ, 1), show M_{X²}(t) = (1−2t)^(−1/2) e^(tμ²/(1−2t)) for t < ½. Deduce the MGF of Σ Xᵢ² for independent Xᵢ ~ N(μᵢ, 1).","","Ross 3.42 (a)–(b) · Same computation as 2024 Q6"],
-  ["Q","h8-5","X has density ½ e^(−|x|). Show M_X(t) = 1/(1−t²) for |t| < 1, and find EX²ⁿ.","","HPS Ch 8 Ex 5 · Asked 2012 (X₁X₂ + X₃X₄)"]
+  ["Q","p24-6","$X,Y$ iid $\\mathcal N(0,1)$; $Z=X+Y$, $W=X^2+Y^2$. Show the joint MGF is $M_{ZW}(s,t)=\\dfrac{1}{1-2t}\\,e^{\\frac{s^2}{1-2t}}$ for $t<\\tfrac12$.","","Test II 2024 Q6 · Recent paper"],
+  ["Q","v-mgf1","(Sibling of 2024 Q6) $X,Y$ iid $\\mathcal N(0,1)$. Find the joint MGF of $(X+Y,\\,X-Y)$ and use it to show they are independent.","","Ross 2.77–2.78 · Joint MGF ⇒ independence"],
+  ["Q","r3-42","If $X\\sim\\mathcal N(\\mu,1)$, show $M_{X^2}(t)=(1-2t)^{-1/2}\\,e^{\\frac{t\\mu^2}{1-2t}}$ for $t<\\tfrac12$. Deduce the MGF of $\\sum X_i^2$ for independent $X_i\\sim\\mathcal N(\\mu_i,1)$.","","Ross 3.42 (a)–(b) · Same computation as 2024 Q6"],
+  ["Q","h8-5","$X$ has density $\\tfrac12e^{-|x|}$. Show $M_X(t)=\\dfrac{1}{1-t^2}$ for $|t|<1$, and find $E[X^{2n}]$.","","HPS Ch 8 Ex 5 · Asked 2012 (X₁X₂ + X₃X₄)"]
  ]]]},
  {d:"Sat 17 Oct",topics:[["Conditional expectation & MMSE estimation",[
   ["J","QP00LHp0LqY","Conditional expectation and conditional variance","22:08"],
@@ -197,21 +200,21 @@ const D=[
   ["J","jDsHE1-t2Zc","Conditional expectations and random vectors","12:10"],
   ["K","IpnfRSM25Tw","lec73 · MMSE estimator","15:34"],
   ["H","gjBvCiRt8QA","L27 · Conditional expectation given an r.v.","50:34","",1],
-  ["Q","p25-6","Coin with P(head) = p tossed repeatedly. X = tosses needed to get at least one head and one tail; Y = tosses needed to get a head immediately followed by a tail. Find EX and EY.","","Test II 2025 Q6 = 2020 Q3(a) = Assignment 2021 · Asked three times"],
-  ["Q","p21-3b","For any two random variables X, Y show Cov(X, Y) = Cov(X, E[Y|X]). Hence show that if E[Y|X] = a + bX then b = Cov(X,Y)/Var(X).","","Test II 2021 Q3(b) = 2020 Q3(b) (Ross 3.46) · Asked 2011, 2012, 2020, 2021"],
-  ["Q","p20-1a","f(x,y) = 1/(1−x) for 0 < x < y < 1. Find E[X], E[Y] and E[Y | X].","","Test II 2020 Q1(a) = 2012 Q1 · Repeated"],
-  ["Q","p24-5","A rod of length 1 is broken at a random point; the piece containing the left end is broken again at a random point. L = length of the final left piece. Find P[L > 0.25] and E[L].","","Test II 2024 Q5 = 2019 Q3(a) · Repeated"],
-  ["Q","p20-4a","X has pmf p(i) on {0,1,2,…}; Y₁,…,Yₙ iid with pmf q(i), with p(i), q(i) > 0. For a function h let S = (1/n) Σ p(Yₖ)h(Yₖ)/q(Yₖ). Find ES.","","Test II 2020 Q4(a) · Recent paper"],
-  ["Q","r3-23","A coin with P(head) = p is flipped until two of the most recent three flips are heads (N = 2 if the first two are heads). Find E[N].","","Ross 3.23 · Asked 2006; sibling of 2025 Q6"],
-  ["Q","r3-27","A coin with P(head) = p is flipped until the pattern T, T, H appears. Find the expected number of flips.","","Ross 3.27 · Sibling of 2025 Q6"],
-  ["Q","r3-24","Flip until at least one head and one tail: find the expected number of flips, of heads, and of tails. Repeat for 'at least two heads and one tail'.","","Ross 3.24 · Extension of 2025 Q6"],
-  ["Q","v-rod1","(Variant of 2024 Q5) The rod is broken three times, each time breaking the left piece at a uniform point. Find E[L] and the density of L.","","Variant · Next step of a twice-asked question"]
+  ["Q","p25-6","A coin with $P(\\text{head})=p$ is tossed repeatedly. $X$ = tosses needed to get at least one head and one tail; $Y$ = tosses needed to get a head immediately followed by a tail. Find $EX$ and $EY$.","","Test II 2025 Q6 = 2020 Q3(a) = Assignment 2021 · Asked three times"],
+  ["Q","p21-3b","For any random variables $X,Y$ show $\\operatorname{Cov}(X,Y)=\\operatorname{Cov}(X,E[Y\\mid X])$. Hence show that if $E[Y\\mid X]=a+bX$ then $b=\\dfrac{\\operatorname{Cov}(X,Y)}{\\operatorname{Var}X}$.","","Test II 2021 Q3(b) = 2020 Q3(b) (Ross 3.46) · Asked 2011, 2012, 2020, 2021"],
+  ["Q","p20-1a","$f_{XY}(x,y)=\\dfrac{1}{1-x}$ for $0<x<y<1$. Find $E[X]$, $E[Y]$ and $E[Y\\mid X]$.","","Test II 2020 Q1(a) = 2012 Q1 · Repeated"],
+  ["Q","p24-5","A rod of length $1$ is broken at a random point; the piece containing the left end is broken again at a random point. Let $L$ be the length of the final left piece. Find $P[L>0.25]$ and $E[L]$.","","Test II 2024 Q5 = 2019 Q3(a) · Repeated"],
+  ["Q","p20-4a","$X$ has pmf $p(i)$ on $\\{0,1,2,\\dots\\}$; $Y_1,\\dots,Y_n$ iid with pmf $q(i)$, with $p(i),q(i)>0$. For a function $h$ let $S=\\dfrac1n\\sum_{k=1}^n\\dfrac{p(Y_k)\\,h(Y_k)}{q(Y_k)}$. Find $ES$.","","Test II 2020 Q4(a) · Recent paper"],
+  ["Q","r3-23","A coin with $P(\\text{head})=p$ is flipped until two of the most recent three flips are heads ($N=2$ if the first two are heads). Find $E[N]$.","","Ross 3.23 · Asked 2006; sibling of 2025 Q6"],
+  ["Q","r3-27","A coin with $P(\\text{head})=p$ is flipped until the pattern $T,T,H$ appears. Find the expected number of flips.","","Ross 3.27 · Sibling of 2025 Q6"],
+  ["Q","r3-24","Flip until at least one head and one tail: find the expected number of flips, of heads, and of tails. Repeat for “at least two heads and one tail”.","","Ross 3.24 · Extension of 2025 Q6"],
+  ["Q","v-rod1","(Variant of 2024 Q5) The rod is broken three times, each time breaking the left piece at a uniform point. Find $E[L]$ and the density of $L$.","","Variant · Next step of a twice-asked question"]
  ]],["Random sums & Wald's formula",[
   ["M","P7a4bjE6Crk","L12 · Iterated expectations; sum of a random number of RVs","47:54"],
   ["K","L_JRLrjXoDE","lec49 · Sums of a random number of random variables","26:50","",1],
-  ["Q","p21-3a","X₁, X₂, … iid exponential(λ); N ~ geometric(p) independent of the Xᵢ. Find the density of S = X₁ + … + X_N.","","Test II 2021 Q3(a) = 2019 Q3(b) · Repeated"],
-  ["Q","h4-35","For a random sum S_N with N independent of the iid Xᵢ (mean μ, variance σ²), show E S_N = μ EN and Var S_N = σ² EN + μ² Var N.","","HPS Ch 4 Ex 35 · Theory behind 2021 Q3(a)"],
-  ["Q","r3-44","Customers per day ~ Poisson(10); each spends an amount uniform on (0, 100). Find the mean and variance of the day's takings.","","Ross 3.44 · Random-sum drill"]
+  ["Q","p21-3a","$X_1,X_2,\\dots$ iid $\\text{Exp}(\\lambda)$; $N\\sim$ geometric$(p)$ independent of the $X_i$. Find the density of $S=X_1+\\dots+X_N$.","","Test II 2021 Q3(a) = 2019 Q3(b) · Repeated"],
+  ["Q","h4-35","For a random sum $S_N=\\sum_{i=1}^N X_i$ with $N$ independent of the iid $X_i$ (mean $\\mu$, variance $\\sigma^2$), show $ES_N=\\mu\\,EN$ and $\\operatorname{Var}S_N=\\sigma^2EN+\\mu^2\\operatorname{Var}N$.","","HPS Ch 4 Ex 35 · Theory behind 2021 Q3(a)"],
+  ["Q","r3-44","Customers per day $\\sim\\text{Poisson}(10)$; each spends an amount uniform on $(0,100)$. Find the mean and variance of the day's takings.","","Ross 3.44 · Random-sum drill"]
  ]],["Worked problems · exam-style",[
   ["P","NlRgBtSLViI","The variance in the stick-breaking problem","11:30"],
   ["P","Y8zx1tWEbeI","Widgets and crates","10:06"],
@@ -225,12 +228,12 @@ const D=[
   ["K","6Uwjz6h9-Mc","lec95 · Multivariate Gaussians 1","23:36"],
   ["K","lJinY4mEq74","lec96 · Multivariate Gaussians 2","35:04"],
   ["H","MF-XSJOsGqw","L30 · Chi-square, Student-t, multivariate normal","47:28","Last third is the MVN part",1],
-  ["Q","p25-7","X, Y jointly Gaussian, means 0, variances 1, correlation ρ. Let W = X cos θ + Y sin θ, Z = X cos θ − Y sin θ, 0 < θ < π/2. Find the joint density of (W, Z) and a θ that makes W, Z independent.","","Test II 2025 Q7 · Recent paper"],
-  ["Q","p20-4b","X, Y jointly Gaussian, means 0, variances 1, correlation ρ ≠ 0. Let Z = aX + bY and W = bX + aY (a, b ≠ 0). Find a sufficient condition on a, b for Z and W to be independent.","","Test II 2020 Q4(b) · Recent paper"],
-  ["Q","p24-7","X₁, X₂, X₃ iid N(0,1). Y₁ = X₁ + X₂, Y₂ = X₁ − X₂, Y₃ = X₁ + X₂ + X₃. Find the joint density of (Y₁, Y₂, Y₃). Are Y₁, Y₂, Y₃ independent? Are Y₂, Y₃ independent?","","Test II 2024 Q7 · Recent paper"],
-  ["Q","p21-2a","U, V independent N(0,1); Z = ρU + √(1−ρ²) V, −1 < ρ < 1. Find the density of Z and Cov(Z, U). With X = σ₁U, Y = σ₂Z (σ₁, σ₂ > 0), find the joint density of (X, Y).","","Test II 2021 Q2(a) (HPS Ch 6 Ex 40) · Asked 2006, 2010, 2014, 2021"],
-  ["Q","v-g1","(Variant) X, Y jointly Gaussian, means 0, variances 1, correlation ρ. Find c such that X and Y − cX are independent, and use it to get the conditional density of Y given X = x.","","Variant (Ross 3.16) · Same idea as 2025 Q7 / 2020 Q4(b)"],
-  ["Q","v-g2","(Variant of 2024 Q7) X₁, X₂, X₃ iid N(0,1); Y₁ = X₁ + X₂ + X₃, Y₂ = X₁ − X₂, Y₃ = X₁ + X₂ − 2X₃. Find the covariance matrix of (Y₁, Y₂, Y₃). Are they independent?","","Variant · Covariance matrix + Gaussian independence"]
+  ["Q","p25-7","$X,Y$ jointly Gaussian, means $0$, variances $1$, correlation $\\rho$. Let $W=X\\cos\\theta+Y\\sin\\theta$, $Z=X\\cos\\theta-Y\\sin\\theta$, $0<\\theta<\\pi/2$. Find the joint density of $(W,Z)$ and a $\\theta$ that makes $W,Z$ independent.","","Test II 2025 Q7 · Recent paper"],
+  ["Q","p20-4b","$X,Y$ jointly Gaussian, means $0$, variances $1$, correlation $\\rho\\ne0$. Let $Z=aX+bY$ and $W=bX+aY$ ($a,b\\ne0$). Find a sufficient condition on $a,b$ for $Z$ and $W$ to be independent.","","Test II 2020 Q4(b) · Recent paper"],
+  ["Q","p24-7","$X_1,X_2,X_3$ iid $\\mathcal N(0,1)$. $Y_1=X_1+X_2$, $Y_2=X_1-X_2$, $Y_3=X_1+X_2+X_3$. Find the joint density of $(Y_1,Y_2,Y_3)$. Are $Y_1,Y_2,Y_3$ independent? Are $Y_2,Y_3$ independent?","","Test II 2024 Q7 · Recent paper"],
+  ["Q","p21-2a","$U,V$ independent $\\mathcal N(0,1)$; $Z=\\rho U+\\sqrt{1-\\rho^2}\\,V$, $-1<\\rho<1$. Find the density of $Z$ and $\\operatorname{Cov}(Z,U)$. With $X=\\sigma_1U$, $Y=\\sigma_2Z$ ($\\sigma_1,\\sigma_2>0$), find the joint density of $(X,Y)$.","","Test II 2021 Q2(a) (HPS Ch 6 Ex 40) · Asked 2006, 2010, 2014, 2021"],
+  ["Q","v-g1","(Variant) $X,Y$ jointly Gaussian, means $0$, variances $1$, correlation $\\rho$. Find $c$ such that $X$ and $Y-cX$ are independent, and use it to get the conditional density of $Y$ given $X=x$.","","Variant (Ross 3.16) · Same idea as 2025 Q7 / 2020 Q4(b)"],
+  ["Q","v-g2","(Variant of 2024 Q7) $X_1,X_2,X_3$ iid $\\mathcal N(0,1)$; $Y_1=X_1+X_2+X_3$, $Y_2=X_1-X_2$, $Y_3=X_1+X_2-2X_3$. Find the covariance matrix of $(Y_1,Y_2,Y_3)$. Are they independent?","","Variant · Covariance matrix + Gaussian independence"]
  ]]],gap:"Afternoon is the timed Test II papers, so keep the videos to the morning."},
  {d:"Mon 19 Oct",topics:[["Inequalities: Jensen, Hölder, Minkowski, Chernoff, Hoeffding",[
   ["H","UtXK_EQ3Pow","L28 · Inequalities","47:29","Cauchy–Schwarz, Jensen, Markov, Chebyshev"],
@@ -241,10 +244,10 @@ const D=[
   ["J","4Q01kUH13Fw","Plim-rules","6:45"],
   ["M","3eiio3Tw7UQ","L19 · Weak law of large numbers","50:13"],
   ["J","jEwML3KR29g","Consistency","6:33","",1],
-  ["Q","p25-8","X₁, X₂, … iid U[0,1]. Mₙ = min(X₁…Xₙ), Wₙ = max(X₁…Xₙ), Zₙ = (Mₙ + Wₙ)/2. Show Zₙ converges in probability (and identify the limit).","","Test II 2025 Q8 · Recent paper"],
-  ["Q","p24-8","P[Xₙ = 1/n] = P[Xₙ = −1/n] = 0.5. Does Xₙ converge in probability? In r-th mean?","","Test II 2024 Q8 · Recent paper"],
-  ["Q","v-wl2","(Variant of 2025 Q8) Same Xᵢ. Show Wₙ → 1 and Mₙ → 0 in probability. Does Wₙ − Mₙ converge in probability? Find the limiting distribution of n(1 − Wₙ).","","Variant · Next step of 2025 Q8"],
-  ["Q","r2-66","Use Chebyshev's inequality to prove the weak law of large numbers for iid Xᵢ with mean μ and variance σ².","","Ross 2.66 · Standard proof"]
+  ["Q","p25-8","$X_1,X_2,\\dots$ iid $U[0,1]$. $M_n=\\min(X_1,\\dots,X_n)$, $W_n=\\max(X_1,\\dots,X_n)$, $Z_n=\\dfrac{M_n+W_n}{2}$. Show $Z_n$ converges in probability (and identify the limit).","","Test II 2025 Q8 · Recent paper"],
+  ["Q","p24-8","$P[X_n=\\tfrac1n]=P[X_n=-\\tfrac1n]=0.5$. Does $X_n$ converge in probability? In $r$-th mean?","","Test II 2024 Q8 · Recent paper"],
+  ["Q","v-wl2","(Variant of 2025 Q8) Same $X_i$. Show $W_n\\to1$ and $M_n\\to0$ in probability. Does $W_n-M_n$ converge in probability? Find the limiting distribution of $n(1-W_n)$.","","Variant · Next step of 2025 Q8"],
+  ["Q","r2-66","Use Chebyshev's inequality to prove the weak law of large numbers for iid $X_i$ with mean $\\mu$ and variance $\\sigma^2$.","","Ross 2.66 · Standard proof"]
  ]],["Worked problems · exam-style",[
   ["P","x4q6H6lxFFE","Convergence in probability and in the mean, part 1","13:37"],
   ["P","D_vUxa3tEGs","Convergence in probability and in the mean, part 2","5:46"],
@@ -259,15 +262,15 @@ const D=[
   ["K","dCjPTwdANFA","lec85 · Convergence of random variables 3","24:56"],
   ["K","Q54mEuQUOEc","lec91 · The law of large numbers 1","17:10"],
   ["K","pZdrc4rEMVk","lec92 · The law of large numbers 2","31:47"],
-  ["Q","t3-2a","Ω = {1, 2, …}, P({i}) = qᵢ. Define Xₙ(ω) = 1 if n ≤ ω and 0 otherwise. Does Xₙ converge (i) in probability, (ii) almost surely?","","Test III Jan 2021 Q2(a) · Recent paper"],
-  ["Q","t3-1b","X₁, X₂, … iid with density 12x²(1−x) on [0,1]; Sₙ = Σ Xᵢ². Does Sₙ/n converge almost surely? If yes, find the limit.","","Test III Jan 2021 Q1(b) · Recent paper; asked in this form 2012, 2013, 2016, 2019"],
-  ["Q","v-as1","(Variant) Xₙ independent with P[Xₙ = n] = 1/n², P[Xₙ = 0] = 1 − 1/n². Converge in probability? Almost surely (use Borel–Cantelli)? In mean? In mean square?","","Variant · Classic 2019-style"]
+  ["Q","t3-2a","$\\Omega=\\{1,2,\\dots\\}$, $P(\\{i\\})=q_i$. Define $X_n(\\omega)=1$ if $n\\le\\omega$ and $0$ otherwise. Does $X_n$ converge (i) in probability, (ii) almost surely?","","Test III Jan 2021 Q2(a) · Recent paper"],
+  ["Q","t3-1b","$X_1,X_2,\\dots$ iid with density $12x^2(1-x)$ on $[0,1]$; $S_n=\\sum_{i=1}^n X_i^2$. Does $\\tfrac1nS_n$ converge almost surely? If yes, find the limit.","","Test III Jan 2021 Q1(b) · Recent paper; asked in this form 2012, 2013, 2016, 2019"],
+  ["Q","v-as1","(Variant) $X_n$ independent with $P[X_n=n]=\\tfrac1{n^2}$, $P[X_n=0]=1-\\tfrac1{n^2}$. Converge in probability? Almost surely (use Borel–Cantelli)? In mean? In mean square?","","Variant · Classic 2019-style"]
  ]],["Convergence in r-th mean, in distribution & relations",[
   ["K","e8nDSvENyn8","lec86 · Convergence of random variables 4","25:19"],
   ["K","el-JGNsGHw8","lec87 · Convergence of random variables 5","22:17"],
   ["K","jgNw7sopJNI","lec88 · Convergence of random variables 6","23:26"],
-  ["Q","t3-4b","Xₙ take values in {0, 1, …, K}, K < ∞, and Xₙ → 0 in probability. Show Xₙ → 0 in r-th mean.","","Test III Jan 2021 Q4(b) = Assignment 3 2021 · Repeated"],
-  ["Q","t3-1a","X₁, X₂, … iid continuous with strictly increasing CDF F. Mₙ = max(X₁…Xₙ), Yₙ = n[1 − F(Mₙ)]. Find the limiting distribution of Yₙ.","","Test III Jan 2021 Q1(a) · Recent paper"]
+  ["Q","t3-4b","$X_n$ take values in $\\{0,1,\\dots,K\\}$, $K<\\infty$, and $X_n\\xrightarrow{P}0$. Show $X_n\\to0$ in $r$-th mean.","","Test III Jan 2021 Q4(b) = Assignment 3 2021 · Repeated"],
+  ["Q","t3-1a","$X_1,X_2,\\dots$ iid continuous with strictly increasing CDF $F$. $M_n=\\max(X_1,\\dots,X_n)$, $Y_n=n\\,[1-F(M_n)]$. Find the limiting distribution of $Y_n$.","","Test III Jan 2021 Q1(a) · Recent paper"]
  ]]]},
  {d:"Wed 21 Oct",topics:[["Central limit theorem & characteristic functions",[
   ["K","f40ALmHmf00","lec78 · Characteristic function 2","30:01"],
@@ -276,16 +279,18 @@ const D=[
   ["K","3_qGU4SB4-k","lec93 · The central limit theorem 1","25:11"],
   ["K","3M1R5rHHJ_U","lec94 · The central limit theorem 2","17:57","",1],
   ["H","OprNqnHsVIA","L29 · Law of large numbers and CLT","49:48","",1],
-  ["Q","p21-4a","Xᵢ iid N(0,1), Sₙ = Σ Xᵢ. Find the distribution function Fₙ of Sₙ/n and Gₙ of Sₙ/√n. Do they converge? To what?","","Test II 2021 Q4(a) · Recent paper"],
-  ["Q","p21-4b","X has unknown mean μ and variance 1. We estimate μ by the average of n iid samples. Explain how to use the CLT to choose n.","","Test II 2021 Q4(b) · Asked six times since 2007"],
-  ["Q","t3-2b","A university has 300 vacancies and sends 400 offers; each offer is accepted independently with probability 0.7. Approximate the probability that more than 300 accept.","","Test III Jan 2021 Q2(b) · Recent paper"],
-  ["Q","v-clt1","(Variant of the admissions question) How many offers can the university send so that P(more than 300 accept) ≤ 0.05?","","Variant · Inverse CLT question"],
-  ["Q","h7-37","Twenty numbers are rounded to the nearest integer and added; the rounding errors are iid U(−½, ½). Find the probability that the sum differs from the true sum by more than 3.","","HPS Ch 7 Ex 37 · Asked 2008; in lecture slides"],
-  ["Q","h7-43","55% of the electorate favour candidate B. What is the probability that at least half of a random sample of 100 favour candidate A?","","HPS Ch 7 Ex 43 · Asked 2006 with 65% and 200"]
+  ["Q","p21-4a","$X_i$ iid $\\mathcal N(0,1)$, $S_n=\\sum_{i=1}^nX_i$. Find the distribution function $F_n$ of $S_n/n$ and $G_n$ of $S_n/\\sqrt n$. Do they converge? To what?","","Test II 2021 Q4(a) · Recent paper"],
+  ["Q","p21-4b","$X$ has unknown mean $\\mu$ and variance $1$. We estimate $\\mu$ by the average of $n$ iid samples. Explain how to use the CLT to choose $n$.","","Test II 2021 Q4(b) · Asked six times since 2007"],
+  ["Q","t3-2b","A university has $300$ vacancies and sends $400$ offers; each offer is accepted independently with probability $0.7$. Approximate the probability that more than $300$ accept.","","Test III Jan 2021 Q2(b) · Recent paper"],
+  ["Q","v-clt1","(Variant of the admissions question) How many offers can the university send so that $P(\\text{more than }300\\text{ accept})\\le0.05$?","","Variant · Inverse CLT question"],
+  ["Q","h7-37","Twenty numbers are rounded to the nearest integer and added; the rounding errors are iid $U\\!\\left(-\\tfrac12,\\tfrac12\\right)$. Find the probability that the sum differs from the true sum by more than $3$.","","HPS Ch 7 Ex 37 · Asked 2008; in lecture slides"],
+  ["Q","h7-43","$55\\%$ of the electorate favour candidate $B$. What is the probability that at least half of a random sample of $100$ favour candidate $A$?","","HPS Ch 7 Ex 43 · Asked 2006 with 65% and 200"]
  ]],["Worked problems · exam-style",[
   ["P","M3615Gbd6-8","Using the central limit theorem","11:25"],
  ]]],gap:"Afternoon is the timed Test III paper."},
 ];
+
+
 
 
 
@@ -319,7 +324,7 @@ function queuePush(){if(!TOK){status("","Saved on this device only · add a toke
 async function push(tries=2){
   dirty=false;
   try{
-    const {data,sha}=await pull();data[SUBJ]=st;REMOTE=data;REMOTE=data;data.updated=new Date().toISOString();
+    const {data,sha}=await pull();data[SUBJ]=st;REMOTE=data;REMOTE=data;REMOTE=data;data.updated=new Date().toISOString();
     const r=await fetch(API,{method:"PUT",headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+TOK},body:JSON.stringify({message:"progress",content:b64e(JSON.stringify(data,null,1)),sha:sha||undefined,branch:"main"})});
     if((r.status===409||r.status===422)&&tries>1)return push(tries-1); // someone else wrote first: refetch sha, retry
     if(r.status===401||r.status===403){status("err","Token rejected · check it in Sync settings");return}
@@ -332,7 +337,7 @@ async function initSync(){
     const {data}=await pull();REMOTE=data;
     if(data[SUBJ]){st=data[SUBJ];try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){};render()}
     else if(Object.keys(st).length&&TOK){progress();queuePush();return} // first sync: upload this device's ticks
-    progress();progress();status(TOK?"ok":"",TOK?"Synced to GitHub":"Showing synced ticks · add a token to tick from this device");
+    progress();progress();progress();status(TOK?"ok":"",TOK?"Synced to GitHub":"Showing synced ticks · add a token to tick from this device");
   }catch(e){status("err","Couldn't load synced ticks ("+e.message+") · showing this device's")}
 }
 document.getElementById("syncbtn").onclick=()=>{const p=document.getElementById("spanel");p.hidden=!p.hidden};
@@ -348,6 +353,7 @@ function progress(){ // combined progress over StoMA + LAA + DIP, counting only 
   document.getElementById("pc").textContent=`${dn} / ${tot} done · ${Math.round(100*dn/tot)}%`;
   document.getElementById("pb").style.width=(100*dn/tot)+"%";
 }
+const esc=x=>x.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
 function render(){
   const root=document.getElementById("days");root.innerHTML="";
   D.forEach(day=>{
@@ -357,7 +363,7 @@ function render(){
       let qh=false;
       const rows=vs.map(([c,id,t,dur,note,opt])=>{
         if(c==="Q"){const head=qh?"":(qh=true,`<li class="qhead">Questions · recent papers (2020–2025) first, then close siblings</li>`);
-          return head+`<li class="q ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Done: ${t}"><span class="chip cq">Q</span><span class="t"><span class="qt">${t}</span><span class="note">${note}</span></span></li>`}
+          return head+`<li class="q ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Done"><span class="chip cq">Q</span><span class="t"><span class="qt">${esc(t)}</span><span class="note">${note}</span></span></li>`}
         if(!opt)core+=sec(dur);
         if(opt&&hide)return "";
         return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${CHS[c][2]?CI[c]:4}">${CHS[c][0]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");
@@ -367,6 +373,7 @@ function render(){
   });
   progress();
   document.getElementById("hideopt").textContent=hide?"Show extras":"Hide extras";
+  if(window.texReady&&window.renderMathInElement)renderMathInElement(root,{delimiters:[{left:"$$",right:"$$",display:true},{left:"$",right:"$",display:false}],throwOnError:false});
 }
 document.getElementById("days").addEventListener("change",e=>{const id=e.target.dataset.id;if(!id)return;if(e.target.checked)st[id]=1;else delete st[id];save();render()});
 document.getElementById("hideopt").onclick=()=>{hide=!hide;try{localStorage.setItem(KEY+"-hide",hide?"1":"0")}catch(e){};render()};
