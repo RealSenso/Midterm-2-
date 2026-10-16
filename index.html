@@ -54,6 +54,12 @@ li.done a{color:var(--muted);text-decoration:line-through}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 button{font:500 13px var(--body);background:var(--panel);color:var(--fg);border:1px solid var(--line);border-radius:6px;padding:6px 10px;cursor:pointer}
 button:focus-visible{outline:2px solid var(--accent)}
+.sync{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--line);flex:none}.dot.ok{background:#2e9d6a}.dot.err{background:#d0453f}.dot.busy{background:var(--accent)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:10px;padding:14px 16px;margin:10px 0 18px;font-size:14px;display:grid;gap:10px}
+.panel ol{list-style:decimal;padding-left:20px;margin:0;display:grid;gap:4px}.panel li{display:list-item;padding:0}
+.panel .row{display:flex;gap:8px;flex-wrap:wrap}.panel input{flex:1;min-width:0;font:13px var(--mono);padding:7px 9px;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg)}
+.panel a{color:var(--accent)}
 </style>
 </head>
 <body>
@@ -63,7 +69,16 @@ button:focus-visible{outline:2px solid var(--accent)}
   <p class="sub" id="sub"></p>
   <div class="legend" id="legend"></div>
   <div class="prog"><span id="pc">0 / 0 watched</span><div class="bar"><i id="pb"></i></div></div>
-  <div class="tools"><button id="hideopt" type="button">Hide extras</button><button id="reset" type="button">Clear ticks</button></div>
+  <div class="tools"><button id="hideopt" type="button">Hide extras</button><button id="reset" type="button">Clear ticks</button><button id="syncbtn" type="button">Sync settings</button><span class="sync"><i class="dot" id="sdot"></i><span id="stxt">Loading synced progress…</span></span></div>
+  <div class="panel" id="spanel" hidden>
+    <div>Ticks are saved to <code>progress.json</code> in your GitHub repo, so every device sees them. To tick from this device, paste a token once:</div>
+    <ol>
+      <li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → new fine-grained token</a>.</li>
+      <li>Repository access: <b>Only select repositories → Midterm-2-</b>. Permissions → Repository → <b>Contents: Read and write</b>. Pick a long expiry.</li>
+      <li>Generate, copy, paste below. It stays in this browser only and works for all three subjects.</li>
+    </ol>
+    <div class="row"><input id="tok" type="password" autocomplete="off" placeholder="github_pat_…" aria-label="GitHub token"><button id="toksave" type="button">Save token</button><button id="tokdel" type="button">Remove</button></div>
+  </div>
   <div id="days"></div>
 </div>
 <script>
@@ -183,7 +198,46 @@ const sec=s=>s.split(":").reduce((a,b)=>a*60+ +b,0);
 const fmt=t=>{const h=Math.floor(t/3600),m=Math.round(t%3600/60);return (h?h+" h ":"")+m+" min"};
 let st={},hide=false;
 try{st=JSON.parse(localStorage.getItem(KEY)||"{}");hide=localStorage.getItem(KEY+"-hide")==="1"}catch(e){}
-const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}};
+const save=()=>{try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){};queuePush()};
+// --- cross-device sync via progress.json in the repo (GitHub contents API) ---
+const API="https://api.github.com/repos/RealSenso/Midterm-2-/contents/progress.json",SUBJ=KEY.split("-")[0];
+let TOK="";try{TOK=localStorage.getItem("gh-tok")||""}catch(e){}
+const sdot=document.getElementById("sdot"),stxt=document.getElementById("stxt");
+const status=(c,t)=>{sdot.className="dot "+c;stxt.textContent=t};
+const b64d=s=>new TextDecoder().decode(Uint8Array.from(atob(s.replace(/\n/g,"")),c=>c.charCodeAt(0)));
+const b64e=s=>{const b=new TextEncoder().encode(s);let r="";b.forEach(x=>r+=String.fromCharCode(x));return btoa(r)};
+async function pull(){ // returns {data,sha}; data={} if file missing
+  const h={Accept:"application/vnd.github+json"};if(TOK)h.Authorization="Bearer "+TOK;
+  const r=await fetch(API+"?ref=main&t="+Date.now(),{headers:h,cache:"no-store"});
+  if(r.status===404)return {data:{},sha:null};
+  if(!r.ok)throw new Error(r.status);
+  const j=await r.json();return {data:JSON.parse(b64d(j.content)||"{}"),sha:j.sha};
+}
+let pushT=null,dirty=false;
+function queuePush(){if(!TOK){status("","Saved on this device only · add a token to sync");return}dirty=true;status("busy","Saving…");clearTimeout(pushT);pushT=setTimeout(push,1500)}
+async function push(tries=2){
+  dirty=false;
+  try{
+    const {data,sha}=await pull();data[SUBJ]=st;data.updated=new Date().toISOString();
+    const r=await fetch(API,{method:"PUT",headers:{Accept:"application/vnd.github+json",Authorization:"Bearer "+TOK},body:JSON.stringify({message:"progress",content:b64e(JSON.stringify(data,null,1)),sha:sha||undefined,branch:"main"})});
+    if((r.status===409||r.status===422)&&tries>1)return push(tries-1); // someone else wrote first: refetch sha, retry
+    if(r.status===401||r.status===403){status("err","Token rejected · check it in Sync settings");return}
+    if(!r.ok)throw new Error(r.status);
+    if(!dirty)status("ok","Synced to GitHub");
+  }catch(e){status("err","Couldn't sync ("+e.message+") · ticks kept on this device");dirty=true}
+}
+async function initSync(){
+  try{
+    const {data}=await pull();
+    if(data[SUBJ]){st=data[SUBJ];try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){};render()}
+    else if(Object.keys(st).length&&TOK){queuePush();return} // first sync: upload this device's ticks
+    status(TOK?"ok":"",TOK?"Synced to GitHub":"Showing synced ticks · add a token to tick from this device");
+  }catch(e){status("err","Couldn't load synced ticks ("+e.message+") · showing this device's")}
+}
+document.getElementById("syncbtn").onclick=()=>{const p=document.getElementById("spanel");p.hidden=!p.hidden};
+document.getElementById("toksave").onclick=async()=>{const v=document.getElementById("tok").value.trim();if(!v)return;TOK=v;try{localStorage.setItem("gh-tok",v)}catch(e){};document.getElementById("tok").value="";document.getElementById("spanel").hidden=true;status("busy","Checking token…");await initSync();if(Object.keys(st).length)queuePush()};
+document.getElementById("tokdel").onclick=()=>{TOK="";try{localStorage.removeItem("gh-tok")}catch(e){};status("","Token removed · this device is read-only")};
+window.addEventListener("focus",()=>{if(!dirty)initSync()}); // pick up ticks made on another device
 function render(){
   const root=document.getElementById("days");root.innerHTML="";
   D.forEach(day=>{
@@ -207,6 +261,7 @@ document.getElementById("days").addEventListener("change",e=>{const id=e.target.
 document.getElementById("hideopt").onclick=()=>{hide=!hide;try{localStorage.setItem(KEY+"-hide",hide?"1":"0")}catch(e){};render()};
 document.getElementById("reset").onclick=e=>{if(e.target.dataset.arm){st={};save();delete e.target.dataset.arm;e.target.textContent="Clear ticks";render()}else{e.target.dataset.arm=1;e.target.textContent="Click again to clear"}};
 render();
+initSync();
 </script>
 </body>
 </html>
