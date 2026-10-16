@@ -49,6 +49,9 @@ li .note{display:block;font-size:13px;color:var(--muted)}
 li .d{font:400 12px var(--mono);color:var(--muted);flex:none;margin-top:3px;font-variant-numeric:tabular-nums}
 li.opt a{font-weight:400}
 li.opt .tag{font:500 10px var(--mono);color:var(--muted);border:1px dashed var(--line);border-radius:3px;padding:1px 4px;margin-left:6px;white-space:nowrap}
+li.q .qt{color:var(--fg)}li.done .qt{color:var(--muted);text-decoration:line-through}
+li.qhead{font:600 11px var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--accent);padding:10px 16px 2px}
+.cq{color:var(--fg)}
 li.done a{color:var(--muted);text-decoration:line-through}
 .gap{margin:4px 16px 12px;font-size:13px;color:var(--muted);border-left:2px solid var(--line);padding-left:10px}
 .tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:6px}
@@ -83,7 +86,7 @@ button:focus-visible{outline:2px solid var(--accent)}
 </div>
 <script>
 const CHS={J:["JZ","Jochumzen","https://www.youtube.com/playlist?list=PL3FE7gBXZjSKMqq_u9eqqD6LVr9Gb_zaz"],K:["KJ","NPTEL, Krishna Jagannathan (IIT M)","https://www.youtube.com/playlist?list=PLyqSpQzTE6M_FbA7OwN2jI2Ime2yb5REk"],H:["110","Harvard Stat 110","https://www.youtube.com/playlist?list=PL2SOU6wwxB0uwwH80KTQ6ht66KWxbzTIo"],M:["MIT","MIT 6.041","https://www.youtube.com/playlist?list=PLUl4u3cNGP61MdtwGTqZA0MreSaDybji8"],P:["PROB","MIT 6.041SC worked problems","https://www.youtube.com/playlist?list=PLUl4u3cNGP60A3XMwZ5sep719_nh95qOe"]};
-const SUB="Videos in watch order for each day's guidebook, 12–21 Oct. Jochumzen first where he covers the topic, then the others for what he skips. Each day ends with exam-style worked problems from MIT 6.041SC. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
+const SUB="Videos in watch order for each day's guidebook, 12–21 Oct. Jochumzen first where he covers the topic, then the others for what he skips. Each topic then lists book questions (HPS and Ross exercises and solved examples) closest to the 2016, 2019 and 2021 papers or already asked before, and each day ends with exam-style worked problems from MIT 6.041SC. Rows marked <em>extra</em> are optional; the day time counts only the rest.";
 const D=[
  {d:"Mon 12 Oct",topics:[["Conditional distributions (mixed), total probability & Bayes for RVs",[
   ["J","_jmYUvb2pGs","Conditional probability","6:23","Quick refresher"],
@@ -96,6 +99,12 @@ const D=[
   ["J","tqrtBbNzlz8","Conditional probability density function","5:14"],
   ["M","H_k1w3cfny8","L10 · Continuous Bayes' rule; derived distributions","48:53","First half: Bayes with mixed discrete/continuous variables"],
   ["K","CX8G8Z5g5jU","lec44 · Conditional CDF","23:19","",1],
+  ["Q","r3-53","N is Poisson with a random mean Λ ~ Exp(1). Show P[N=n]=(1/2)^(n+1).","","Ross 3.53 · Asked 2010; repeat likely"],
+  ["Q","r3-17","Y ~ Gamma(s,α); given Y=y, X is Poisson(y). Show that Y given X=i is Gamma(s+i, α+1).","","Ross 3.17 · Posterior part of the 2010 question"],
+  ["Q","h6-27","Y is exponential with rate Λ, where Λ ~ Gamma(α,β). Find the marginal density of Y and the conditional density of Λ given Y=y.","","HPS Ch 6 Ex 27 · Same mixing idea, continuous"],
+  ["Q","h6-26","Y ~ Bin(n,Π) where Π ~ Beta(α₁,α₂). Find the conditional density of Π given Y=y.","","HPS Ch 6 Ex 26 · Bayes for RVs"],
+  ["Q","h6-ex9","Solved example: Poisson with a gamma-distributed parameter; the marginal is negative binomial.","","HPS Ch 6 Example 9 (and Ex 25) · Solved example behind 2010 Q5"],
+  ["Q","r3-57","Number of storms is Poisson(Λ) with Λ ~ U(0,5). Find P[at least 3 storms].","","Ross 3.57 · Mixed discrete/continuous"]
  ]],["Worked problems · exam-style",[
   ["P","6UdLp2gpmcE","A mixed distribution example","13:25"],
   ["P","96UEwIcSTG0","Inferring a discrete RV from a continuous measurement","18:37"],
@@ -105,8 +114,19 @@ const D=[
   ["J","hR4KT8Pfv0U","Independent random variables","9:02"],
   ["K","o0Ow5YT1-7k","lec39 · Independent random variables 1","21:28"],
   ["K","7473il4l2v8","lec40 · Independent random variables 2","23:45","",1],
+  ["Q","h3-19","X, Y iid geometric(p); M=min(X,Y), Z=Y−X. Find P(M=m, Z=z) and show M and Z are independent.","","HPS Ch 3 Ex 19 · Asked 2009, 2014, Assignment 2021"],
+  ["Q","h3-16","X, Y independent geometric with p₁, p₂. Find P(X≥Y), P(X=Y), and the pmfs of min(X,Y) and X+Y.","","HPS Ch 3 Ex 16–17 · ≈ 2019 Q2(b)"],
+  ["Q","h3-14","X, Y iid uniform on {0,…,N}. Find P(X>Y), P(X=Y), and the pmfs of min, max and |Y−X|.","","HPS Ch 3 Ex 14–15 · ≈ 2010 Q2"],
+  ["Q","h6-3","X, Y iid U(0,1). Find P(|X−Y|<0.5), P(|X/Y−1|<0.5) and P(Y>X | Y≥1/2).","","HPS Ch 6 Ex 3 · ≈ 2021 Q1(b)"],
+  ["Q","h6-5","(X,Y) uniform on the triangle (0,0), (2,0), (1,2). Find P(X≤1, Y≤1).","","HPS Ch 6 Ex 5 · Uniform-on-a-region, like the quadrilateral PYQs"],
+  ["Q","h6-6","Two solve-times are iid Exp(λ). Find P(first takes at least twice as long as second).","","HPS Ch 6 Ex 6 · Quick region integral"],
+  ["Q","r2-59","X₁..X₄ iid continuous. Find P{X₁<X₂>X₃<X₄} three ways.","","Ross 2.59 · Asked 2008"]
  ]],["Max, min & order statistics",[
   ["H","2LR5JYbhyjg","L25 · Order statistics and conditional expectation","48:15","First ~25 min is order statistics; the rest previews 17 Oct"],
+  ["Q","h6-32","U₁..Uₙ iid U(0,1). Find the joint density of the min and max, the density of the range R, and of the k-th order statistic.","","HPS Ch 6 Ex 32 · Order statistics core"],
+  ["Q","h6-33","U₁..Uₙ iid Exp(λ). Find the density of min(U₁..Uₙ).","","HPS Ch 6 Ex 33 · Order statistics core"],
+  ["Q","h7-9","U₁, U₂ iid Exp(λ), Y=max. Find EY and Var Y.","","HPS Ch 7 Ex 9 · Max of exponentials"],
+  ["Q","r2-37","X₁..Xₙ iid U(0,1), M = max. Show F_M(x)=xⁿ; find the density and E[M].","","Ross 2.37, 2.52(a) · Warm-up"]
  ]],["Worked problems · exam-style",[
   ["P","v8N6l9RXbOM","Uniform probabilities on a triangle","22:58"],
   ["P","xFS4xpYQ82w","Probability that three pieces form a triangle","12:30"],
@@ -118,9 +138,20 @@ const D=[
   ["H","yXwPUAIvFyg","L22 · Transformations and convolutions","47:46"],
   ["K","P6TYfLId7j4","lec48 · Sums of jointly continuous RVs","24:09"],
   ["K","qvny65_gZQM","lec47 · Sums of discrete RVs","22:02","",1],
+  ["Q","h6-11","Density of X+Y when (a) X~Exp(λ₁), Y~Exp(λ₂), λ₁≠λ₂; (b) X~U(0,1), Y~Exp(λ).","","HPS Ch 6 Ex 11 · ≈ 2016 Q2(b)"],
+  ["Q","h6-13","X, Y iid U(a,b). Find the density of |Y−X|.","","HPS Ch 6 Ex 13 · Convolution with a twist"],
+  ["Q","h6-30","X₁, X₂, X₃ iid U(0,1). Find the density of their sum and P(sum<2).","","HPS Ch 6 Ex 30 · Repeated convolution"],
+  ["Q","h6-38","X, Y iid Exp(λ). Find the conditional density of X given X+Y=z. Repeat for U(0,c).","","HPS Ch 6 Ex 37–39 · ≈ 2014 Q3(b) continuous version"],
+  ["Q","r2-64","Show that a sum of iid exponentials is gamma.","","Ross 2.64 · Used in 2019/2021 Q3"]
  ]],["Jacobian transformation: difference, product, quotient",[
   ["K","30x5TyidptI","lec51 · Jacobian formula","23:24"],
   ["K","yhd4pSm3bEA","lec52 · Examples using the Jacobian formula","24:46"],
+  ["Q","h6-42","X ~ Gamma(α₁,λ), Y ~ Gamma(α₂,λ) independent. Show Y/X and X+Y are independent (use the W=Y/X, Z=X+Y Jacobian).","","HPS Ch 6 Ex 41–42 · ≈ 2021 Q1(a), 2012 Q2(a)"],
+  ["Q","h6-22","Same X, Y: find the density of X/(X+Y).","","HPS Ch 6 Ex 22 · ≈ 2009 Q2(b)"],
+  ["Q","h6-31","X₁~U(0,1), X₂~U(0,X₁), X₃~U(0,X₂). Find the joint density and the marginal of X₃.","","HPS Ch 6 Ex 31 · ≈ 2019 Q2(a), 2011 Q4"],
+  ["Q","h6-21","X, Y iid Exp(λ). Find the density of Y/X.","","HPS Ch 6 Ex 21 · Ratio by Jacobian"],
+  ["Q","h6-19","X, Y iid N(0,σ²). Show Y/X is Cauchy; find the density of |Y|/|X|.","","HPS Ch 6 Ex 19–20 · Ratio by Jacobian"],
+  ["Q","h6-17","Coordinates iid N(0,σ²): find the density of the distance R from the origin (Rayleigh).","","HPS Ch 6 Ex 17 · Polar Jacobian"]
  ]],["Worked problems · exam-style",[
   ["P","HwkKtHLCmzo","A derived distribution example","9:30"],
   ["P","f8Nli1AfygM","The difference of two independent exponential RVs","6:12"],
@@ -129,24 +160,43 @@ const D=[
  {d:"Thu 15 Oct",topics:[["Exchangeable RVs & expectations of functions",[
   ["J","zsRWu6W6aYg","Expected value of a function of several random variables","6:17"],
   ["J","_mWKujbK8Z4","The expected value of the product of two random variables","3:38"],
+  ["Q","r2-45","r keys into k boxes, box i w.p. pᵢ. Expected number of collisions.","","Ross 2.45 · Asked 2016"],
+  ["Q","r2-74","Records: P(record at n)=1/n, E and Var of the number of records by n, and E[first record time after 1]=∞.","","Ross 2.74 · Asked 2012; part (c) not asked yet"],
+  ["Q","r2-43","n red, m black balls drawn without replacement. Expected number of reds before the first black; then between the first and second black.","","Ross 2.43–2.44 · Indicator trick, exchangeability"],
+  ["Q","r2-56","n coupon types with probs pᵢ; k coupons collected. Mean and variance of the number of distinct types.","","Ross 2.56 · ≈ 2016 Q3(b) style"],
+  ["Q","h4-16","n balls into r boxes. Mean and variance of the number of empty boxes.","","HPS Ch 4 Ex 16 · ≈ 2016/2019 indicator questions"]
  ]],["Covariance, correlation & linear LSE",[
   ["J","92nPUqrMnNY","Covariance, correlation and independence","26:35"],
   ["J","oqhhrqfRpb8","Covariance","10:15"],
   ["J","RBioTO4jNOU","Covariance, results","15:12"],
   ["H","IujCYxtpszU","L21 · Covariance and correlation","49:26","Good worked examples",1],
   ["M","XtNXQJkgkhI","L22 · Bayesian statistical inference II","52:16","Watch the linear least-mean-squares part for linear LSE"],
+  ["Q","r2-72","Show Var X = 1 for the number of matches in the hat problem.","","Ross 2.72 (Example 2.31) · Asked 2012 and 2016"],
+  ["Q","h4-17","Two decks of n cards matched position by position: E and Var of the number of matches.","","HPS Ch 4 Ex 17 · Asked 2019"],
+  ["Q","h4-20","X₁, X₂, X₃ independent with variances σ₁²,σ₂²,σ₃². Correlation of X₁−X₂ and X₂+X₃.","","HPS Ch 4 Ex 20 · ≈ 2019 Q1(b)"],
+  ["Q","h4-24","Multinomial: show ρ(X,Y) = −√(p₁p₂/((1−p₁)(1−p₂))) via indicators.","","HPS Ch 4 Ex 24 · Indicator covariance"],
+  ["Q","h7-23","X, Y mean 0, variance 1, correlation ρ. Show X−ρY and Y are uncorrelated; Var(X−ρY)=1−ρ².","","HPS Ch 7 Ex 23 · Linear LSE residual"],
+  ["Q","h7-24","Correlations ρ₁ (X,Y), ρ₂ (Y,Z), ρ₃ (X,Z): show ρ₃ ≥ ρ₁ρ₂ − √(1−ρ₁²)√(1−ρ₂²).","","HPS Ch 7 Ex 24–25 · ≈ 2008 Q3(a), 2009 Q3(a) style bounds"],
+  ["Q","r2-76","X ⟂ Y: Var(XY) = σx²σy² + μy²σx² + μx²σy².","","Ross 2.76 · Asked 2008 and 2011"]
  ]]],gap:"No good video on exchangeable RVs; use the guidebook for that part."},
  {d:"Fri 16 Oct",topics:[["Covariance matrix & vector linear regression",[
   ["J","24AJD4pRU8Y","Random vectors","7:16"],
   ["J","4SVZw2kfVWI","Function of a random vector","6:44"],
   ["J","BVenKtmBf8E","The expected value of a random vector","7:40"],
   ["J","VLhj4-R2miI","The variance of a random vector","9:30"],
+  ["Q","q-cm1","(Variant) X₁..Xₙ unit variance, pairwise correlation ρ. Write Σ=(1−ρ)I+ρ11ᵀ, find its eigenvalues, and deduce ρ ≥ −1/(n−1).","","Variant of 2009 Q3(a) · Repeat of an asked question"],
+  ["Q","r2-73","Multinomial counts Nᵢ: find E, Var, Cov(Nᵢ,Nⱼ); write the covariance matrix.","","Ross 2.73 · Covariance matrix by hand"]
  ]],["Joint moments, joint MGF & characteristic function",[
   ["H","N8O6zd6vTZ8","L17 · Moment generating functions","50:45"],
   ["K","ydu7KUVSBeo","lec75 · Moment generating function 1","21:14"],
   ["K","SKb7lxR_o1k","lec76 · Moment generating function 2","28:37","",1],
   ["K","WkKPEB5r-bU","lec77 · Characteristic function 1","19:14"],
   ["H","tVDdx6xUOcs","L18 · MGFs continued","49:41","",1],
+  ["Q","h8-5","X has density ½e^(−|x|). Show M_X(t)=1/(1−t²) and find EX²ⁿ.","","HPS Ch 8 Ex 5 · Key step of 2012 Q4(a) (Y=X₁X₂+X₃X₄)"],
+  ["Q","r3-42","Noncentral χ²: MGF of X² for X~N(μ,1), then of ΣXᵢ²; mean and variance.","","Ross 3.42 · ≈ 2007/2010/2012 MGF of ΣZᵢ²"],
+  ["Q","h8-7","Show E(X₁+…+Xₙ)³ = nEX₁³ + 3n(n−1)EX₁²EX₁ + n(n−1)(n−2)(EX₁)³ using MGFs.","","HPS Ch 8 Ex 7 · MGF differentiation"],
+  ["Q","r2-78","Show X₁..Xₙ are independent iff the joint MGF factorises; get M_{Xᵢ} from the joint MGF.","","Ross 2.78 · Joint MGF theory"],
+  ["Q","h4-15","Show Σ(Xₖ−X̄)² = Σ(Xₖ−μ)² − n(X̄−μ)², hence E[S²]=σ².","","HPS Ch 4 Ex 15 · Asked 2007 Q4(b)"]
  ]]]},
  {d:"Sat 17 Oct",topics:[["Conditional expectation & MMSE estimation",[
   ["J","QP00LHp0LqY","Conditional expectation and conditional variance","22:08"],
@@ -158,9 +208,24 @@ const D=[
   ["J","jDsHE1-t2Zc","Conditional expectations and random vectors","12:10"],
   ["K","IpnfRSM25Tw","lec73 · MMSE estimator","15:34"],
   ["H","gjBvCiRt8QA","L27 · Conditional expectation given an r.v.","50:34","",1],
+  ["Q","r3-46","Show Cov(X,Y)=Cov(X,E[Y|X]); if E[Y|X]=a+bX then b=Cov(X,Y)/Var X.","","Ross 3.46 · Asked 2011, 2012, 2021"],
+  ["Q","r3-23","Flip until two of the last three flips are heads. Find E[N].","","Ross 3.23 · Asked 2006"],
+  ["Q","r3-24","Flip until at least one head and one tail: E[flips], E[heads], E[tails]; then until two heads and one tail.","","Ross 3.24 · Asked in Assignment 2021"],
+  ["Q","r3-27","Flip until the pattern T,T,H appears. Find E[X].","","Ross 3.27 (§3.6.4 patterns) · ≈ Assignment 2021 Q8(b)"],
+  ["Q","r3-2","X₁, X₂ iid geometric(p). Guess P{X₁=i | X₁+X₂=n}, then verify.","","Ross 3.2 · Asked 2014"],
+  ["Q","h7-26","(X,Y) uniform on the triangle (0,0), (2,0), (1,2). Find E[Y|X].","","HPS Ch 7 Ex 26 · ≈ 2007/2010/2012 region E[X|Y]"],
+  ["Q","h7-27","X ~ Gamma(α₁,λ), Y ~ Gamma(α₂,λ) independent, Z=X+Y. Find E[X|Z].","","HPS Ch 7 Ex 27 · Conditioning on a sum"],
+  ["Q","r3-12","f(x,y)=e^(−x/y)e^(−y)/y. Show E[X|Y=y]=y.","","Ross 3.11–3.12, 3.15 · Quick E[X|Y] drills"],
+  ["Q","r3-13","X ~ Exp(λ): find E[X|X>1]. X ~ U(0,1): find E[X|X<½].","","Ross 3.13–3.14 · Asked 2014 Q3(c) (mirror)"],
+  ["Q","r3-38","Given U=u ~ U(0,1), n trials succeed w.p. u. Mean and variance of the number of successes.","","Ross 3.38 · Conditional variance formula"],
+  ["Q","r3-81","X₀=x, Xᵢ iid U(0,1), N=min{n: Xₙ<Xₙ₋₁}. Show P{N≥k}=(1−x)^(k−1)/(k−1)! and find E[N].","","Ross 3.81 · Asked 2016 Q4(a) (x=0 case)"]
  ]],["Random sums & Wald's formula",[
   ["M","P7a4bjE6Crk","L12 · Iterated expectations; sum of a random number of RVs","47:54"],
   ["K","L_JRLrjXoDE","lec49 · Sums of a random number of random variables","26:50","",1],
+  ["Q","h4-35","Random sum S_N, N independent of the Xᵢ: show E S_N = μEN and Var S_N = σ²EN + μ²Var N.","","HPS Ch 4 Ex 35–36 · Theory for 2019/2021 Q3"],
+  ["Q","r3-44","Customers ~ Poisson(10), each spends U(0,100). Mean and variance of the day's takings.","","Ross 3.44 · ≈ 2019/2021 random sum"],
+  ["Q","r3-92","Coins spotted ~ Poisson(6), each equally likely penny/nickel/dime/quarter; pennies ignored. Mean, variance, and P(exactly 25 cents).","","Ross 3.92 · Random sum + thinning"],
+  ["Q","r3-21","Miner and three doors: express the escape time as a random sum and find its mean.","","Ross 3.21 (Example 3.13) · Solved example, Wald"]
  ]],["Worked problems · exam-style",[
   ["P","NlRgBtSLViI","The variance in the stick-breaking problem","11:30"],
   ["P","Y8zx1tWEbeI","Widgets and crates","10:06"],
@@ -174,16 +239,28 @@ const D=[
   ["K","6Uwjz6h9-Mc","lec95 · Multivariate Gaussians 1","23:36"],
   ["K","lJinY4mEq74","lec96 · Multivariate Gaussians 2","35:04"],
   ["H","MF-XSJOsGqw","L30 · Chi-square, Student-t, multivariate normal","47:28","Last third is the MVN part",1],
+  ["Q","h6-40","U, V iid N(0,1), Z=ρU+√(1−ρ²)V. Find the density of Z, the joint density of (U,Z), of X=μ₁+σ₁U, Y=μ₂+σ₂Z, and Y given X=x.","","HPS Ch 6 Ex 40 · Asked 2006, 2010, 2014, 2021. Top priority"],
+  ["Q","h6-36","X, Y iid N(0,1). Find the joint density of aX+bY and bX−aY.","","HPS Ch 6 Ex 36 · ≈ 2007 Q3(b), 2014 Q2(b)"],
+  ["Q","r2-77","X, Y iid N(μ,σ²): show X+Y is independent of X−Y using the joint MGF.","","Ross 2.77 · Asked 2007"],
+  ["Q","h6-9","f(x,y)=c·exp(−(x²−xy+4y²)/2). Find c and the marginals.","","HPS Ch 6 Ex 9 · ≈ 2011 Q2(a), 2007 Q3(a)"],
+  ["Q","r3-16","Bivariate normal: show the marginals are normal and X|Y=y ~ N(μx+ρσx(y−μy)/σy, σx²(1−ρ²)).","","Ross 3.16 · Core result"],
+  ["Q","h6-43","R Rayleigh, Θ ~ U(−π,π) independent: show R cosΘ and R sinΘ are iid normal.","","HPS Ch 6 Ex 43 · Jacobian + Gaussian"]
  ]]],gap:"Afternoon is the timed Test II papers, so keep the videos to the morning."},
  {d:"Mon 19 Oct",topics:[["Inequalities: Jensen, Hölder, Minkowski, Chernoff, Hoeffding",[
   ["H","UtXK_EQ3Pow","L28 · Inequalities","47:29","Cauchy–Schwarz, Jensen, Markov, Chebyshev"],
   ["K","FwW2oMSLwJY","lec81 · Concentration inequalities 1","24:49"],
   ["K","Fg6xxffxcXg","lec82 · Concentration inequalities 2","21:58","Chernoff bound"],
+  ["Q","h4-26","Find a distribution where Chebyshev's bound is attained with equality.","","HPS Ch 4 Ex 26 · Tightness of Chebyshev"],
+  ["Q","h8-9","Use P(X≥x) ≤ min_t e^(−tx)M(t) to show P(X>2α/λ) < (2/e)^α for X~Gamma(α,λ).","","HPS Ch 8 Ex 8–9 · Chernoff bound"],
+  ["Q","h4-30","X ~ Poisson(λ): Chernoff-type bounds P(X≤λ/2) and P(X≥2λ); compare with Chebyshev.","","HPS Ch 4 Ex 28–30 · Chernoff vs Chebyshev"],
+  ["Q","r2-68","X₁..X₁₀ iid Poisson(1): bound P(sum≥15) with Markov, then approximate with the CLT.","","Ross 2.67–2.68 · ≈ 2016/2021 Q4(b) style"]
  ]],["Weak law of large numbers & convergence in probability",[
   ["J","HsNVjCDI9ts","Convergence in probability","12:59"],
   ["J","4Q01kUH13Fw","Plim-rules","6:45"],
   ["M","3eiio3Tw7UQ","L19 · Weak law of large numbers","50:13"],
   ["J","jEwML3KR29g","Consistency","6:33","",1],
+  ["Q","r2-66","Prove the WLLN from Chebyshev's inequality.","","Ross 2.66 · Standard proof"],
+  ["Q","q-wl1","(Variant) Xᵢ iid with density 3x² on [0,1]. Does (1/n)ΣXᵢ² converge in probability? To what?","","Variant of 2013/2019 Q2(a) · Same pattern as recent papers"]
  ]],["Worked problems · exam-style",[
   ["P","x4q6H6lxFFE","Convergence in probability and in the mean, part 1","13:37"],
   ["P","D_vUxa3tEGs","Convergence in probability and in the mean, part 2","5:46"],
@@ -198,10 +275,15 @@ const D=[
   ["K","dCjPTwdANFA","lec85 · Convergence of random variables 3","24:56"],
   ["K","Q54mEuQUOEc","lec91 · The law of large numbers 1","17:10"],
   ["K","pZdrc4rEMVk","lec92 · The law of large numbers 2","31:47"],
+  ["Q","q-as1","(Variant) Xₙ independent, P[Xₙ=n²]=1/n², P[Xₙ=0]=1−1/n². Converge in probability? a.s.? in mean? in mean square?","","Variant of 2019 Q3(b) · Borel–Cantelli both halves"],
+  ["Q","q-as2","(Variant) Xₙ independent, P[Xₙ=1]=1/n, P[Xₙ=0]=1−1/n. Converge in probability? a.s.?","","Variant of 2010/2014 Q2(a) · Second Borel–Cantelli"],
+  ["Q","q-as3","(Variant) Xᵢ iid Exp(1). Does (1/n)ΣXᵢ⁴ converge a.s.? Limit?","","Variant of 2016 Q4(b) · SLLN"]
  ]],["Convergence in r-th mean, in distribution & relations",[
   ["K","e8nDSvENyn8","lec86 · Convergence of random variables 4","25:19"],
   ["K","el-JGNsGHw8","lec87 · Convergence of random variables 5","22:17"],
   ["K","jgNw7sopJNI","lec88 · Convergence of random variables 6","23:26"],
+  ["Q","q-md1","(Variant) Xₙ independent with P[Xₙ=2]=P[Xₙ=0]=½, Yₙ=∏Xₖ. Does Yₙ→0 in probability, a.s., in r-th mean?","","Variant of 2007/2008/2012/2013 Q · Asked four times"],
+  ["Q","q-md2","(Variant) Xₙ ~ geometric(λ/n). Show Xₙ/n converges in distribution and identify the limit (via CDFs or CFs).","","Variant of 2011/2012/2019 Q3 · Asked three times + Assignment"]
  ]]]},
  {d:"Wed 21 Oct",topics:[["Central limit theorem & characteristic functions",[
   ["K","f40ALmHmf00","lec78 · Characteristic function 2","30:01"],
@@ -210,6 +292,15 @@ const D=[
   ["K","3_qGU4SB4-k","lec93 · The central limit theorem 1","25:11"],
   ["K","3M1R5rHHJ_U","lec94 · The central limit theorem 2","17:57","",1],
   ["H","OprNqnHsVIA","L29 · Law of large numbers and CLT","49:48","",1],
+  ["Q","h7-37","Twenty numbers rounded to the nearest integer and added (errors U(−½,½)). P(error > 3).","","HPS Ch 7 Ex 37 · Asked 2008"],
+  ["Q","h7-43","55% favour B. Probability that at least half of a sample of 100 favour A.","","HPS Ch 7 Ex 43 · Asked 2006 (numbers changed)"],
+  ["Q","h7-36","A runner's paces are iid with mean 0.97 m, SD 0.1 m. P(100 paces within 5 m of 100 m).","","HPS Ch 7 Ex 36 · CLT drill"],
+  ["Q","h7-38","Fair coin tossed until 100 heads. P(at least 226 tosses needed).","","HPS Ch 7 Ex 38 · CLT on a sum of geometrics"],
+  ["Q","h7-44","Poll of 1200 voters: how large must p be for A to be 95% sure of a majority in the sample?","","HPS Ch 7 Ex 44 · ≈ 'choose n' questions"],
+  ["Q","h8-12","Characteristic function of a sum of n iid geometric (and exponential) RVs.","","HPS Ch 8 Ex 11–13 · Asked 2006, 2008, 2011"],
+  ["Q","h8-17","X, Y iid: show φ_{X−Y}(t)=|φ_X(t)|².","","HPS Ch 8 Ex 15–17 · Asked 2007 Test III"],
+  ["Q","h8-21","X, Y iid Cauchy: CF of (X+Y)/2; why is it Cauchy again? Why doesn't the CLT apply?","","HPS Ch 8 Ex 20–22 · Classic CF trap"],
+  ["Q","h8-23","X_λ ~ Poisson(λ): show (X_λ−λ)/√λ → N(0,1) via characteristic functions.","","HPS Ch 8 Ex 23 · ≈ 2010 Q4(a)"]
  ]],["Worked problems · exam-style",[
   ["P","M3615Gbd6-8","Using the central limit theorem","11:25"],
  ]]],gap:"Afternoon is the timed Test III paper."},
@@ -269,7 +360,10 @@ function render(){
     let core=0;
     const box=document.createElement("section");box.className="day";
     const body=day.topics.map(([tp,vs])=>{
+      let qh=false;
       const rows=vs.map(([c,id,t,dur,note,opt])=>{
+        if(c==="Q"){const head=qh?"":(qh=true,`<li class="qhead">Book questions · from HPS / Ross, closest to recent papers</li>`);
+          return head+`<li class="q ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Done: ${t}"><span class="chip cq">Q</span><span class="t"><span class="qt">${t}</span><span class="note">${note}</span></span></li>`}
         if(!opt)core+=sec(dur);
         if(opt&&hide)return "";
         return `<li class="${opt?"opt":""} ${st[id]?"done":""}"><input type="checkbox" id="v${id}" data-id="${id}" ${st[id]?"checked":""} aria-label="Watched: ${t}"><span class="chip c${CHS[c][2]?CI[c]:4}">${CHS[c][0]}</span><span class="t"><a href="https://www.youtube.com/watch?v=${id}" target="_blank" rel="noopener">${t}</a>${opt?'<span class="tag">extra</span>':""}${note?`<span class="note">${note}</span>`:""}</span><span class="d">${dur}</span></li>`}).join("");
@@ -278,7 +372,7 @@ function render(){
     root.appendChild(box);
   });
   const all=D.flatMap(d=>d.topics.flatMap(t=>t[1])),done=all.filter(v=>st[v[1]]).length;
-  document.getElementById("pc").textContent=`${done} / ${all.length} watched`;
+  document.getElementById("pc").textContent=`${done} / ${all.length} done`;
   document.getElementById("pb").style.width=(100*done/all.length)+"%";
   document.getElementById("hideopt").textContent=hide?"Show extras":"Hide extras";
 }
